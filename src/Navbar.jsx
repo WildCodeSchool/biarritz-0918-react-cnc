@@ -13,7 +13,8 @@ import {
 } from 'reactstrap';
 import LoginModal from './LoginModal.jsx';
 import Harold from './hidethepain.jpg';
-
+import logo from './clic.png';
+import './Navbar.module.css';
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
@@ -32,7 +33,8 @@ export default class Example extends React.Component {
         return (
             <div>
                 <Navbar color="dark" dark expand="md">
-                    <NavbarBrand href="/">Clic and Coupe</NavbarBrand>
+                <img src={logo}  alt="logo" />
+                    <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
