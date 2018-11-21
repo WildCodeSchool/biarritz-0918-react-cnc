@@ -11,14 +11,9 @@ const Example = (props) => {
         <div>
             <InputGroup>
                 <Input placeholder="Salon de coiffure" />
-            </InputGroup>
-            <br />
-            <InputGroup>
                 <Input placeholder="Où ?" />
+                <InputGroupAddon addonType="append"><Button color="primary">I'm a button</Button></InputGroupAddon>
             </InputGroup>
-
-            <br />
-            <Button outline color="primary">Search</Button>
         </div>
     );
 };
