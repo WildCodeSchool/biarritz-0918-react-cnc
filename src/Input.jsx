@@ -14,7 +14,7 @@ const Example = (props) => {
             </InputGroup>
             <br />
             <InputGroup>
-                <Input placeholder="password" />
+                <Input placeholder="Où ?" />
             </InputGroup>
 
             <br />
