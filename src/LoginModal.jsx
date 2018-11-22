@@ -31,9 +31,9 @@ class ModalExample extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Login</ModalHeader>
                     <ModalBody>
-                        <Input type="text" placeholder="Email" required />
+                        <Input type="text" name="_email" placeholder="Email" required />
                         <br />
-                        <Input type="password" placeholder="Password" required />
+                        <Input type="password" name="_password" placeholder="Password" required />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="success" onClick={this.toggle}>Login</Button>{' '}

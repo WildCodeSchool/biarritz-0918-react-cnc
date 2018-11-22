@@ -3,7 +3,8 @@ import logo from './clic.png';
 import './App.css';
 import { Button } from 'reactstrap';
 import Navbar from './Navbar.jsx';
-import Input from './Input.jsx';
+import InputSearch from './components/input/Input.jsx';
+import SearchBar from './components/search/SearchBar.jsx';
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
         <Navbar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Input />
+          <InputSearch />
         </header>
       </div>
     );
