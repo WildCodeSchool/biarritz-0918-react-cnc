@@ -16,10 +16,10 @@ import LoginModal from './LoginModal.jsx';
 import logo from './clic.png';
 import './Navbar.module.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import About from "./components/Pages/About.js"
 
 //Example components
 const Index = () => <h2>Home</h2>;
-const About = () => <h2>About</h2>;
 const Users = () => <h2>Users</h2>;
 
 
