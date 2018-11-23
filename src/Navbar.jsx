@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -12,10 +12,11 @@ import {
     DropdownToggle,
     DropdownMenu,
 } from 'reactstrap';
+
 import LoginModal from './LoginModal.jsx';
 import logo from './clic.png';
 import './Navbar.module.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Error from './components/Pages/Error.js';
 import About from "./components/Pages/About.js"
 
 //Example components
@@ -71,9 +72,12 @@ export default class Example extends React.Component {
                     </Collapse>
                 </Navbar>
                 {/* Routes definition of paths and related components */}
-                <Route path="/" exact component={Index} />
-                <Route path="/about/" component={About} />
-                <Route path="/users/" component={Users} />
+                <Switch>
+                    <Route path="/" exact component={Index} />
+                    <Route path="/about/" component={About} />
+                    <Route path="/users/" component={Users} />
+                    <Route component={Error} />
+                </Switch>
             </div>
             </Router>
         );
