@@ -5,6 +5,8 @@ import { Button } from 'reactstrap';
 import Navbar from './Navbar.jsx';
 import InputSearch from './components/input/Input.jsx';
 import SearchBar from './components/search/SearchBar.jsx';
+import Error from './components/Pages/Error.js';
+
 
 class App extends Component {
   render() {
