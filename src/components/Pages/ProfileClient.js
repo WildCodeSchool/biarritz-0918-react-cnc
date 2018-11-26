@@ -9,7 +9,6 @@ const ProfileClient = () => {
         <div>
             {/* <p>TEST Component called ProfileClient situated in components/Pages/ProfileClient.js</p> */}
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
                 <InputSearch />
             </header>
 
