@@ -19,9 +19,7 @@ import './Navbar.module.css';
 import Error from './components/Pages/Error.js';
 import About from "./components/Pages/About.js"
 import Home from "./components/Pages/Home.js"
-
-//Example components
-const Users = () => <h2>Users</h2>;
+import ProfileClient from "./components/Pages/ProfileClient.js"
 
 
 export default class Example extends React.Component {
@@ -55,7 +53,7 @@ export default class Example extends React.Component {
                                 <NavLink tag={Link} to="/about/">About</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/users/">Users</NavLink>
+                                <NavLink tag={Link} to="/cprofile/">ProfileClient</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
@@ -75,7 +73,7 @@ export default class Example extends React.Component {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/about/" component={About} />
-                    <Route path="/users/" component={Users} />
+                    <Route path="/cprofile/" component={ProfileClient} />
                     <Route component={Error} />
                 </Switch>
             </div>
