@@ -18,7 +18,7 @@ import logo from '../../clic.png';
 import styles from './Navbar.module.css';
 import Error from '../Pages/Error.js';
 import Home from "../Pages/Home.js"
-import ProfileClient from "../Pages/ProfileClient.js"
+import ProfileClient from "../Pages/ProfileClients/ProfileClient.js"
 import ProfileSalon from '../Pages/ProfileSalon.js';
 
 
