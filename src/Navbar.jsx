@@ -18,9 +18,9 @@ import logo from './clic.png';
 import './Navbar.module.css';
 import Error from './components/Pages/Error.js';
 import About from "./components/Pages/About.js"
+import Home from "./components/Pages/Home.js"
 
 //Example components
-const Index = () => <h2>Home</h2>;
 const Users = () => <h2>Users</h2>;
 
 
@@ -73,7 +73,7 @@ export default class Example extends React.Component {
                 </Navbar>
                 {/* Routes definition of paths and related components */}
                 <Switch>
-                    <Route path="/" exact component={Index} />
+                    <Route path="/" exact component={Home} />
                     <Route path="/about/" component={About} />
                     <Route path="/users/" component={Users} />
                     <Route component={Error} />
