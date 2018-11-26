@@ -3,7 +3,7 @@ import logo from '../../clic.png';
 
 
 
-const About = () => {
+const ProfileSalon = () => {
 
     return (
         <div>
@@ -33,4 +33,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default ProfileSalon;

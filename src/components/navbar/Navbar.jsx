@@ -17,9 +17,9 @@ import LoginModal from '../../LoginModal.jsx';
 import logo from '../../clic.png';
 import styles from './Navbar.module.css';
 import Error from '../Pages/Error.js';
-import About from "../Pages/About.js"
 import Home from "../Pages/Home.js"
 import ProfileClient from "../Pages/ProfileClient.js"
+import ProfileSalon from '../Pages/ProfileSalon.js';
 
 
 export default class Example extends React.Component {
@@ -50,10 +50,10 @@ export default class Example extends React.Component {
                                     <NavLink tag={Link} to="/">Home</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} to="/about/">About</NavLink>
+                                    <NavLink tag={Link} to="/cprofile/">Profile Client</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} to="/cprofile/">ProfileClient</NavLink>
+                                    <NavLink tag={Link} to="/sprofile/">Profile Salon</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -72,8 +72,8 @@ export default class Example extends React.Component {
                     {/* Routes definition of paths and related components */}
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/about/" component={About} />
                         <Route path="/cprofile/" component={ProfileClient} />
+                        <Route path="/sprofile/" component={ProfileSalon} />
                         <Route component={Error} />
                     </Switch>
                 </div>
