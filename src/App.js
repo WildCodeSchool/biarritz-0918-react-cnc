@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Button } from 'reactstrap';
-import Navbar from './Navbar.jsx';
+import Navbar from   './components/navbar/Navbar.jsx';
 
 
 

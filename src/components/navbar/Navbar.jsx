@@ -13,13 +13,13 @@ import {
     DropdownMenu,
 } from 'reactstrap';
 
-import LoginModal from './LoginModal.jsx';
-import logo from './clic.png';
+import LoginModal from '../../LoginModal.jsx';
+import logo from '../../clic.png';
 import './Navbar.module.css';
-import Error from './components/Pages/Error.js';
-import About from "./components/Pages/About.js"
-import Home from "./components/Pages/Home.js"
-import ProfileClient from "./components/Pages/ProfileClient.js"
+import Error from '../Pages/Error.js';
+import About from "../Pages/About.js"
+import Home from "../Pages/Home.js"
+import ProfileClient from "../Pages/ProfileClient.js"
 
 
 export default class Example extends React.Component {
