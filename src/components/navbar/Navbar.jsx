@@ -15,7 +15,7 @@ import {
 
 import LoginModal from '../../LoginModal.jsx';
 import logo from '../../clic.png';
-import './Navbar.module.css';
+import styles from './Navbar.module.css';
 import Error from '../Pages/Error.js';
 import About from "../Pages/About.js"
 import Home from "../Pages/Home.js"
@@ -42,7 +42,7 @@ export default class Example extends React.Component {
         return (
             <Router>
                 <div>
-                    <Navbar color="dark" dark expand="md">
+                    <Navbar className={styles.toto} color="dark" dark expand="md">
                         <img src={logo} id="headlogo" alt="logo" />
                         <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
