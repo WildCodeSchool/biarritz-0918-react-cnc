@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -11,8 +12,17 @@ import {
     DropdownToggle,
     DropdownMenu,
 } from 'reactstrap';
+
 import LoginModal from './LoginModal.jsx';
-import Harold from './hidethepain.jpg';
+import logo from './clic.png';
+import './Navbar.module.css';
+import Error from './components/Pages/Error.js';
+import About from "./components/Pages/About.js"
+import Home from "./components/Pages/Home.js"
+
+//Example components
+const Users = () => <h2>Users</h2>;
+
 
 export default class Example extends React.Component {
     constructor(props) {
@@ -30,33 +40,46 @@ export default class Example extends React.Component {
     }
     render() {
         return (
-            <div>
-                <Navbar color="dark" dark expand="md">
-                    <NavbarBrand href="/">Clic and Coupe</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
+            <Router>
+                <div>
+                    <Navbar color="dark" dark expand="md">
+                        <img src={logo} alt="logo" />
+                        <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/">Home</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/about">About</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/users">Users</NavLink>
+                                </NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
                                 </DropdownToggle>
-                                <DropdownMenu right>
-                                    {/* Input here */}
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                            <NavItem>
-                                <LoginModal />
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+                                    <DropdownMenu right>
+                                        {/* Input here */}
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                                <NavItem>
+                                    <LoginModal />
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+                    {/* Routes definition of paths and related components */}
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/about/" component={About} />
+                        <Route path="/users/" component={Users} />
+                        <Route component={Error} />
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }

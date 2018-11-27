@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 # Ignoring node-module
 /node_modules/
+=======
+# Ignoring node
+node_modules/
+>>>>>>> c439ffd9f8dc5ab92fd55ec2b65a9ba9a0f586e8
