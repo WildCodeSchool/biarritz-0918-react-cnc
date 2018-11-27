@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProfileItem from './ProfileItem.js';
+import ProfileItem from './ProfileItem.jsx';
 
 class ProfileClass extends Component {
     constructor(props){

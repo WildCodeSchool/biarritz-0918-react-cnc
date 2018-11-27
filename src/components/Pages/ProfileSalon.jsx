@@ -3,7 +3,7 @@ import logo from '../../clic.png';
 import styles from './ProfileSalon.module.css';
 import { Table } from 'reactstrap';
 import Calendar from 'react-calendar';
-import Agenda from '../agenda/agenda.js';
+import Agenda from '../agenda/agenda.jsx';
 
 const ProfileSalon = () => {
 
