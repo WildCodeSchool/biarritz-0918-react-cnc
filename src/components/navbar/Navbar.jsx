@@ -11,6 +11,11 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
+    DropdownItem,
+    Button,
+    Input,
+    Form,
+    FormGroup
 } from 'reactstrap';
 
 import LoginModal from '../../LoginModal.jsx';
@@ -40,7 +45,7 @@ export default class Example extends React.Component {
         return (
             <Router>
                 <div>
-                    <Navbar className={styles.toto} color="dark" dark expand="md">
+                    <Navbar className={styles.toto} color="light" light expand="md">
                         <img src={logo} alt="logo" />
                         <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
@@ -60,7 +65,7 @@ export default class Example extends React.Component {
                                         Options
                                 </DropdownToggle>
                                     <DropdownMenu right>
-                                        {/* Input here */}
+                                        {/* Dropdown menu here */}
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                                 <NavItem>
