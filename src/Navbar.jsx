@@ -41,44 +41,44 @@ export default class Example extends React.Component {
     render() {
         return (
             <Router>
-            <div>
-                <Navbar color="dark" dark expand="md">
-                <img src={logo}  alt="logo" />
-                    <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink tag={Link} to="/">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} to="/about/">About</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} to="/users/">Users</NavLink>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
+                <div>
+                    <Navbar color="dark" dark expand="md">
+                        <img src={logo} alt="logo" />
+                        <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/">Home</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/about">About</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/users">Users</NavLink>
+                                </NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
                                 </DropdownToggle>
-                                <DropdownMenu right>
-                                    {/* Input here */}
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                            <NavItem>
-                                <LoginModal />
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-                {/* Routes definition of paths and related components */}
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/about/" component={About} />
-                    <Route path="/users/" component={Users} />
-                    <Route component={Error} />
-                </Switch>
-            </div>
+                                    <DropdownMenu right>
+                                        {/* Input here */}
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                                <NavItem>
+                                    <LoginModal />
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+                    {/* Routes definition of paths and related components */}
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/about/" component={About} />
+                        <Route path="/users/" component={Users} />
+                        <Route component={Error} />
+                    </Switch>
+                </div>
             </Router>
         );
     }
