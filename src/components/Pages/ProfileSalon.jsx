@@ -2,32 +2,33 @@ import React from "react";
 import logo from '../../clic.png';
 import styles from './ProfileSalon.module.css';
 import { Table } from 'reactstrap';
-import Calendar from 'react-calendar';
 import Agenda from '../agenda/agenda.jsx';
 
 const ProfileSalon = () => {
 
     return (
-        <div className={styles.background}>
+        <div>
             <div className="row">
-                <div className="col-lg-2 offset-lg-1">
+                <div className="col-lg-2 offset-lg-2">
                     <img className={styles.profilepic} src={logo} alt="logo" />
                 </div>
-                <div className="col-lg-9">
+                <div className="col-lg-8">
                     Présentation Services Horaires Tarifs
                 </div>
             </div>
             <div className="row">
-                <div className="offset-lg-1 col-lg-8">
+                <div className="offset-lg-2 col-lg-6">
                     <h1>Clic & Coupe</h1>
                     <p>
-                        Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
+                        Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
+                        brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope
+                        Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
                     </p>
                     <div className="col-lg-12">
-                        <Agenda /> {/* https://www.npmjs.com/package/react-agenda */}
+                        <Agenda />
                     </div>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-2">
                     <Table>
                         <thead>
                             Horaires
@@ -69,10 +70,9 @@ const ProfileSalon = () => {
                             </tr>
                         </tbody>
                     </Table>
-                    <Calendar />
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 };
