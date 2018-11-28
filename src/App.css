@@ -3,8 +3,9 @@
 }
 
 .App-logo {
+  margin-bottom: 50px;
+  margin-top: 50px;
   animation: App-logo-spin infinite 10s linear;
-  height: 40vmin;
 }
 
 .App-header {
@@ -13,9 +14,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center;*/
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white; 
 }
 
 .App-link {
