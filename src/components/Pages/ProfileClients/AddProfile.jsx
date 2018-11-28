@@ -49,10 +49,6 @@ class AddProfile extends Component {
     }
 
     render() {
-        console.log(this.props)
-       /*  let categoryOptions = this.props.id.map(id => {
-            return <option key={id} value={id}>{id}</option>
-        });  */
         return (
         <div>
             <hr />

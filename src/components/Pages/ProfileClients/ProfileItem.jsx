@@ -8,13 +8,11 @@ class ProfileItem extends Component {
     }
 
   render() {
-      console.log(this.props)
     return (
         <Form>
         <FormGroup>
           <Label for="Name">Name</Label>
           <Input type="name" name="name" id="name" value={this.props.name} />
-          {/* <input type="text" value={this.state.value} onChange={this.handleChange} /> */}
         </FormGroup>
         <FormGroup>
           <Label for="surname">Surname</Label>
@@ -36,29 +34,6 @@ class ProfileItem extends Component {
         <Button>Submit</Button>
       </Form>
 
-
-        // <ul>
-        //     <li>
-        //      Name: {this.props.name}
-        //     </li>
-        //     <li>
-        //      Surname: {this.props.surname}
-        //     </li>
-        //     <li>
-        //      Username: {this.props.username}
-        //     </li>
-        //     <li>
-        //      mail: {this.props.mail}
-        //     </li>
-        //     <li>
-        //      Phone: {this.props.phone}
-        //     </li>
-        // </ul>
-
-
-/*       <li>
-          <strong>{this.props.name}</strong>: {this.props.category} Imported from ProfileItem
-      </li> */
     );
   }
 }
