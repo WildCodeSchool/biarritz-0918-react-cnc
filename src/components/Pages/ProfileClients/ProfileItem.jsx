@@ -10,9 +10,6 @@ class ProfileItem extends Component {
     return (
         <ul>
             <li>
-             ID: {this.props.id}
-            </li>
-            <li>
              Name: {this.props.name}
             </li>
             <li>

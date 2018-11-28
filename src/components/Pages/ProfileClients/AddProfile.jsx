@@ -9,9 +9,9 @@ class AddProfile extends Component {
         }
     }
 
-    static defaultProps ={
+/*     static defaultProps ={
         categories : ['Web Design', 'Web Development','Mobile Development']
-    }  
+    } */  
 
 /*  Example données:
     {

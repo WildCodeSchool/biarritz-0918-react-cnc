@@ -78,12 +78,13 @@ class ProfileClient extends Component {
       ]});
   } */
 
+  //Get One Users
   componentDidMount(){
     /* const { id } = this.props; */
     axios
-      //.get(`https://cnc-api.herokuapp.com/user_ids/${id}.json`)
-      .get(`https://cnc-api.herokuapp.com/user_ids`, { headers: { Accept: "application/json"}})
-      .then(res => this.setState({ userprofile: res.data }));
+      //.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
+      .get(`https://cnc-api.herokuapp.com/user_ids/18`, { headers: { Accept: "application/json"}})
+      .then(res => this.setState({ userprofile: [res.data] }));
   }
 
 
@@ -101,7 +102,7 @@ class ProfileClient extends Component {
       <div className={styles.head}>        
         <div className="row">
           <div className="col-lg-12">
-            <h3>Punto entrata ProfileClient.js</h3>
+            <h3>Punto entrata ProfileClient js</h3>
             <AddProfile AddProfile={this.handleADDProfile.bind(this)} />
             <ProfileClass profileclass={this.state.userprofile} />
           </div>
