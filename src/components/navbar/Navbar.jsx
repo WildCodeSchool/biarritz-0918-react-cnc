@@ -24,7 +24,7 @@ import styles from './Navbar.module.css';
 import Error from '../Pages/Error.jsx';
 import Home from "../Pages/Home.jsx"
 import ProfileClient from "../Pages/ProfileClients/ProfileClient.jsx"
-import ProfileSalon from '../Pages/ProfileSalon.jsx';
+import ProfileSalon from '../Pages/ProfileSalons/ProfileSalon.jsx';
 
 
 export default class Example extends React.Component {
