@@ -10,10 +10,22 @@ class ProfileItem extends Component {
     return (
         <ul>
             <li>
+             ID: {this.props.id}
+            </li>
+            <li>
              Name: {this.props.name}
             </li>
             <li>
-             Category: {this.props.category}
+             Surname: {this.props.surname}
+            </li>
+            <li>
+             Username: {this.props.username}
+            </li>
+            <li>
+             mail: {this.props.mail}
+            </li>
+            <li>
+             Phone: {this.props.phone}
             </li>
         </ul>
 /*       <li>

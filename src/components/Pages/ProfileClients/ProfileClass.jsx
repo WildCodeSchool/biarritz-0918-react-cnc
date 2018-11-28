@@ -7,14 +7,16 @@ class ProfileClass extends Component {
     }
   render() {
     let profileItems;
-    if(this.props.profileclass){
-        profileItems = this.props.profileclass.map( userprofile => {
-            return (
-                /* console.log(<ProfileItem name={userprofile.name} category={userprofile.category} />) */
-                <ProfileItem key={userprofile.id} name={userprofile.name} category={userprofile.category} />
-            );
-        });
-    }
+     if(this.props.profileclass){
+        console.log(this.props.profileclass)
+         profileItems = this.props.profileclass.map( userprofile => {
+             return (
+                 /* console.log(<ProfileItem name={userprofile.name} category={userprofile.category} />) */
+                 <ProfileItem key={userprofile.id} name={userprofile.name} surname={userprofile.surname}
+                 username={userprofile.username} mail={userprofile.mail} phone={userprofile.phone} />
+             );
+         });
+     }
     return (
         
       <div className="ProfileItem">
