@@ -6,6 +6,7 @@ input {
   border: 1px solid #999;
   padding: 0.5rem;
   width: 300px;
+  height: 44px;
 }
 
 .nosuggestions {
@@ -21,17 +22,29 @@ input {
   max-height: 143px;
   overflow-y: auto;
   padding-left: 0;
-  width: calc(300px + 1rem);
+  /* width: calc(300px + 1rem); */
 }
 
 .suggestions li {
   padding: 0.5rem;
+  background-color: rgba(189,189,189, 0.2);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-.suggestionactive,
+.suggestionactive {
+  background-color: rgba(189,189,189, 0.2);
+  color: #ff4;
+ 
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+}
 .suggestions li:hover {
-  background-color: #008f68;
-  color: #fae042;
+  background-color: rgba(189,189,189, 0.2);
+  color: rgba(255, 0, 0, 1);
   cursor: pointer;
   font-weight: 700;
 }

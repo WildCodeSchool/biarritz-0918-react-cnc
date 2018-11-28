@@ -53,7 +53,6 @@ class Autocomplete extends Component {
 
   onKeyDown = e => {
     const { activeSuggestion, filteredSuggestions } = this.state;
-
     // User pressed the enter key
     if (e.keyCode === 13) {
       this.setState({
@@ -65,17 +64,19 @@ class Autocomplete extends Component {
     // User pressed the up arrow
     else if (e.keyCode === 38) {
       if (activeSuggestion === 0) {
+        console.log("updown")
         return;
       }
-
+      console.log("up key")
       this.setState({ activeSuggestion: activeSuggestion - 1 });
     }
     // User pressed the down arrow
     else if (e.keyCode === 40) {
       if (activeSuggestion - 1 === filteredSuggestions.length) {
+
         return;
       }
-
+      console.log("down key")
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
   };
@@ -98,7 +99,7 @@ class Autocomplete extends Component {
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
-          <ul class="suggestions">
+          <ul className="suggestions" className={style.suggestions}>
             {filteredSuggestions.map((suggestion, index) => {
               let className;
 
@@ -108,7 +109,7 @@ class Autocomplete extends Component {
               }
 
               return (
-                <li className={className} key={suggestion} onClick={onClick}>
+                <li className={className} className={style.suggestionactive} key={suggestion} onClick={onClick}>
                   {suggestion}
                 </li>
               );
@@ -117,7 +118,7 @@ class Autocomplete extends Component {
         );
       } else {
         suggestionsListComponent = (
-          <div class="nosuggestions">
+          <div className="nosuggestions" className={style.nosuggestions}>
             <em>No suggestions, you're on your own!</em>
           </div>
         );
