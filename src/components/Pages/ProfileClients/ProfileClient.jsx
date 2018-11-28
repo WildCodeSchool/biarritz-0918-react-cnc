@@ -1,40 +1,10 @@
-/* import React from "react";
-import logo from '../../../clic.png';
-import styles from './ProfileClient.module.css';
-
-
-
-const ProfileClient = () => {
-
-    return (
-
-        <div className={styles.head}>
-             <div className="row">
-                <div className="col-lg-12">
-                    <p>TEST Component called ProfileClient situated in components/Pages/ProfileClient.js</p>
-                    <img src={logo} alt="logo" />    
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-lg-6">
-                    <p>TEST Component called ProfileClient situated in components/Pages/ProfileClient.js</p>
-                </div> 
-                <div className="col-lg-6">
-                    <p>TEST Component called ProfileClient situated in components/Pages/ProfileClient.js</p>
-                </div>      
-            </div>
-        </div>
-    );
-};
-
-export default ProfileClient; */
-
 import React, { Component } from 'react';
 import uuid from 'uuid';
+import axios from "axios";
+
 import ProfileClass from './ProfileClass.jsx';
 import AddProfile from './AddProfile.jsx';
 import styles from './ProfileClient.module.css';
-
 import logo from '../../../clic.png';
 
 class ProfileClient extends Component {
@@ -46,35 +16,78 @@ class ProfileClient extends Component {
     }
   }
 
-  componentWillMount(){
+  /* componentDidMount(){
     this.setState({
       userprofile: [
         {
-          id: uuid.v4(),
-          name :'Nicola',
-          category: 'developer 1',
-          profile:'test1'
+          username: "user2@example.com",
+          roles: [
+            "ROLE_USER"
+          ],
+          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
+          salt: null,
+          id: 18,
+          name: "Jaleel",
+          surname: "user2",
+          email: "user2@example.com",
+          phone: 102261126,
+          rdvs: []
         },
         {
-          id: uuid.v4(),
-          name :'Vianney',
-          category: 'developer 2',
-          profile:'test2'
+          username: "user2@example.com",
+          roles: [
+            "ROLE_USER"
+          ],
+          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
+          salt: null,
+          id: 19,
+          name: "Jaleel",
+          surname: "user2",
+          email: "user2@example.com",
+          phone: 102261126,
+          rdvs: []
         },
         {
-          id: uuid.v4(),
-          name :'Basile',
-          category: 'developer 3',
-          profile:'test3'
+          username: "user2@example.com",
+          roles: [
+            "ROLE_USER"
+          ],
+          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
+          salt: null,
+          id: 20,
+          name: "Jaleel",
+          surname: "user2",
+          email: "user2@example.com",
+          phone: 102261126,
+          rdvs: []
         },
         {
-          id: uuid.v4(),
-          name :'Roland',
-          category: 'developer 4',
-          profile:'test4'
+          username: "user2@example.com",
+          roles: [
+            "ROLE_USER"
+          ],
+          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
+          salt: null,
+          id: 21,
+          name: "Jaleel",
+          surname: "user2",
+          email: "user2@example.com",
+          phone: 102261126,
+          rdvs: []
         }
       ]});
+  } */
+
+  //Get One Users
+  componentDidMount(){
+    /* const { id } = this.props; */
+    axios
+      //.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
+      .get(`https://cnc-api.herokuapp.com/user_ids/18`, { headers: { Accept: "application/json"}})
+      .then(res => this.setState({ userprofile: [res.data] }));
   }
+
+
 
   handleADDProfile(userprofile){
     //console.log(userprofile);
@@ -88,8 +101,8 @@ class ProfileClient extends Component {
       
       <div className={styles.head}>        
         <div className="row">
-          <div className="col-lg-6">
-            <h3>Punto entrata ProfileClient.js</h3>
+          <div className="col-lg-12">
+            <h3>Punto entrata ProfileClient js</h3>
             <AddProfile AddProfile={this.handleADDProfile.bind(this)} />
             <ProfileClass profileclass={this.state.userprofile} />
           </div>

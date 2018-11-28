@@ -1,0 +1,13 @@
+.profilepic {
+    border: solid 1px black;
+    height: 150px;
+    padding: 5px;
+}
+
+#firstrow {
+    margin-top: 20px;
+}
+
+div {
+    border: solid 1px rgb(44, 44, 44); /* FOR DEV PURPOSE ONLY */
+}
