@@ -8,10 +8,8 @@ class ProfileClass extends Component {
   render() {
     let profileItems;
      if(this.props.profileclass){
-        console.log(this.props.profileclass)
          profileItems = this.props.profileclass.map( userprofile => {
              return (
-                 /* console.log(<ProfileItem name={userprofile.name} category={userprofile.category} />) */
                  <ProfileItem key={userprofile.id} name={userprofile.name} surname={userprofile.surname}
                  username={userprofile.username} mail={userprofile.email} phone={userprofile.phone} />
              );
@@ -21,11 +19,8 @@ class ProfileClass extends Component {
         
       <div className="ProfileItem">
       <hr />
-        <h3>START ProfileClass.js</h3>
-        <h4>Latest</h4>
-          TEST PROFILE CLASS
+        <h3>User Profile:</h3>
           {profileItems}
-          <h3>END ProfileClass.js</h3>
         <hr />
       </div>      
     );

@@ -9,7 +9,6 @@ class AddProfile extends Component {
         }
     }
  
-
 /*  Example données:
     {
           username: "user2@example.com",
@@ -29,7 +28,7 @@ class AddProfile extends Component {
 
     handleSubmit(e){
         if(this.refs.id.value === ''){
-            alert('Username is required');
+            alert('id is required');
         }else{
             this.setState({newProfile:{
                 name: this.refs.name.value,
@@ -39,9 +38,6 @@ class AddProfile extends Component {
                 email: this.refs.email.value,
                 phone: this.refs.phone.value
             }}, function(){
-               // console.log(this.state.newProfile);
-               // this.props.AddProfile(this.state.newProfile);
-               //debugger; 
                this.props.AddProfile(this.state.newProfile);
             });
         }
@@ -51,10 +47,6 @@ class AddProfile extends Component {
     render() {
         return (
         <div>
-            <hr />
-            <h3>User AddProfile</h3>
-            
-            <h3>END AddProfile.js</h3>
             <hr />
         </div>
         );

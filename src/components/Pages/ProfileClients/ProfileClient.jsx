@@ -16,68 +16,6 @@ class ProfileClient extends Component {
     }
   }
 
-  /* componentDidMount(){
-    this.setState({
-      userprofile: [
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 18,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        },
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 19,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        },
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 20,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        },
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 21,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        }
-      ]});
-  } */
-
   //Get One Users
   componentDidMount(){
     /* const { id } = this.props; */
@@ -89,12 +27,11 @@ class ProfileClient extends Component {
 
 
 
-  handleADDProfile(userprofile){
-    //console.log(userprofile);
+    handleADDProfile(userprofile){
     let profile = this.state.userprofile;
     profile.push(userprofile);
     this.setState({userprofile : profile});
-  }
+  } 
 
   render() {
     return (
