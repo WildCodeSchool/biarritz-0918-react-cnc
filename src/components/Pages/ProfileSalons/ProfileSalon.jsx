@@ -10,22 +10,23 @@ import Carousel from './CarouselSalon.jsx';
 const ProfileSalon = () => {
 
     return (
-        <div>
-            <div className="row">
-                <div className="col-lg-2 offset-lg-2">
+        <div className="container-fluid">
+            <div className="row" id={styles.firstrow}>
+                <div className="col-lg-2 offset-lg-1">
                     <img className={styles.profilepic} src={logo} alt="logo" />
                 </div>
                 <div className="col-lg-4">
                     <Nav>
                         <NavLink href="#">Présentation</NavLink>
                         <NavLink href="#services">Services</NavLink>
+                        <NavLink href="#agenda">Agenda</NavLink>
                         <NavLink href="#horaires">Horaires</NavLink>
                     </Nav>
 
                 </div>
             </div>
             <div className="row">
-                <div className="offset-lg-2 col-lg-6">
+                <div className="offset-lg-1 col-lg-6">
                     <h1>Clic & Coupe</h1>
                     <p>
                         Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
@@ -40,10 +41,15 @@ const ProfileSalon = () => {
                         <Services />
                     </div>
                 </div>
-                <div id="horaires" className="col-lg-2">
-                    <Agenda />
-                    <h2>Horaires</h2>
-                    <Horaires />
+                <div className="col-lg-4">
+                    <div id="agenda">
+                        <h2>Agenda</h2>
+                        <Agenda />
+                    </div>
+                    <div id="horaires">
+                        <h2>Horaires</h2>
+                        <Horaires />
+                    </div>
                 </div>
             </div>
         </div >
