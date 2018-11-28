@@ -101,8 +101,8 @@ class ProfileClient extends Component {
       
       <div className={styles.head}>        
         <div className="row">
-          <div className="col-lg-12">
-            <h3>Punto entrata ProfileClient js</h3>
+          <div className="col-lg-8">
+            <h3>Mon compte</h3>
             <AddProfile AddProfile={this.handleADDProfile.bind(this)} />
             <ProfileClass profileclass={this.state.userprofile} />
           </div>

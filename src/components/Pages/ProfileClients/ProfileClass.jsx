@@ -13,7 +13,7 @@ class ProfileClass extends Component {
              return (
                  /* console.log(<ProfileItem name={userprofile.name} category={userprofile.category} />) */
                  <ProfileItem key={userprofile.id} name={userprofile.name} surname={userprofile.surname}
-                 username={userprofile.username} mail={userprofile.mail} phone={userprofile.phone} />
+                 username={userprofile.username} mail={userprofile.email} phone={userprofile.phone} />
              );
          });
      }

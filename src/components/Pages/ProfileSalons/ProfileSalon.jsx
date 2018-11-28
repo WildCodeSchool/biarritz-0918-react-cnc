@@ -10,7 +10,7 @@ import Carousel from './CarouselSalon.jsx';
 const ProfileSalon = () => {
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid salon">
             <div className="row" id={styles.firstrow}>
                 <div className="col-lg-2 offset-lg-1">
                     <img className={styles.profilepic} src={logo} alt="logo" />

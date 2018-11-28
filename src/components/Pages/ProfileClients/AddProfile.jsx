@@ -8,10 +8,7 @@ class AddProfile extends Component {
             newProfile:{}
         }
     }
-
-/*     static defaultProps ={
-        categories : ['Web Design', 'Web Development','Mobile Development']
-    } */  
+ 
 
 /*  Example données:
     {
@@ -52,28 +49,15 @@ class AddProfile extends Component {
     }
 
     render() {
-        /* let categoryOptions = this.props.id.map(id => {
+        console.log(this.props)
+       /*  let categoryOptions = this.props.id.map(id => {
             return <option key={id} value={id}>{id}</option>
-        }); */
+        });  */
         return (
         <div>
             <hr />
-            <h3>User Profile</h3>
-            {/* <form onSubmit={this.handleSubmit.bind(this)}>
-                <div>
-                    <label>Name </label><br />
-                    <input type="text" ref="name" />
-                </div>
-                <div>
-                    <label>Username</label><br />
-                    <select ref="username">
-                        {categoryOptions}
-                    </select>
-                </div>
-                <br />
-                <input type="submit" value="Submit" />
-                <br />
-            </form> */}
+            <h3>User AddProfile</h3>
+            
             <h3>END AddProfile.js</h3>
             <hr />
         </div>
