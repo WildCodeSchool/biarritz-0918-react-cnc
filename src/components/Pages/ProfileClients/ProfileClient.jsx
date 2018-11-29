@@ -28,17 +28,15 @@ class ProfileClient extends Component {
   //     .then(res => this.setState({ userprofile: [res.data] }));
   // }
 
-
-  handleOnSubmit(e) {
-    e.preventDefault();
-    /* const name = e.currentTarget.elements.name.value;
-    const { id } = this.props; */
-    axios
-      .put(`http://127.0.0.1:8001/api/directories/${id}.json`, {
-        name
-      })
-      .then(() => this.setState({ redirectTo: `/directories` }));
-  }
+  //TO TEST AND UTILIZE WHEN API WILL BE OK
+  // handleOnSubmit(e) {
+  //   e.preventDefault();
+  //   axios
+  //     .put(`http://127.0.0.1:8001/api/directories/${id}.json`, {
+  //       name
+  //     })
+  //     .then(() => this.setState({ TO DO }));
+  // }
 
 
   render() {

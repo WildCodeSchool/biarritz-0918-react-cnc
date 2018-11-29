@@ -1,6 +1,5 @@
 export const userprofile = [
   {
-    id: 0,
     name: "nicola",
     surname: "trentini",
     email: "test@test.com",
