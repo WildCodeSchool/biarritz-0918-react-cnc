@@ -34,6 +34,7 @@ class ServiceModal extends React.Component {
                     color={this.props.color}
                     size="lg"
                     onClick={this.toggle}
+                    style={{ marginTop: 10 }}
                 >
                     {this.props.name}
                 </Button>

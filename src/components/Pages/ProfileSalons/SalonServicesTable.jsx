@@ -6,7 +6,8 @@ export default class TableService extends React.Component {
 
 
     render() {
-        let items = []
+        let items = [];
+        /* TODO: change this with Datas from base */
         if (this.props.name === "Homme") {
             items = [
                 { prestation: 'Shampoing', durée: '30min', price: '25€', },
