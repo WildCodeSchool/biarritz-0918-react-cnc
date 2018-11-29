@@ -29,6 +29,17 @@ class ProfileClient extends Component {
   // }
 
 
+  handleOnSubmit(e) {
+    e.preventDefault();
+    /* const name = e.currentTarget.elements.name.value;
+    const { id } = this.props; */
+    axios
+      .put(`http://127.0.0.1:8001/api/directories/${id}.json`, {
+        name
+      })
+      .then(() => this.setState({ redirectTo: `/directories` }));
+  }
+
 
   render() {
     console.log(this.state)
