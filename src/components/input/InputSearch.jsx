@@ -2,9 +2,10 @@ import React from 'react';
 
 import Autocomplete from '../search/Autocomplete';
 import DatePicker from '../search/DatePicker';
+import { Button } from 'reactstrap';
 
 const InputSearch = (props) => {
-return (
+    return (
         <div>
             <Autocomplete suggestions={[
                 "Alligator",
@@ -18,10 +19,10 @@ return (
                 "Tail",
                 "Wetlands"
             ]} placeholder="Ville" />
-            <DatePicker 
-                id = "datePicker"
+            <DatePicker
+                id="datePicker"
             />
-            <button type="button">Search</button>
+            <Button outline color="info" type="button">Search</Button>
         </div>
     );
 };
