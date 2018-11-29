@@ -4,11 +4,12 @@ import { Admin, Resource } from 'react-admin';
 import { UserList } from './Users';
 
 
+
 const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 const AdminPanel = () => (
   <Admin dataProvider={dataProvider}>
+      {/* <Resource name="users" list={UserList} /> */}
       <Resource name="users" list={UserList} />
-
   </Admin>
 );
 
