@@ -22,7 +22,9 @@ class ProfileSalon extends Component {
         super(props)
         this.state = {
             items: [],
-            stylists: []
+            stylists: [],
+            isPending: false,
+            isError: false,
         }
     }
 
@@ -80,10 +82,12 @@ class ProfileSalon extends Component {
     ];
 
     componentDidMount() {
-        console.log('toto');
-        axios.get(
-            `http://127.0.0.1:8000/api/salons/${this.props.id}`, {headers:{ Accept: "application/json" } }
-        ).then( response => console.log(response.data));
+        this.setState({ isPending: true });
+        axios
+            .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, { headers: { Accept: "application/json" } })
+            .then(response => this.setState({ stylists: response.data, isPending: false }))
+            .then(console.log('toto'))
+            .catch(() => this.setState({ isError: true }))
 
         // this.setState({ isPending: true });
         // axios
@@ -117,7 +121,7 @@ class ProfileSalon extends Component {
                 </div>
                 <div className="row">
                     <div id="presentation" className="offset-lg-1 col-lg-6">
-                        <h1>Clic & Coupe</h1>
+                        <h1>Test</h1>
                         <p>
                             Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
                             brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope
