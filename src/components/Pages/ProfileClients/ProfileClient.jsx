@@ -7,16 +7,16 @@ import { userprofile } from './dummyData';
 
 class ProfileClient extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
       userprofile: []
     }
   }
 
-    componentDidMount(){
-    this.setState({userprofile});
-  } 
+  componentDidMount() {
+    this.setState({ userprofile });
+  }
 
 
   // TO DO - MODIFY when login will be ok
@@ -42,10 +42,10 @@ class ProfileClient extends Component {
   render() {
     console.log(this.state)
     return (
-      
-      <div className={styles.head}>        
+
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-8 offset-lg-2">
             <h3>Mon compte</h3>
             <ProfileClass profileclass={this.state.userprofile} />
           </div>
