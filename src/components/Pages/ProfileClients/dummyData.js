@@ -19,16 +19,14 @@
 
 //Partial JSON
 export const userprofile = [
-  {
-    "name": "totototo",
-    "surname": "test",
-    "email": "tttt@moi.com",
-    "phone": 0,
-    "role": [
-      "string"
-    ],
-    "password": "string",
-    "birthday": "2018-11-29T21:26:02.620Z",
-    "sex": "string"
-  }
+	{
+		name: 'totototo',
+		surname: 'test',
+		email: 'tttt@moi.com',
+		phone: 0,
+		role: [ 'string' ],
+		password: 'string',
+		birthday: '2018-11-29T21:26:02.620Z',
+		sex: 'string'
+	}
 ];
