@@ -11,6 +11,7 @@ export function postCredentials(credentials){
             }
         })
         .then(response => saveToken(response.data.token))
+        
 }
 
 export function saveToken(token){

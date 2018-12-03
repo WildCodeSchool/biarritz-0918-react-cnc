@@ -87,7 +87,12 @@ export default class Example extends React.Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/cprofile/" component={ProfileClient} />
-                        <Route path="/sprofile/" component={ProfileSalon} />
+                        <Route
+                            exact path="/sprofile/:id" 
+                            component= {({match}) => (
+                                <ProfileSalon id={match.params.id} />
+                            )}
+                        />
                         <Route path="/search/" component={SearchList} />
                         <Route path="/reactcpanel/" component={AdminPanel} />
                         <Route component={Error} />

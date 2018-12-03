@@ -80,11 +80,16 @@ class ProfileSalon extends Component {
     ];
 
     componentDidMount() {
-        this.setState({ isPending: true });
-        axios
-            .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
-            .then(response => this.setState({ stylists: response.data, isPending: false }))
-            .catch(() => this.setState({ isError: true }))
+        console.log('toto');
+        axios.get(
+            `http://127.0.0.1:8000/api/salons/${this.props.id}`, {headers:{ Accept: "application/json" } }
+        ).then( response => console.log(response.data));
+
+        // this.setState({ isPending: true });
+        // axios
+        //     .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
+        //     .then(response => this.setState({ stylists: response.data, isPending: false }))
+        //     .catch(() => this.setState({ isError: true }))
     }
 
     render() {
