@@ -10,6 +10,7 @@ import {
     CardSubtitle,
     Button
 } from 'reactstrap';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 
 export default class SearchList extends Component {
@@ -42,12 +43,14 @@ export default class SearchList extends Component {
                 <div className="col-lg-8">
                     {this.state.items.map(salons => (
                         <div>
-                            <Card>
+                            <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', marginTop: 10 }}>
                                 <CardBody>
                                     <CardTitle>{salons.name}</CardTitle>
                                     <CardSubtitle>{salons.email}</CardSubtitle>
                                     <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                    <Button outline color="primary">Prendre rdv</Button>
+                                    <Link to={`/sprofile/${salons.id}`}>
+                                        <Button outline color="primary">Prendre rdv</Button>
+                                    </Link>
                                 </CardBody>
                             </Card>
                         </div>

@@ -21,7 +21,8 @@ class ProfileSalon extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: []
+            items: [],
+            stylists: []
         }
     }
 
@@ -77,7 +78,22 @@ class ProfileSalon extends Component {
             classes: 'color-3'
         }
     ];
+
+    componentDidMount() {
+        this.setState({ isPending: true });
+        axios
+            .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
+            .then(response => this.setState({ stylists: response.data, isPending: false }))
+            .catch(() => this.setState({ isError: true }))
+    }
+
     render() {
+        if (this.state.isPending) {
+            return (
+                "Pending..."
+            )
+        }
+
         return (
             <div className="container-fluid">
                 <div className="row" id={styles.firstrow}>
@@ -104,14 +120,10 @@ class ProfileSalon extends Component {
                     </p>
                         <Carousel />
                         <div className="col-lg-12">
-                            <Button name="Vianney" onClick={() => {
-                                this.update(this.itemsVianney);
-                            }
-                            }>Vianney</Button>
-                            <Button name="Basile" onClick={() => {
-                                this.update(this.itemsBasile);
-                            }
-                            }>Basile</Button>
+                            {this.state.stylists.map(styl => (
+                                <Button outline block name={styl.name}>{styl.surname}</Button>
+                            ))}
+
                         </div>
                         <div id="services" className="col-lg-12">
                             <h2>Rendez-vous pour :</h2>
