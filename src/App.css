@@ -14,7 +14,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center;*/
   font-size: calc(10px + 2vmin);
   color: white; 
 }
@@ -24,7 +23,11 @@
 }
 
 .modal {
-  background-color: rgba(1, 1, 1, 0); /* fixing conflict between Reactstrap & React-agenda */
+  background-color: rgba(1, 1, 1, 0); 
+  /* 
+    fixing conflict between Reactstrap & React-agenda : 
+    React-agenda add a background-color #FFF which is unwanted.
+  */
 }
 
 @keyframes App-logo-spin {

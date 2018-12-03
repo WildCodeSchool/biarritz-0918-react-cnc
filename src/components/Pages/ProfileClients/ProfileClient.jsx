@@ -1,115 +1,54 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
-import axios from "axios";
+import axios from 'axios';
 
 import ProfileClass from './ProfileClass.jsx';
-import AddProfile from './AddProfile.jsx';
 import styles from './ProfileClient.module.css';
-import logo from '../../../clic.png';
+import { userprofile } from './dummyData';
 
 class ProfileClient extends Component {
+	constructor() {
+		super();
+		this.state = {
+			userprofile: []
+		};
+	}
 
-  constructor(){
-    super();
-    this.state = {
-      userprofile: []
-    }
-  }
+	componentDidMount() {
+		this.setState({ userprofile });
+	}
 
-  /* componentDidMount(){
-    this.setState({
-      userprofile: [
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 18,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        },
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 19,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        },
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 20,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        },
-        {
-          username: "user2@example.com",
-          roles: [
-            "ROLE_USER"
-          ],
-          password: "$2y$13$kSc/BLuz3PHmfHGwWog7aOP0mmBnjL7fujCZZbV.rIireKC0jpKF2",
-          salt: null,
-          id: 21,
-          name: "Jaleel",
-          surname: "user2",
-          email: "user2@example.com",
-          phone: 102261126,
-          rdvs: []
-        }
-      ]});
-  } */
+	// TO DO - MODIFY when login will be ok
+	// componentDidMount(){
+	//   /* const { id } = this.props; */
+	//   axios
+	//     //.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
+	//     .get(`https://cnc-api.herokuapp.com/user_ids/18`, { headers: { Accept: "application/json"}})
+	//     .then(res => this.setState({ userprofile: [res.data] }));
+	// }
 
-  //Get One Users
-  componentDidMount(){
-    /* const { id } = this.props; */
-    axios
-      //.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
-      .get(`https://cnc-api.herokuapp.com/user_ids/18`, { headers: { Accept: "application/json"}})
-      .then(res => this.setState({ userprofile: [res.data] }));
-  }
+	//TO TEST AND UTILIZE WHEN API WILL BE OK
+	// handleOnSubmit(e) {
+	//   e.preventDefault();
+	//   axios
+	//     .put(`http://127.0.0.1:8001/api/directories/${id}.json`, {
+	//       name
+	//     })
+	//     .then(() => this.setState({ TO DO }));
+	// }
 
-
-
-  handleADDProfile(userprofile){
-    //console.log(userprofile);
-    let profile = this.state.userprofile;
-    profile.push(userprofile);
-    this.setState({userprofile : profile});
-  }
-
-  render() {
-    return (
-      
-      <div className={styles.head}>        
-        <div className="row">
-          <div className="col-lg-12">
-            <h3>Punto entrata ProfileClient js</h3>
-            <AddProfile AddProfile={this.handleADDProfile.bind(this)} />
-            <ProfileClass profileclass={this.state.userprofile} />
-          </div>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		console.log(this.state);
+		return (
+			<div className={styles.head}>
+				<div className="row">
+					<div className="col-lg-8">
+						<h3>Mon compte</h3>
+						<ProfileClass profileclass={this.state.userprofile} />
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default ProfileClient;

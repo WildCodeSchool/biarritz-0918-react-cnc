@@ -25,6 +25,8 @@ import Error from '../Pages/Error.jsx';
 import Home from "../Pages/Home.jsx"
 import ProfileClient from "../Pages/ProfileClients/ProfileClient.jsx"
 import ProfileSalon from '../Pages/ProfileSalons/ProfileSalon.jsx';
+import AdminPanel from '../Pages/AdminPanel/AdminPanel.js';
+import SearchList from '../Pages/SearchList/SearchList.jsx';
 import * as AuthApi from '../../Auth.api';
 
 
@@ -59,7 +61,13 @@ export default class Example extends React.Component {
                                     <NavLink tag={Link} to="/cprofile/">Profile Client</NavLink>
                                 </NavItem>
                                 <NavItem>
+                                    <NavLink tag={Link} to="/search/">Search List</NavLink>
+                                </NavItem>
+                                <NavItem>
                                     <NavLink tag={Link} to="/sprofile/">Profile Salon</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/reactcpanel/">Admin Panel</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
@@ -80,6 +88,8 @@ export default class Example extends React.Component {
                         <Route path="/" exact component={Home} />
                         <Route path="/cprofile/" component={ProfileClient} />
                         <Route path="/sprofile/" component={ProfileSalon} />
+                        <Route path="/search/" component={SearchList} />
+                        <Route path="/reactcpanel/" component={AdminPanel} />
                         <Route component={Error} />
                     </Switch>
                 </div>
