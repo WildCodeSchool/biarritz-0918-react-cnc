@@ -3,6 +3,7 @@ import axios from "axios";
 const SESSION_KEY = "session_token";
 
 export function postCredentials(credentials){
+    console.log(credentials);
     return axios
         .post("http://127.0.0.1/login", credentials, {
             headers: {
