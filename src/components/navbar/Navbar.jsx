@@ -25,6 +25,7 @@ import Error from '../Pages/Error.jsx';
 import Home from "../Pages/Home.jsx"
 import ProfileClient from "../Pages/ProfileClients/ProfileClient.jsx"
 import ProfileSalon from '../Pages/ProfileSalons/ProfileSalon.jsx';
+import * as AuthApi from '../../Auth.api';
 
 
 export default class Example extends React.Component {
@@ -69,7 +70,7 @@ export default class Example extends React.Component {
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                                 <NavItem>
-                                    <LoginModal />
+                                    <LoginModal onSubmit={this.props.handleLoginSubmit} />
                                 </NavItem>
                             </Nav>
                         </Collapse>
