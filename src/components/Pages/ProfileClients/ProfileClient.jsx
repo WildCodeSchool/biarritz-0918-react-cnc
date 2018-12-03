@@ -13,18 +13,19 @@ class ProfileClient extends Component {
 		};
 	}
 
-	componentDidMount() {
+	//componentDidMount with DUMMY DATA test
+	/* 	componentDidMount() {
 		this.setState({ userprofile });
-	}
+	} */
 
-	// TO DO - MODIFY when login will be ok
-	// componentDidMount(){
-	//   /* const { id } = this.props; */
-	//   axios
-	//     //.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
-	//     .get(`https://cnc-api.herokuapp.com/user_ids/18`, { headers: { Accept: "application/json"}})
-	//     .then(res => this.setState({ userprofile: [res.data] }));
-	// }
+	//TO DO - CHANGE ID WITH TOKEN OF SESSION
+	componentDidMount() {
+		/* const { id } = this.props; */
+		axios
+			//.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
+			.get(`http://127.0.0.1:8000/api/user_ids/1`, { headers: { Accept: 'application/json' } })
+			.then((res) => this.setState({ userprofile: [ res.data ] }));
+	}
 
 	//TO TEST AND UTILIZE WHEN API WILL BE OK
 	// handleOnSubmit(e) {
