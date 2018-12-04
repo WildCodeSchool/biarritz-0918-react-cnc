@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import Home from "./pages/Home.page.jsx";
 import Error from "./pages/Error.page.jsx";
+import ProfileClient from "./pages/ProfileClients/ProfileClient.page.jsx";
 
 
 export default function () {
@@ -11,8 +12,8 @@ export default function () {
 
             <Switch>
                 <Route path="/" exact component={Home} />
-                {/* <Route path="/cprofile/" component={ProfileClient} />
-                <Route
+                <Route path="/cprofile/" component={ProfileClient} />
+                {/* <Route
                     exact path="/sprofile/:id"
                     component={({ match }) => (
                         <ProfileSalon id={match.params.id} />
