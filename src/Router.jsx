@@ -1,19 +1,17 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import Home from "./pages/Home.page.jsx";
-import Error from "./pages/Error.page.jsx";
-import ProfileClient from "./pages/ProfileClients/ProfileClient.page.jsx";
+import Home from './pages/Home.page.jsx';
+import Error from './pages/Error.page.jsx';
+import ProfileClient from './pages/ProfileClients/ProfileClient.page.jsx';
 
-
-export default function () {
-    return (
-        <Router>
-
-            <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/cprofile/" component={ProfileClient} />
-                {/* <Route
+export default function() {
+	return (
+		<Router>
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/UserProfileForm/" component={ProfileClient} />
+				{/* <Route
                     exact path="/sprofile/:id"
                     component={({ match }) => (
                         <ProfileSalon id={match.params.id} />
@@ -21,8 +19,8 @@ export default function () {
                 />
                 <Route path="/search/" component={SearchList} />
                 <Route path="/reactcpanel/" component={AdminPanel} /> */}
-                <Route component={Error} />
-            </Switch>
-        </Router>
-    )
+				<Route component={Error} />
+			</Switch>
+		</Router>
+	);
 }
