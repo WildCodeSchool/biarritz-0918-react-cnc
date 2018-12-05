@@ -23,7 +23,6 @@ class ModalExample extends React.Component {
             modal: !this.state.modal
         });
     }
-
     render() {
         return (
             <div>
@@ -33,7 +32,7 @@ class ModalExample extends React.Component {
                         e.preventDefault();
                         const email = e.target.elements.email.value;
                         const password = e.target.elements.password.value;
-                        this.props.onSubmit({email, password});
+                        this.props.login({email, password});
                         this.toggle();
                     }}>
                         <ModalHeader toggle={this.toggle}>Login</ModalHeader>

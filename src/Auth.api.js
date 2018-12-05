@@ -1,4 +1,5 @@
 import axios from "axios";
+import { EXITED } from "react-transition-group/Transition";
 
 const SESSION_KEY = "session_token";
 

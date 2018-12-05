@@ -19,10 +19,12 @@ import {
     FormGroup
 } from 'reactstrap';
 
+import * as AuthApi from "../../Auth.api";
 import LoginModal from '../modals/LoginModal';
 import logo from '../../clic.png';
 import styles from './Navbar.module.css';
-
+import authContext from '../../AuthContext';
+import AuthContext from '../../AuthContext';
 
 
 // export default class Example extends React.Component {
@@ -100,25 +102,34 @@ import styles from './Navbar.module.css';
 
 
 class TheNavBar extends React.Component {
-    constructor(props) {
+    constructor (props){
         super(props)
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isBurgerKingOpen: false
+            isBurgerKingOpen : false,
+            isAuthenticated : false
         }
     }
+    handleLoginSubmite = (credentials) => {
+            AuthApi.postCredentials(credentials)
+            .then(() => {
+                this.setState({
+                    isAuthenticated : true
+                })
+            })
+    }
 
-    toggle() {
+    toggle(){
         this.setState({
             isBurgerKingOpen: !this.toggle.isBurgerKingOpen
         });
     }
 
-    render() {
-        return (
+    render(){
+        return(
             <Navbar className={styles.brand} color="light" light expand="md">
-                <img src={logo} alt="logo" className="hidden-xs-down" />
+                <img src={logo} alt="logo" />
                 <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isBurgerKingOpen} navbar>
@@ -130,7 +141,15 @@ class TheNavBar extends React.Component {
                                 </NavItem>))
                         }
                         <NavItem>
-                            <LoginModal />
+                            <AuthContext.Provider value={{
+                                isAuthenticated : this.state.isAuthenticated, 
+                                handleLoginSubmite: this.handleLoginSubmite}}>
+                                <authContext.Consumer>
+                                    {data => (
+                                        <LoginModal login={data.handleLoginSubmite}/>
+                                    )}
+                                </authContext.Consumer>
+                            </AuthContext.Provider>
                         </NavItem>
                     </Nav>
                 </Collapse>
