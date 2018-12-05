@@ -21,7 +21,8 @@ const ResponsiveLayout = ({ children }) => {
 					{
 						label: 'Salons',
 						to: '/salons/search'
-					}
+					},
+
 				]}
 			/>
 			{children}
