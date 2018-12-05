@@ -21,85 +21,10 @@ import {
 
 import * as AuthApi from "../../Auth.api";
 import LoginModal from '../modals/LoginModal';
+import LogoutModal from '../modals/LogoutModal';
 import logo from '../../clic.png';
 import styles from './Navbar.module.css';
-import authContext from '../../AuthContext';
 import AuthContext from '../../AuthContext';
-
-
-// export default class Example extends React.Component {
-//     constructor(props) {
-//         super(props);
-
-//         this.toggle = this.toggle.bind(this);
-//         this.state = {
-//             isOpen: false
-//         };
-//     }
-//     toggle() {
-//         this.setState({
-//             isOpen: !this.state.isOpen
-//         });
-//     }
-//     render() {
-//         return (
-//             <Router>
-//                 <div>
-//                     <Navbar className={styles.toto} color="light" light expand="md">
-//                         <img src={logo} alt="logo" />
-//                         <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
-//                         <NavbarToggler onClick={this.toggle} />
-//                         <Collapse isOpen={this.state.isOpen} navbar>
-//                             <Nav className="ml-auto" navbar>
-//                                 <NavItem>
-//                                     <NavLink tag={Link} to="/">Home</NavLink>
-//                                 </NavItem>
-//                                 <NavItem>
-//                                     <NavLink tag={Link} to="/cprofile/">Profile Client</NavLink>
-//                                 </NavItem>
-//                                 <NavItem>
-//                                     <NavLink tag={Link} to="/search/">Search List</NavLink>
-//                                 </NavItem>
-//                                 <NavItem>
-//                                     <NavLink tag={Link} to="/sprofile/">Profile Salon</NavLink>
-//                                 </NavItem>
-//                                 <NavItem>
-//                                     <NavLink tag={Link} to="/reactcpanel/">Admin Panel</NavLink>
-//                                 </NavItem>
-//                                 <UncontrolledDropdown nav inNavbar>
-//                                     <DropdownToggle nav caret>
-//                                         Options
-//                                 </DropdownToggle>
-//                                     <DropdownMenu right>
-//                                         Dropdown menu here
-//                                     </DropdownMenu>
-//                                 </UncontrolledDropdown>
-//                                 <NavItem>
-//                                     <LoginModal onSubmit={this.props.handleLoginSubmit} />
-//                                 </NavItem>
-//                             </Nav>
-//                         </Collapse>
-//                     </Navbar>
-//                     Routes definition of paths and related components
-//                     <Switch>
-//                         <Route path="/" exact component={Home} />
-//                         <Route path="/cprofile/" component={ProfileClient} />
-//                         <Route
-//                             exact path="/sprofile/:id" 
-//                             component= {({match}) => (
-//                                 <ProfileSalon id={match.params.id} />
-//                             )}
-//                         />
-//                         <Route path="/search/" component={SearchList} />
-//                         <Route path="/reactcpanel/" component={AdminPanel} />
-//                         <Route component={Error} />
-//                     </Switch>
-//                 </div>
-//             </Router>
-//         );
-//     }
-// }
-
 
 class TheNavBar extends React.Component {
     constructor (props){
@@ -111,14 +36,28 @@ class TheNavBar extends React.Component {
             isAuthenticated : false
         }
     }
-    handleLoginSubmite = (credentials) => {
+
+    componentDidMount = () => {
+        let token = AuthApi.getToken();
+        if (token != null){
+            this.setState({isAuthenticated : true})
+        }
+    }
+    handleLoginSubmit = (credentials) => {
             AuthApi.postCredentials(credentials)
             .then(() => {
                 this.setState({
                     isAuthenticated : true
-                })
-            })
+                });
+            });
     }
+
+    handleLogoutSubmit = () => {
+        AuthApi.removeToken()
+        this.setState({
+            isAuthenticated : false
+        });
+    };
 
     toggle(){
         this.setState({
@@ -127,6 +66,30 @@ class TheNavBar extends React.Component {
     }
 
     render(){
+        const isLogged = this.state.isAuthenticated;
+        let Modal;
+        if(isLogged){
+            Modal = <AuthContext.Provider value={{
+                        isAuthenticated : this.state.handleLogoutSubmit,
+                        handleLogoutSubmit: this.handleLogoutSubmit}}>
+                        <AuthContext.Consumer>
+                            {data => (
+                                <LogoutModal logout={data.handleLogoutSubmit} />
+                            )}
+                        </AuthContext.Consumer>
+                    </AuthContext.Provider>
+        }else {
+            Modal = <AuthContext.Provider value={{
+                        isAuthenticated : this.state.isAuthenticated, 
+                        handleLoginSubmit: this.handleLoginSubmit}}>
+                        <AuthContext.Consumer>
+                            {data => (
+                                <LoginModal login={data.handleLoginSubmit}/>
+                            )}
+                        </AuthContext.Consumer>
+                    </AuthContext.Provider>;
+        }
+        console.log(isLogged);
         return(
             <Navbar className={styles.brand} color="light" light expand="md">
                 <img src={logo} alt="logo" />
@@ -141,15 +104,7 @@ class TheNavBar extends React.Component {
                                 </NavItem>))
                         }
                         <NavItem>
-                            <AuthContext.Provider value={{
-                                isAuthenticated : this.state.isAuthenticated, 
-                                handleLoginSubmite: this.handleLoginSubmite}}>
-                                <authContext.Consumer>
-                                    {data => (
-                                        <LoginModal login={data.handleLoginSubmite}/>
-                                    )}
-                                </authContext.Consumer>
-                            </AuthContext.Provider>
+                            {Modal}
                         </NavItem>
                     </Nav>
                 </Collapse>
