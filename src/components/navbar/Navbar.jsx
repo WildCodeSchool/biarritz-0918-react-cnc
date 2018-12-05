@@ -108,13 +108,13 @@ class TheNavBar extends React.Component {
                         </NavItem>
                     </Nav>
                 </Collapse>
-                
+
             </Navbar>
         )
     }
 
 
-} 
+}
 // const navbar =({ navItems }) => {
 //     return <Navbar className={styles.brand} color="light" light expand="md">
 //     </Navbar>
