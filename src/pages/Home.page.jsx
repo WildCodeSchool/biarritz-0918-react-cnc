@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 // import InputSearch from '../input/InputSearch.jsx';
 // import logo from '../../clic.png';
 // import {Container} from "reactstrap";
@@ -20,8 +20,6 @@ import React, { Fragment } from "react";
 //     //     FormGroup
 // } from 'reactstrap';
 import ResponsiveLayout from '../layouts/Responsive.layout.jsx';
-import NavBar from '../components/navbar/Navbar.jsx'
-
 
 // const Home = () => {
 
@@ -36,20 +34,6 @@ import NavBar from '../components/navbar/Navbar.jsx'
 //     );
 // };
 
-const Home = () => <ResponsiveLayout>
-    <NavBar navItems={
-        [
-            {
-                label: "Home",
-                to: "/"
-            },
-            {
-                label: "Profile client",
-                to: "/cprofile/"
-            }
-        ]
-    } />
-    Home paege
-    </ResponsiveLayout>
+const Home = () => <ResponsiveLayout>Home paege</ResponsiveLayout>;
 
 export default Home;

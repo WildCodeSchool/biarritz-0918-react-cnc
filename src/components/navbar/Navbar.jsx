@@ -2,33 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {
-    // Collapse,
+    Collapse,
     Navbar,
-    // NavbarToggler,
+    NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
     NavLink,
-    //     UncontrolledDropdown,
-    //     DropdownToggle,
-    //     DropdownMenu,
-    //     DropdownItem,
-    //     Button,
-    //     Input,
-    //     Form,
-    //     FormGroup
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    Button,
+    Input,
+    Form,
+    FormGroup
 } from 'reactstrap';
 
-// import LoginModal from '../../LoginModal.jsx';
+import LoginModal from '../modals/LoginModal';
 import logo from '../../clic.png';
 import styles from './Navbar.module.css';
-// import Error from '../Pages/Error.jsx';
-// import Home from "../Pages/Home.jsx"
-// import ProfileClient from "../Pages/ProfileClients/ProfileClient.jsx"
-// import ProfileSalon from '../Pages/ProfileSalons/ProfileSalon.jsx';
-// import AdminPanel from '../Pages/AdminPanel/AdminPanel.js';
-// import SearchList from '../Pages/SearchList/SearchList.jsx';
-// import * as AuthApi from '../../Auth.api';
+import Error from '../../pages/Error.page';
+import Home from "../../pages/Home.page"
+import ProfileClient from "../../pages/ProfileClients/ProfileClass";
+import ProfileSalon from '../../pages/ProfileSalons/ProfileSalon';
+import AdminPanel from '../../pages/AdminPanel/AdminPanel';
+import SearchList from '../../pages/SearchList/SearchList.page';
+import * as AuthApi from '../../Auth.api';
 
 
 // export default class Example extends React.Component {
@@ -75,7 +75,7 @@ import styles from './Navbar.module.css';
 //                                         Options
 //                                 </DropdownToggle>
 //                                     <DropdownMenu right>
-//                                         {/* Dropdown menu here */}
+//                                         Dropdown menu here
 //                                     </DropdownMenu>
 //                                 </UncontrolledDropdown>
 //                                 <NavItem>
@@ -84,7 +84,7 @@ import styles from './Navbar.module.css';
 //                             </Nav>
 //                         </Collapse>
 //                     </Navbar>
-//                     {/* Routes definition of paths and related components */}
+//                     Routes definition of paths and related components
 //                     <Switch>
 //                         <Route path="/" exact component={Home} />
 //                         <Route path="/cprofile/" component={ProfileClient} />
@@ -105,20 +105,52 @@ import styles from './Navbar.module.css';
 // }
 
 
-const TheNavBar = ({ navItems }) => {
-    return <Navbar className={styles.brand} color="light" light expand="md">
-        <img src={logo} alt="logo" />
-        <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
-        <Nav className="ml-auto" navbar>
-            {
-                navItems.map((navItem, i) => (
-                    <NavItem key={i}>
-                        <NavLink tag={Link} to={navItem.to}>{navItem.label}</NavLink>
-                    </NavItem>))
-            }
-        </Nav>
-    </Navbar>
-}
+class TheNavBar extends React.Component {
+    constructor (props){
+        super(props)
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isBurgerKingOpen : false
+        }
+    }
+
+    toggle(){
+        this.setState({
+            isBurgerKingOpen: !this.toggle.isBurgerKingOpen
+        });
+    }
+
+    render(){
+        return(
+            <Navbar className={styles.brand} color="light" light expand="md">
+                <img src={logo} alt="logo" />
+                <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isBurgerKingOpen} navbar>
+                    <Nav className="ml-auto" navbar>
+                        {
+                            this.props.navItems.map((navItem, i) => (
+                                <NavItem key={i}>
+                                    <NavLink tag={Link} to={navItem.to}>{navItem.label}</NavLink>
+                                </NavItem>))
+                        }
+                        <NavItem>
+                            <LoginModal />
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+                
+            </Navbar>
+        )
+    }
+
+
+} 
+// const navbar =({ navItems }) => {
+//     return <Navbar className={styles.brand} color="light" light expand="md">
+//     </Navbar>
+// }
 
 TheNavBar.propTypes = {
     navItems: PropTypes.arrayOf(PropTypes.shape({

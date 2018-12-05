@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../../../clic.png';
+import logo from '../../../src/clic.png';
 import styles from './ProfileSalon.module.css';
 import { Nav, NavItem, NavLink, Button } from 'reactstrap';
-import Agenda from '../../agenda/agenda.jsx';
+import Agenda from '../../components/agenda/agenda';
 import Services from './SalonServicesTable.jsx';
 import Horaires from './SalonHoraires.jsx';
 import Carousel from './CarouselSalon.jsx';

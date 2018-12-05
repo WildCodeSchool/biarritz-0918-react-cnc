@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 import ProfileClass from './ProfileClass.jsx';
 import styles from './ProfileClient.module.css';
 import { userprofile } from './dummyData';
+import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 
 class ProfileClient extends Component {
 	constructor() {
@@ -38,16 +39,18 @@ class ProfileClient extends Component {
 	// }
 
 	render() {
-		console.log(this.state);
 		return (
-			<div className={styles.head}>
-				<div className="row">
-					<div className="col-lg-8">
-						<h3>Mon compte</h3>
-						<ProfileClass profileclass={this.state.userprofile} />
+			<Fragment>
+				<ResponsiveLayout />
+				<div className={styles.head}>
+					<div className="row">
+						<div className="col-lg-8">
+							<h3>Mon compte</h3>
+							<ProfileClass profileclass={this.state.userprofile} />
+						</div>
 					</div>
 				</div>
-			</div>
+			</Fragment>
 		);
 	}
 }
