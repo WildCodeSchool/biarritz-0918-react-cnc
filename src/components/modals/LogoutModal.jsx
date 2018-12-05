@@ -26,7 +26,7 @@ class ModalLogout extends React.Component {
     render() {
         return (
             <div>
-                <Button outline color="info" onClick={this.toggle}>Logout</Button>
+                <Button outline color="danger" onClick={this.toggle}>Logout</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <form onSubmit={e => {
                         e.preventDefault();
@@ -38,7 +38,7 @@ class ModalLogout extends React.Component {
                             Are you sure to exit the aplication man??
                         </ModalBody>
                         <ModalFooter>
-                            <Button type="submit" color="success">Logout</Button>{' '}
+                            <Button type="submit" color="danger">Logout</Button>{' '}
                             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                         </ModalFooter>
                     </form>
