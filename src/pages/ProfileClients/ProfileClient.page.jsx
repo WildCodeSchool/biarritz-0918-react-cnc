@@ -3,21 +3,20 @@ import axios from 'axios';
 
 import ProfileClass from './ProfileClass.jsx';
 import styles from './ProfileClient.module.css';
-import { userprofile } from './dummyData';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 
 class ProfileClient extends Component {
 	constructor() {
 		super();
 		this.state = {
-			userprofile: []
+			userProfile: []
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleOnSubmit = this.handleOnSubmit.bind(this);
 	}
 
-	//componentDidMount with DUMMY DATA test
-	/* 	componentDidMount() {
-		this.setState({ userprofile });
-	} */
+
 
 	//TO DO - CHANGE ID WITH TOKEN OF SESSION
 	componentDidMount() {
@@ -25,18 +24,22 @@ class ProfileClient extends Component {
 		axios
 			//.get(`https://cnc-api.herokuapp.com/user_ids/${id}`)
 			.get(`http://127.0.0.1:8000/api/user_ids/1`, { headers: { Accept: 'application/json' } })
-			.then((res) => this.setState({ userprofile: [ res.data ] }));
+			.then((res) => this.setState({ userProfile: res.data }));
 	}
 
-	//TO TEST AND UTILIZE WHEN API WILL BE OK
-	// handleOnSubmit(e) {
-	//   e.preventDefault();
-	//   axios
-	//     .put(`http://127.0.0.1:8001/api/directories/${id}.json`, {
-	//       name
-	//     })
-	//     .then(() => this.setState({ TO DO }));
-	// }
+	handleChange(event) {
+		this.setState({ userProfile: this.props.data });
+	}
+
+
+	handleOnSubmit(event) {
+		event.preventDefault();
+		axios
+			.put(`http://127.0.0.1:8001/api/directories/1`, { headers: { Accept: 'application/json' } })
+			.then(() => this.setState({ userProfile: this.props.data }));
+	}
+
+
 
 	render() {
 		return (
@@ -44,9 +47,9 @@ class ProfileClient extends Component {
 				<ResponsiveLayout />
 				<div className={styles.head}>
 					<div className="row">
-						<div className="col-lg-8">
+						<div className="col-lg-8 offset-lg-1">
 							<h3>Mon compte</h3>
-							<ProfileClass profileclass={this.state.userprofile} />
+							<ProfileClass profileclass={this.state.userProfile} onSubmit={this.handleOnSubmit} />
 						</div>
 					</div>
 				</div>
