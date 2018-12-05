@@ -19,16 +19,12 @@ import {
     FormGroup
 } from 'reactstrap';
 
+import * as AuthApi from "../../Auth.api";
 import LoginModal from '../modals/LoginModal';
 import logo from '../../clic.png';
 import styles from './Navbar.module.css';
-import Error from '../../pages/Error.page';
-import Home from "../../pages/Home.page"
-import ProfileClient from "../../pages/ProfileClients/ProfileClass";
-import ProfileSalon from '../../pages/ProfileSalons/ProfileSalon';
-import AdminPanel from '../../pages/AdminPanel/AdminPanel';
-import SearchList from '../../pages/SearchList/SearchList.page';
-import * as AuthApi from '../../Auth.api';
+import authContext from '../../AuthContext';
+import AuthContext from '../../AuthContext';
 
 
 // export default class Example extends React.Component {
@@ -111,8 +107,17 @@ class TheNavBar extends React.Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isBurgerKingOpen : false
+            isBurgerKingOpen : false,
+            isAuthenticated : false
         }
+    }
+    handleLoginSubmite = (credentials) => {
+            AuthApi.postCredentials(credentials)
+            .then(() => {
+                this.setState({
+                    isAuthenticated : true
+                })
+            })
     }
 
     toggle(){
@@ -136,7 +141,15 @@ class TheNavBar extends React.Component {
                                 </NavItem>))
                         }
                         <NavItem>
-                            <LoginModal />
+                            <AuthContext.Provider value={{
+                                isAuthenticated : this.state.isAuthenticated, 
+                                handleLoginSubmite: this.handleLoginSubmite}}>
+                                <authContext.Consumer>
+                                    {data => (
+                                        <LoginModal login={data.handleLoginSubmite}/>
+                                    )}
+                                </authContext.Consumer>
+                            </AuthContext.Provider>
                         </NavItem>
                     </Nav>
                 </Collapse>
