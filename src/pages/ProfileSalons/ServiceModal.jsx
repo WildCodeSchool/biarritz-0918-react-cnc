@@ -41,13 +41,10 @@ class ServiceModal extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
                     <ModalHeader toggle={this.toggle}>Services {this.props.name}</ModalHeader>
                     <ModalBody>
-<<<<<<< HEAD:src/LoginModal.jsx
                         <Input type="text" name="email" placeholder="Email" required />
                         <br />
                         <Input type="password" name="password" placeholder="Password" required />
-=======
                         <ServicesTable name={this.props.name} />
->>>>>>> 19cda0adbfe9f70e4c8c625818c2b2ae03538956:src/pages/ProfileSalons/ServiceModal.jsx
                     </ModalBody>
                     <ModalFooter>
                     </ModalFooter>

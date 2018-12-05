@@ -20,7 +20,6 @@ import React, { Fragment } from 'react';
 //     //     FormGroup
 // } from 'reactstrap';
 import ResponsiveLayout from '../layouts/Responsive.layout.jsx';
-import NavBar from '../components/navbar/Navbar.jsx';
 
 // const Home = () => {
 
