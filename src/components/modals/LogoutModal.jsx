@@ -8,7 +8,7 @@ import {
     Input
 } from 'reactstrap';
 
-class ModalLogin extends React.Component {
+class ModalLogout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,23 +26,19 @@ class ModalLogin extends React.Component {
     render() {
         return (
             <div>
-                <Button outline color="info" onClick={this.toggle}>Login</Button>
+                <Button outline color="info" onClick={this.toggle}>Logout</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <form onSubmit={e => {
                         e.preventDefault();
-                        const username = e.target.elements.email.value;
-                        const password = e.target.elements.password.value;
-                        this.props.login({username, password});
+                        this.props.logout();
                         this.toggle();
                     }}>
-                        <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+                        <ModalHeader toggle={this.toggle}>Logout</ModalHeader>
                         <ModalBody>
-                            <Input type="text" name="email" placeholder="Email" required />
-                            <br />
-                            <Input type="password" name="password" placeholder="Password" required />
+                            Are you sure to exit the aplication man??
                         </ModalBody>
                         <ModalFooter>
-                            <Button type="submit" color="success">Login</Button>{' '}
+                            <Button type="submit" color="success">Logout</Button>{' '}
                             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                         </ModalFooter>
                     </form>
@@ -52,4 +48,4 @@ class ModalLogin extends React.Component {
     }
 }
 
-export default ModalLogin;
+export default ModalLogout;

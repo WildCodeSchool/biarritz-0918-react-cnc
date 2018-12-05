@@ -1,11 +1,12 @@
 import axios from "axios";
+import { EXITED } from "react-transition-group/Transition";
 
 const SESSION_KEY = "session_token";
 
 export function postCredentials(credentials){
     console.log(credentials);
     return axios
-        .post("http://127.0.0.1/login", credentials, {
+        .post("http://127.0.0.1:8000/login_check", credentials, {
             headers: {
                 Accept: "application/json"
             }
