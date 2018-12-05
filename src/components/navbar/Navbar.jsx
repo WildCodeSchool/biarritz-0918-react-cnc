@@ -22,13 +22,7 @@ import {
 import LoginModal from '../modals/LoginModal';
 import logo from '../../clic.png';
 import styles from './Navbar.module.css';
-import Error from '../../pages/Error.page';
-import Home from "../../pages/Home.page"
-import ProfileClient from "../../pages/ProfileClients/ProfileClass";
-import ProfileSalon from '../../pages/ProfileSalons/ProfileSalon';
-import AdminPanel from '../../pages/AdminPanel/AdminPanel';
-import SearchList from '../../pages/SearchList/SearchList.page';
-import * as AuthApi from '../../Auth.api';
+
 
 
 // export default class Example extends React.Component {
@@ -106,25 +100,25 @@ import * as AuthApi from '../../Auth.api';
 
 
 class TheNavBar extends React.Component {
-    constructor (props){
+    constructor(props) {
         super(props)
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isBurgerKingOpen : false
+            isBurgerKingOpen: false
         }
     }
 
-    toggle(){
+    toggle() {
         this.setState({
             isBurgerKingOpen: !this.toggle.isBurgerKingOpen
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <Navbar className={styles.brand} color="light" light expand="md">
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="logo" className="hidden-xs-down" />
                 <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isBurgerKingOpen} navbar>
@@ -140,13 +134,13 @@ class TheNavBar extends React.Component {
                         </NavItem>
                     </Nav>
                 </Collapse>
-                
+
             </Navbar>
         )
     }
 
 
-} 
+}
 // const navbar =({ navItems }) => {
 //     return <Navbar className={styles.brand} color="light" light expand="md">
 //     </Navbar>

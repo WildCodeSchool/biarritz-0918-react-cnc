@@ -11,6 +11,8 @@ import {
     Button
 } from 'reactstrap';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
+
 
 
 export default class SearchList extends Component {
@@ -38,25 +40,28 @@ export default class SearchList extends Component {
             )
         }
         return (
-            <div className="container-fluid">
+            <ResponsiveLayout>
 
-                <div className="col-lg-8">
-                    {this.state.items.map(salons => (
-                        <div>
-                            <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', marginTop: 10 }}>
-                                <CardBody>
-                                    <CardTitle>{salons.name}</CardTitle>
-                                    <CardSubtitle>{salons.email}</CardSubtitle>
-                                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                    <Link to={`/sprofile/${salons.id}`}>
-                                        <Button outline color="primary">Prendre rdv</Button>
-                                    </Link>
-                                </CardBody>
-                            </Card>
-                        </div>
-                    ))}
+                <div className="container-fluid">
+
+                    <div className="col-lg-8">
+                        {this.state.items.map(salons => (
+                            <div>
+                                <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', marginTop: 10 }}>
+                                    <CardBody>
+                                        <CardTitle>{salons.name}</CardTitle>
+                                        <CardSubtitle>{salons.email}</CardSubtitle>
+                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                        <Link to={`/salons/${salons.id}/view`}>
+                                            <Button outline color="primary">Prendre rdv</Button>
+                                        </Link>
+                                    </CardBody>
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            </ResponsiveLayout>
             // TODO: Check Render Props on doc
             // <Request req={`http://127.0.0.1:8000/api/salons`} renderSuccess={
             //     (items) => items.map(salons => (
