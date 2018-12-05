@@ -9,7 +9,6 @@ import ProfileClient from "./pages/ProfileClients/ProfileClient.page.jsx";
 export default function () {
     return (
         <Router>
-
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/cprofile/" component={ProfileClient} />
