@@ -70,11 +70,11 @@ class TheNavBar extends React.Component {
         let Modal;
         if(isLogged){
             Modal = <AuthContext.Provider value={{
-                        isAuthenticated : this.state.handleLogoutSubmit,
+                        isAuthenticated : this.state.isAuthenticated,
                         handleLogoutSubmit: this.handleLogoutSubmit}}>
                         <AuthContext.Consumer>
                             {data => (
-                                <LogoutModal logout={data.handleLogoutSubmit} />
+                                <LogoutModal logout={data.handleLogoutSubmit} authenticated={data.isAuthenticated} />
                             )}
                         </AuthContext.Consumer>
                     </AuthContext.Provider>
@@ -84,12 +84,11 @@ class TheNavBar extends React.Component {
                         handleLoginSubmit: this.handleLoginSubmit}}>
                         <AuthContext.Consumer>
                             {data => (
-                                <LoginModal login={data.handleLoginSubmit}/>
+                                <LoginModal login={data.handleLoginSubmit} authenticated={data.isAuthenticated} />
                             )}
                         </AuthContext.Consumer>
                     </AuthContext.Provider>;
         }
-        console.log(isLogged);
         return(
             <Navbar className={styles.brand} color="light" light expand="md">
                 <img src={logo} alt="logo" />

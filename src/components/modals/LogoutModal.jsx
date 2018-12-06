@@ -16,6 +16,18 @@ class ModalLogout extends React.Component {
         };
 
         this.toggle = this.toggle.bind(this);
+        console.log(props)
+
+    }
+
+    componentDidMount(){
+        let route = window.location.pathname;
+        let auth = this.props.authenticated;
+        if(route === '/logout' && auth === true ){
+            this.setState({
+                modal: true
+            });
+        }
     }
 
     toggle() {
