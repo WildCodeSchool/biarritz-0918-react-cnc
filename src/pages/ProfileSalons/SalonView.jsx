@@ -94,17 +94,24 @@ class ProfileSalon extends Component {
         //     .catch(() => this.setState({ isError: true }))
 
         this.setState({ isPending: true });
+
         axios
             .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
-            .then(response => this.setState({ stylists: response.data, isPending: false }))
+            .then(response => {
+                const stylists = response.data.filter( (sytlist) => {
+                    return (sytlist.salon == '/api/salons/'+this.props.id)
+                })
+                this.setState({stylists : stylists})
+            })
             .catch(() => this.setState({ isError: true }));
 
         axios
-            .get(`http://127.0.0.1:8000/api/salons/${this.state.salons.id}`, { headers: { Accept: "application/json" } })
+            .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, { headers: { Accept: "application/json" } })
             .then(response => {
                 this.setState({ salons: response.data, isPending: false })
-                console.log(response.data)
-            })
+            }).then(
+                this.setState({isPending: false})
+            )
             .catch(() => this.setState({ isError: true }))
     }
 
