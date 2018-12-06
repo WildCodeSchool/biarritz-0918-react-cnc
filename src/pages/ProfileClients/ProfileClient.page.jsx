@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
-import ProfileClass from './ProfileClass.jsx';
+import ProfileForm from './ProfileForm.jsx';
 import styles from './ProfileClient.module.css';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 
@@ -49,7 +49,7 @@ class ProfileClient extends Component {
 					<div className="row">
 						<div className="col-lg-8 offset-lg-1">
 							<h3>Mon compte</h3>
-							<ProfileClass profileclass={this.state.userProfile} onSubmit={this.handleOnSubmit} />
+							<ProfileForm profileForm={this.state.userProfile} onSubmit={this.handleOnSubmit} />
 						</div>
 					</div>
 				</div>
