@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from '../../../src/clic.png';
 import styles from './ProfileSalon.module.css';
 import { Nav, NavItem, NavLink, Button } from 'reactstrap';
-import Agenda from '../../components/agenda/agenda';
+import Agenda from '../../components/agenda/agenda.jsx';
 import Services from './SalonServicesTable.jsx';
 import Horaires from './SalonHoraires.jsx';
 import Carousel from './CarouselSalon.jsx';
@@ -10,6 +10,9 @@ import ServiceModal from './ServiceModal.jsx';
 import axios from 'axios';
 import moment from 'moment';
 import { ReactAgenda, ReactAgendaCtrl, guid, getUnique, getLast, getFirst, Modal } from 'react-agenda';
+
+import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
+
 
 require('moment/locale/fr.js');
 var now = new Date();
@@ -23,6 +26,7 @@ class ProfileSalon extends Component {
         this.state = {
             items: [],
             stylists: [],
+            salons: [],
             isPending: false,
             isError: false,
         }
@@ -82,18 +86,26 @@ class ProfileSalon extends Component {
     ];
 
     componentDidMount() {
-        this.setState({ isPending: true });
-        axios
-            .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, { headers: { Accept: "application/json" } })
-            .then(response => this.setState({ stylists: response.data, isPending: false }))
-            .then(console.log('toto'))
-            .catch(() => this.setState({ isError: true }))
-
         // this.setState({ isPending: true });
         // axios
-        //     .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
+        //     .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, { headers: { Accept: "application/json" } })
         //     .then(response => this.setState({ stylists: response.data, isPending: false }))
+        //     .then(console.log('toto'))
         //     .catch(() => this.setState({ isError: true }))
+
+        this.setState({ isPending: true });
+        axios
+            .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
+            .then(response => this.setState({ stylists: response.data, isPending: false }))
+            .catch(() => this.setState({ isError: true }));
+
+        axios
+            .get(`http://127.0.0.1:8000/api/salons/${this.state.salons.id}`, { headers: { Accept: "application/json" } })
+            .then(response => {
+                this.setState({ salons: response.data, isPending: false })
+                console.log(response.data)
+            })
+            .catch(() => this.setState({ isError: true }))
     }
 
     render() {
@@ -104,54 +116,58 @@ class ProfileSalon extends Component {
         }
 
         return (
-            <div className="container-fluid">
-                <div className="row" id={styles.firstrow}>
-                    <div className="col-lg-2 offset-lg-1">
-                        <img className={styles.profilepic} src={logo} alt="logo" />
-                    </div>
-                    <div className="col-lg-4">
-                        <Nav>
-                            <NavLink href="#presentation">Présentation</NavLink>
-                            <NavLink href="#services">Services</NavLink>
-                            <NavLink href="#agenda">Agenda</NavLink>
-                            <NavLink href="#horaires">Horaires</NavLink>
-                        </Nav>
+            <ResponsiveLayout>
 
-                    </div>
-                </div>
-                <div className="row">
-                    <div id="presentation" className="offset-lg-1 col-lg-6">
-                        <h1>Test</h1>
-                        <p>
-                            Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
-                            brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope
-                            Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
-                    </p>
-                        <Carousel />
-                        <div className="col-lg-12">
-                            {this.state.stylists.map(styl => (
-                                <Button outline block name={styl.name}>{styl.surname}</Button>
-                            ))}
+                <div className="container-fluid">
+                    <div className="row" id={styles.firstrow}>
+                        <div className="col-lg-2 offset-lg-1">
+                            <img className={styles.profilepic} src={logo} alt="logo" />
+                        </div>
+                        <div className="col-lg-4">
+                            <Nav>
+                                <NavLink href="#presentation">Présentation</NavLink>
+                                <NavLink href="#services">Services</NavLink>
+                                <NavLink href="#agenda">Agenda</NavLink>
+                                <NavLink href="#horaires">Horaires</NavLink>
+                            </Nav>
 
                         </div>
-                        <div id="services" className="col-lg-12">
-                            <h2>Rendez-vous pour :</h2>
-                            <ServiceModal name="Homme" color="primary" />
-                            <ServiceModal name="Femme" color="danger" />
+                    </div>
+                    <div className="row">
+                        <div id="presentation" className="offset-lg-1 col-lg-6">
+                            <h1></h1>
+                            <p>
+                                Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
+                                brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope
+                                Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
+                            </p>
+                            <Carousel />
+                            <div className="col-lg-12">
+                                {this.state.stylists.map(styl => (
+                                    <Button outline block name={styl.name}>{styl.surname}</Button>
+                                ))}
+
+                            </div>
+
+                            <div id="services" className="col-lg-12">
+                                <h2>Rendez-vous pour :</h2>
+                                <ServiceModal name="Homme" color="primary" />
+                                <ServiceModal name="Femme" color="danger" />
+                            </div>
+                        </div>
+                        <div className="col-lg-4">
+                            <div id="agenda">
+                                <h2>Agenda</h2>
+                                <Agenda items={this.state.items} />
+                            </div>
+                            <div id="horaires">
+                                <h2>Horaires et</h2>
+                                <Horaires />
+                            </div>
                         </div>
                     </div>
-                    <div className="col-lg-4">
-                        <div id="agenda">
-                            <h2>Agenda</h2>
-                            <Agenda items={this.state.items} />
-                        </div>
-                        <div id="horaires">
-                            <h2>Horaires et</h2>
-                            <Horaires />
-                        </div>
-                    </div>
-                </div>
-            </div >
+                </div >
+            </ResponsiveLayout>
         );
     }
 };

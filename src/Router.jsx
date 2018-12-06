@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from './pages/Home.page.jsx';
 import Error from './pages/Error.page.jsx';
 import ProfileClient from './pages/ProfileClients/ProfileClient.page.jsx';
-import ProfileSalon from './pages/ProfileSalons/ProfileSalon.jsx';
+import SalonView from './pages/ProfileSalons/SalonView.jsx';
 import SearchList from "./pages/SearchList/SearchList.page.jsx";
 
 export default function ({ login }) {
@@ -14,7 +14,9 @@ export default function ({ login }) {
                 <Route path="/" exact component={Home} />
                 <Route path="/profile/" component={ProfileClient} />
                 <Route path="/salons/search" component={SearchList} />
-                <Route path="/salons/:id/view" component={ProfileSalon} />
+                <Route path="/salons/:id_:name/view" component={({ match }) => (
+                    <SalonView id={match.params.id} />
+                )} />
                 {/* <Route
                     exact path="/sprofile/:id"
                     component={({ match }) => (
