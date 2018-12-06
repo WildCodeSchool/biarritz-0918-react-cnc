@@ -100,7 +100,7 @@ class ProfileSalon extends Component {
             .catch(() => this.setState({ isError: true }));
 
         axios
-            .get(`http://127.0.0.1:8000/api/salons/${this.state.salons.id}`, { headers: { Accept: "application/json" } })
+            .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, { headers: { Accept: "application/json" } })
             .then(response => {
                 this.setState({ salons: response.data, isPending: false })
                 console.log(response.data)
@@ -135,7 +135,8 @@ class ProfileSalon extends Component {
                     </div>
                     <div className="row">
                         <div id="presentation" className="offset-lg-1 col-lg-6">
-                            <h1></h1>
+                            <h1>{this.state.salons.name}</h1>
+                            <h3>{this.state.salons.email}</h3>
                             <p>
                                 Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
                                 brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope

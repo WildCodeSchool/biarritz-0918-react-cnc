@@ -52,7 +52,7 @@ export default class SearchList extends Component {
                                         <CardTitle>{salons.name}</CardTitle>
                                         <CardSubtitle>{salons.email}</CardSubtitle>
                                         <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Link to={`/salons/${salons.id}_${salons.name}/view`}>
+                                        <Link to={`/salons/${salons.id}/view`}>
                                             <Button outline color="primary">Prendre rdv</Button>
                                         </Link>
                                     </CardBody>
