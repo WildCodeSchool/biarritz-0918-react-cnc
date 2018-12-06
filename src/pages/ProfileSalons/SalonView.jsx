@@ -135,17 +135,26 @@ class ProfileSalon extends Component {
                     </div>
                     <div className="row">
                         <div id="presentation" className="offset-lg-1 col-lg-6">
-                            <h1>{this.state.salons.name}</h1>
-                            <h3>{this.state.salons.email}</h3>
-                            <p>
-                                Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
-                                brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope
-                                Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
-                            </p>
-                            <Carousel />
+                            <div className="row">
+                                <div className="col-sm-6 col-lg-12">
+                                    <h1>{this.state.salons.name}</h1>
+                                    <ul>
+                                        <li>{this.state.salons.email}</li>
+                                        <li>{this.state.salons.phone}</li>
+                                    </ul>
+                                    <p>
+                                        Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine
+                                        brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope
+                                        Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
+                                    </p>
+                                </div>
+                                <div className="col-sm-6 col-lg-12">
+                                    <Carousel />
+                                </div>
+                            </div>
                             <div className="col-lg-12">
                                 {this.state.stylists.map(styl => (
-                                    <Button outline block name={styl.name}>{styl.surname}</Button>
+                                    <Button outline block href="#agenda" name={styl.name}>{styl.surname}</Button>
                                 ))}
 
                             </div>

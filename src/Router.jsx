@@ -16,7 +16,7 @@ export default function ({ login }) {
                 <Route path="/logout" exact component={Home} />
                 <Route path="/profile/" component={ProfileClient} />
                 <Route path="/salons/search" component={SearchList} />
-                <Route path="/salons/:id/view" component={({ match }) => (
+                <Route path="/salons/:id_:name/view" component={({ match }) => (
                     <SalonView id={match.params.id} />
                 )} />
                 {/* <Route
