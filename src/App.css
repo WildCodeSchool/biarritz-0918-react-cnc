@@ -1,3 +1,15 @@
+@font-face {
+  font-family: champagne;
+  src: url('./assets/fonts/ChampagneBold.ttf');
+}
+
+body {
+  font-family: champagne !important;
+  background-image: linear-gradient( #f8f9fa, rgb(63, 63, 63));
+  background-attachment: fixed;
+}
+
+
 .App {
   text-align: center;
 }
@@ -9,7 +21,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
