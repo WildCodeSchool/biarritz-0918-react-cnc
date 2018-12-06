@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export function ProfileForm({ onSubmit, initialValues }) {
   const { name, username, surname, email, phone } = initialValues;
-  console.log(initialValues);
   return (
     <Form onSubmit={onSubmit}>
       <FormGroup>
