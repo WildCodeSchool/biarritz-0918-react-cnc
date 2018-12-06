@@ -16,6 +16,17 @@ class ModalLogin extends React.Component {
         };
 
         this.toggle = this.toggle.bind(this);
+        console.log(props)
+    }
+
+    componentDidMount(){
+        let route = window.location.pathname;
+        let auth = this.props.authenticated;
+        if(route === '/login' && auth === false ){
+            this.setState({
+                modal: true
+            });
+        }
     }
 
     toggle() {
