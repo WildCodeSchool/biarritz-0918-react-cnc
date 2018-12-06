@@ -1,41 +1,35 @@
-import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-class ProfileForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { value: '' };
-	}
+export function ProfileForm({ onSubmit, initialValues }) {
+  const { name, username, surname, email, phone } = initialValues;
+  console.log(initialValues);
+  return (
+    <Form onSubmit={onSubmit}>
+      <FormGroup>
+        <Label for="name">Name</Label>
+        <Input id="name" name="name" type="text" defaultValue={name} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="surname">Surname</Label>
+        <Input type="text" name="surname" id="surname" defaultValue={surname} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="username">Username</Label>
+        <Input type="text" name="username" id="username" defaultValue={username} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="email">Email</Label>
+        <Input type="email" name="email" id="Email" defaultValue={email} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="phone">Phone number</Label>
+        <Input type="number" name="phone" id="phone" defaultValue={phone} />
+      </FormGroup>
 
-
-	render() {
-		return (
-			<Form onSubmit={this.props.onSubmit}>
-				<FormGroup>
-					<Label for="Name">Name</Label>
-					<Input type="name" name="name" id="name" defaultValue={this.props.profileForm.name} />
-				</FormGroup>
-				<FormGroup>
-					<Label for="surname">Surname</Label>
-					<Input type="name" name="surname" id="surname" defaultValue={this.props.profileForm.surname} />
-				</FormGroup>
-				<FormGroup>
-					<Label for="username">Username</Label>
-					<Input type="name" name="username" id="username" defaultValue={this.props.profileForm.username} />
-				</FormGroup>
-				<FormGroup>
-					<Label for="Email">Email</Label>
-					<Input type="email" name="email" id="Email" defaultValue={this.props.profileForm.email} />
-				</FormGroup>
-				<FormGroup onSubmit={this.handleOnSubmit}>
-					<Label for="phone">Phone number</Label>
-					<Input type="text" name="phone" id="phone" defaultValue={this.props.profileForm.phone} />
-				</FormGroup>
-
-				<Button type="submit">Save Modifications</Button>
-			</Form>
-		);
-	}
+      <Button type="submit">Save</Button>
+    </Form>
+  );
 }
 
 export default ProfileForm;
