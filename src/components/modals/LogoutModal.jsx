@@ -16,7 +16,6 @@ class ModalLogout extends React.Component {
         };
 
         this.toggle = this.toggle.bind(this);
-        console.log(props)
 
     }
 

@@ -17,7 +17,7 @@ export default function ({ login }) {
                 <Route path="/profile/" component={ProfileClient} />
                 <Route path="/salons/search" component={SearchList} />
                 <Route path="/salons/:id_:name/view" component={({ match }) => (
-                    <SalonView id={match.params.id} />
+                    <SalonView id={match.params.id_} />
                 )} />
                 {/* <Route
                     exact path="/sprofile/:id"
