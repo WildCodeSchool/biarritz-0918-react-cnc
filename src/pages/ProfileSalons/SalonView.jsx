@@ -119,7 +119,11 @@ class ProfileSalon extends Component {
     render() {
         if (this.state.isPending) {
             return (
-                <Loader />
+                <ResponsiveLayout>
+                    <div className="container-fluid">
+                        <Loader />
+                    </div>
+                </ResponsiveLayout>
             )
         }
 
