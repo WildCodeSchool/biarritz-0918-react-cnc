@@ -13,6 +13,7 @@ import {
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 
+import Loader from "../../components/loader/Loader.jsx";
 
 
 export default class SearchList extends Component {
@@ -36,14 +37,13 @@ export default class SearchList extends Component {
     render() {
         if (this.state.isPending) {
             return (
-                "Pending..."
+                <Loader />
             )
         }
         return (
             <ResponsiveLayout>
 
                 <div className="container-fluid">
-
                     <div className="col-lg-8">
                         {this.state.items.map(salons => (
                             <div>

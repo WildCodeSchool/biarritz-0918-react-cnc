@@ -12,6 +12,7 @@ import moment from 'moment';
 import { ReactAgenda, ReactAgendaCtrl, guid, getUnique, getLast, getFirst, Modal } from 'react-agenda';
 
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
+import Loader from '../../components/loader/Loader.jsx';
 
 
 require('moment/locale/fr.js');
@@ -98,10 +99,10 @@ class ProfileSalon extends Component {
         axios
             .get(`http://127.0.0.1:8000/api/stylists`, { headers: { Accept: "application/json" } })
             .then(response => {
-                const stylists = response.data.filter( (sytlist) => {
-                    return (sytlist.salon == '/api/salons/'+this.props.id)
+                const stylists = response.data.filter((sytlist) => {
+                    return (sytlist.salon == '/api/salons/' + this.props.id)
                 })
-                this.setState({stylists : stylists})
+                this.setState({ stylists: stylists })
             })
             .catch(() => this.setState({ isError: true }));
 
@@ -110,7 +111,7 @@ class ProfileSalon extends Component {
             .then(response => {
                 this.setState({ salons: response.data, isPending: false })
             }).then(
-                this.setState({isPending: false})
+                this.setState({ isPending: false })
             )
             .catch(() => this.setState({ isError: true }))
     }
@@ -118,7 +119,7 @@ class ProfileSalon extends Component {
     render() {
         if (this.state.isPending) {
             return (
-                "Pending..."
+                <Loader />
             )
         }
 
@@ -161,7 +162,7 @@ class ProfileSalon extends Component {
                             </div>
                             <div className="col-lg-12">
                                 {this.state.stylists.map(styl => (
-                                    <Button outline block href="#agenda" name={styl.name}>{styl.surname}</Button>
+                                    <Button block href="#agenda" name={styl.name}>{styl.surname}</Button>
                                 ))}
 
                             </div>

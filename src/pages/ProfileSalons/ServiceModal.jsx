@@ -29,7 +29,6 @@ class ServiceModal extends React.Component {
         return (
             <div>
                 <Button
-                    outline
                     block
                     color={this.props.color}
                     size="lg"
