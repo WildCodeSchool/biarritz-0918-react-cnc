@@ -31,7 +31,7 @@ class ProfileClient extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://127.0.0.1:8000/api/user_ids/${AuthApi.useUserId()}`, { headers: { Accept: 'application/json' } })
+      .get(`http://127.0.0.1:8000/api/user_ids/${AuthApi.getUserId()}`, { headers: { Accept: 'application/json' } })
       .then((res) => this.setState({ userProfile: res.data }));
   }
 
@@ -51,7 +51,7 @@ class ProfileClient extends Component {
     const data = getValuesFrom(...e.target.elements);
     data.phone = parseInt(data.phone);
     axios
-      .put(`http://127.0.0.1:8000/api/user_ids/${AuthApi.useUserId()}`, data, {
+      .put(`http://127.0.0.1:8000/api/user_ids/${AuthApi.getUserId()}`, data, {
         headers: {
           Accept: 'application/json',
           Authorization: 'Bearer ' + AuthApi.getToken()
