@@ -1,2 +1,4 @@
 # Ignoring node
 node_modules/
+.vscode/
+*.orig
