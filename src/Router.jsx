@@ -9,6 +9,7 @@ import SearchList from './pages/SearchList/SearchList.page.jsx';
 import AdminPanel from './pages/AdminPanel/AdminPanel.js';
 import Fetch from './components/fetch/Fetch';
 import { getUserId } from './Auth.api';
+import Register from './pages/RegisterForms/Register.page.jsx';
 
 function PrivateRoute(props) {
   return (
@@ -25,6 +26,7 @@ export default function({ login }) {
         <Route path="/logout" exact component={Home} />
         <PrivateRoute path="/profile" component={ProfileClient} />
         <Route path="/salons/search" component={SearchList} />
+        <Route path="/register" component={Register} />
         <Route path="/salons/:id_:name/view" component={({ match }) => <SalonView id={match.params.id_} />} />
         {/* <Route
                     exact path="/sprofile/:id"
