@@ -5,10 +5,11 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Input
+    Input,
 } from 'reactstrap';
+import ServicesTable from './SalonServicesTable.jsx';
 
-class ModalExample extends React.Component {
+class ServiceModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,17 +28,24 @@ class ModalExample extends React.Component {
     render() {
         return (
             <div>
-                <Button outline color="info" onClick={this.toggle}>Login</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+                <Button
+                    block
+                    color={this.props.color}
+                    size="lg"
+                    onClick={this.toggle}
+                    style={{ marginTop: 10 }}
+                >
+                    {this.props.name}
+                </Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg">
+                    <ModalHeader toggle={this.toggle}>Services {this.props.name}</ModalHeader>
                     <ModalBody>
                         <Input type="text" name="email" placeholder="Email" required />
                         <br />
                         <Input type="password" name="password" placeholder="Password" required />
+                        <ServicesTable name={this.props.name} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="success" onClick={this.toggle}>Login</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
@@ -45,4 +53,4 @@ class ModalExample extends React.Component {
     }
 }
 
-export default ModalExample;
+export default ServiceModal;

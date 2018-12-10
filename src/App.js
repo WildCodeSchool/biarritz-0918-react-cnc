@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+
 import './App.css';
-import { Button } from 'reactstrap';
-import Navbar from './Navbar.jsx';
-
-
+import Router from "./Router.jsx";
+import * as AuthApi from "./Auth.api";
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-        <Navbar />    
+
+        <Router />
       </div>
     );
   }

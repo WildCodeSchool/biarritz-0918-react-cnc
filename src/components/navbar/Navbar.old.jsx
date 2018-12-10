@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {
     Collapse,
@@ -11,17 +12,23 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
+    DropdownItem,
+    Button,
+    Input,
+    Form,
+    FormGroup
 } from 'reactstrap';
 
-import LoginModal from './LoginModal.jsx';
-import logo from './clic.png';
-import './Navbar.module.css';
-import Error from './components/Pages/Error.js';
-import About from "./components/Pages/About.js"
-import Home from "./components/Pages/Home.js"
-
-//Example components
-const Users = () => <h2>Users</h2>;
+import LoginModal from '../../LoginModal.jsx';
+import logo from '../../clic.png';
+import styles from './Navbar.module.css';
+import Error from '../Pages/Error.jsx';
+import Home from "../Pages/Home.jsx"
+import ProfileClient from "../Pages/ProfileClients/ProfileClient.jsx"
+import ProfileSalon from '../Pages/ProfileSalons/ProfileSalon.jsx';
+import AdminPanel from '../Pages/AdminPanel/AdminPanel.js';
+import SearchList from '../Pages/SearchList/SearchList.jsx';
+import * as AuthApi from '../../Auth.api';
 
 
 export default class Example extends React.Component {
@@ -42,7 +49,7 @@ export default class Example extends React.Component {
         return (
             <Router>
                 <div>
-                    <Navbar color="dark" dark expand="md">
+                    <Navbar className={styles.toto} color="light" light expand="md">
                         <img src={logo} alt="logo" />
                         <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
@@ -52,21 +59,27 @@ export default class Example extends React.Component {
                                     <NavLink tag={Link} to="/">Home</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} to="/about">About</NavLink>
+                                    <NavLink tag={Link} to="/cprofile/">Profile Client</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} to="/users">Users</NavLink>
+                                    <NavLink tag={Link} to="/search/">Search List</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/sprofile/">Profile Salon</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/reactcpanel/">Admin Panel</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
                                         Options
                                 </DropdownToggle>
                                     <DropdownMenu right>
-                                        {/* Input here */}
+                                        {/* Dropdown menu here */}
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                                 <NavItem>
-                                    <LoginModal />
+                                    <LoginModal onSubmit={this.props.handleLoginSubmit} />
                                 </NavItem>
                             </Nav>
                         </Collapse>
@@ -74,8 +87,15 @@ export default class Example extends React.Component {
                     {/* Routes definition of paths and related components */}
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/about/" component={About} />
-                        <Route path="/users/" component={Users} />
+                        <Route path="/cprofile/" component={ProfileClient} />
+                        <Route
+                            exact path="/sprofile/:id"
+                            component={({ match }) => (
+                                <ProfileSalon id={match.params.id} />
+                            )}
+                        />
+                        <Route path="/search/" component={SearchList} />
+                        <Route path="/reactcpanel/" component={AdminPanel} />
                         <Route component={Error} />
                     </Switch>
                 </div>

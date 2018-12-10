@@ -1,25 +1,47 @@
-import axios from "axios";
+import axios from 'axios';
+import { EXITED } from 'react-transition-group/Transition';
 
-const SESSION_KEY = "session_token";
+const SESSION_KEY = 'session_token';
+const USERID = 'userid';
 
-export function postCredentials(credentials){
-    return axios
-        .post("http://127.0.0.1/login", credentials, {
-            headers: {
-                Accept: "application/json"
-            }
-        })
-        .then(response => saveToken(response.data.token))
+export function postCredentials(credentials) {
+  console.log(credentials);
+  return axios
+    .post('http://127.0.0.1:8000/login_check', credentials, {
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    .then((response) => saveToken(response.data.token));
 }
 
-export function saveToken(token){
-    localStorage.setItem(SESSION_KEY, token);
+export function saveToken(token) {
+  localStorage.setItem(SESSION_KEY, token);
 }
 
-export function getToken(){
-    return localStorage.getItem(SESSION_KEY)
+export function getToken() {
+  return localStorage.getItem(SESSION_KEY);
 }
 
-export function removeToken(){
-    localStorage.removeItem(SESSION_KEY)
+export function removeToken() {
+  localStorage.removeItem(SESSION_KEY);
+}
+
+export function saveUserId(id) {
+  localStorage.setItem(USERID, id);
+}
+
+export function useUserId() {
+  return localStorage.getItem(USERID);
+}
+
+export function getUserId() {
+  axios
+    .get(`http://127.0.0.1:8000/api/me`, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + this.getToken()
+      }
+    })
+    .then((response) => saveUserId(response.data));
 }
