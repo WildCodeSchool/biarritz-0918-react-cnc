@@ -1,6 +1,5 @@
-@import '~react-agenda/build/styles.css';
-@import '~react-datetime/css/react-datetime.css';
-
+/* @import '~react-agenda/build/styles.css'; */
+@import "~react-datetime/css/react-datetime.css";
 
 body {
   scroll-behavior: smooth;
