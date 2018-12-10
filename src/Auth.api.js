@@ -43,5 +43,5 @@ export function getUserId() {
         Authorization: 'Bearer ' + getToken()
       }
     })
-    .then((response) => saveUserId(response.data));
+    .then((response) => response.data);
 }

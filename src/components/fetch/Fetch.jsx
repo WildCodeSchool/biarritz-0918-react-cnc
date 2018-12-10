@@ -28,7 +28,7 @@ export default class Fetch extends React.Component {
     const { renderSuccess, renderError, renderPending } = this.props;
     const { isSuccess, isError, isPending, response, error } = this.state;
     if (isSuccess) {
-      return renderSuccess(response);
+      return renderSuccess({ reponse: response });
     }
     if (isError) {
       return renderError(error);
