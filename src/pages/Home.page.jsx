@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import InputSearch from '../components/input/InputSearch.jsx';
-import logo from '../clic.png';
+import React, { Fragment } from "react";
+import InputSearch from "../components/input/InputSearch.jsx";
+import logo from "../clic.png";
 // import {Container} from "reactstrap";
 // import {
 //     // Collapse,
@@ -19,7 +19,7 @@ import logo from '../clic.png';
 //     //     Form,
 //     //     FormGroup
 // } from 'reactstrap';
-import ResponsiveLayout from '../layouts/Responsive.layout.jsx';
+import ResponsiveLayout from "../layouts/Responsive.layout.jsx";
 
 // const Home = () => {
 
@@ -34,15 +34,21 @@ import ResponsiveLayout from '../layouts/Responsive.layout.jsx';
 //     );
 // };
 
-const Home = () =>
-    <ResponsiveLayout>
-        <div>
-            {/* <p>TEST Component called Home situated in components/Pages/Home.js</p> */}
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" style={{ width: '200px', height: 'auto' }} />
-                <InputSearch />
-            </header>
-        </div>
-    </ResponsiveLayout>;
+const Home = () => (
+  <ResponsiveLayout>
+    <div>
+      {/* <p>TEST Component called Home situated in components/Pages/Home.js</p> */}
+      <header className="App-header">
+        <img
+          src={logo}
+          className="App-logo"
+          alt="logo"
+          style={{ width: "200px", height: "auto" }}
+        />
+        <InputSearch />
+      </header>
+    </div>
+  </ResponsiveLayout>
+);
 
 export default Home;

@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './App.css';
+import "./App.css";
 import Router from "./Router.jsx";
 import * as AuthApi from "./Auth.api";
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
-
         <Router />
       </div>
     );
   }
 }
-
 
 export default App;

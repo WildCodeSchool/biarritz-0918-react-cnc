@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 import Autocomplete from "../search/Autocomplete";
 import DatePicker from "../search/DatePicker";
-import { Button } from "reactstrap";
 
 class InputSearch extends React.Component {
   constructor(props) {
@@ -11,17 +12,20 @@ class InputSearch extends React.Component {
     this.state = { userInput: "" };
 
     this.handleClickSearchButton = this.handleClickSearchButton.bind(this);
+    this.handleClickAutocomplete = this.handleClickAutocomplete.bind(this);
   }
 
   handleClickAutocomplete(userInput) {
-    debugger;
+    this.setState({ userInput });
   }
 
   handleClickSearchButton() {
-    const { onSearch } = this.props;
-    onSearch(this.state.userInput);
+    // const { onSearch } = this.props;
+    // onSearch(this.state.userInput);
   }
+
   render() {
+    const { userInput } = this.state;
     return (
       <div>
         <Autocomplete
@@ -40,21 +44,24 @@ class InputSearch extends React.Component {
           placeholder="Ville"
           onClick={this.handleClickAutocomplete}
         />
-        <Button
-          outline
-          color="info"
-          type="button"
-          onClick={this.handleClickSearchButton}
-        >
-          Search
-        </Button>
+        {userInput ? (
+          <Link to={`/salons/search?filter=${userInput}`}>
+            <Button color="info" outline>
+              Search
+            </Button>
+          </Link>
+        ) : null}
       </div>
     );
   }
 }
 
-InputSearch.PropTypes = {
-  onSearch: PropTypes.func,
-};
+// // InputSearch.propTypes = {
+// //   onSearch: PropTypes.func
+// // };
+
+// InputSearch.defaultProps = {
+//   onSearch: userInput => {}
+// };
 
 export default InputSearch;
