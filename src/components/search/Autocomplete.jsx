@@ -4,13 +4,15 @@ import style from "./Autocomplete.module.css";
 
 class Autocomplete extends Component {
   static propTypes = {
-    suggestions: PropTypes.instanceOf(Array)
+    suggestions: PropTypes.instanceOf(Array),
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
-    suggestions: []
+    suggestions: [],
+    onClick: userInput => {}
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,9 +26,8 @@ class Autocomplete extends Component {
       userInput: ""
     };
   }
-  
+
   onChange = e => {
-  
     const { suggestions } = this.props;
     const userInput = e.currentTarget.value;
     // Filter our suggestions that don't contain the user's input
@@ -44,12 +45,16 @@ class Autocomplete extends Component {
   };
 
   onClick = e => {
-    this.setState({
-      activeSuggestion: 0,
-      filteredSuggestions: [],
-      showSuggestions: false,
-      userInput: e.currentTarget.innerText
-    });
+    const userInput = e.currentTarget.innerText;
+    this.setState(
+      {
+        activeSuggestion: 0,
+        filteredSuggestions: [],
+        showSuggestions: false,
+        userInput
+      },
+      () => this.props.onClick(userInput)
+    );
   };
 
   onKeyDown = e => {
@@ -65,19 +70,18 @@ class Autocomplete extends Component {
     // User pressed the up arrow
     else if (e.keyCode === 38) {
       if (activeSuggestion === 0) {
-        console.log("updown")
+        console.log("updown");
         return;
       }
-      console.log("up key")
+      console.log("up key");
       this.setState({ activeSuggestion: activeSuggestion - 1 });
     }
     // User pressed the down arrow
     else if (e.keyCode === 40) {
       if (activeSuggestion - 1 === filteredSuggestions.length) {
-
         return;
       }
-      console.log("down key")
+      console.log("down key");
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
   };
@@ -110,7 +114,12 @@ class Autocomplete extends Component {
               }
 
               return (
-                <li className={className} className={style.suggestionactive} key={suggestion} onClick={onClick}>
+                <li
+                  className={className}
+                  className={style.suggestionactive}
+                  key={suggestion}
+                  onClick={onClick}
+                >
                   {suggestion}
                 </li>
               );

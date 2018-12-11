@@ -1,14 +1,13 @@
 @font-face {
   font-family: champagne;
-  src: url('./assets/fonts/ChampagneBold.ttf');
+  src: url("./assets/fonts/ChampagneBold.ttf");
 }
 
 body {
   font-family: champagne !important;
-  background-image: linear-gradient( #f8f9fa, rgb(63, 63, 63));
+  background-color: #f8f9fa;
   background-attachment: fixed;
 }
-
 
 .App {
   text-align: center;
@@ -27,7 +26,7 @@ body {
   flex-direction: column;
   align-items: center;
   font-size: calc(10px + 2vmin);
-  color: white; 
+  color: white;
 }
 
 .App-link {
@@ -35,7 +34,7 @@ body {
 }
 
 .modal {
-  background-color: rgba(1, 1, 1, 0); 
+  background-color: rgba(1, 1, 1, 0);
   /* 
     fixing conflict between Reactstrap & React-agenda : 
     React-agenda add a background-color #FFF which is unwanted.
