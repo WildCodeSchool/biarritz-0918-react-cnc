@@ -13,8 +13,8 @@ function getValuesFrom(...inputs) {
 }
 
 class ProfileClient extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userProfile: {
         id: '',
@@ -28,10 +28,11 @@ class ProfileClient extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   componentDidMount() {
-    axios
-      .get(`http://127.0.0.1:8000/api/user_ids/${AuthApi.useUserId()}`, { headers: { Accept: 'application/json' } })
+    AuthApi.getUserId()
+      .then((response) =>
+        axios.get(`http://127.0.0.1:8000/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
+      )
       .then((res) => this.setState({ userProfile: res.data }));
   }
 
@@ -50,13 +51,15 @@ class ProfileClient extends Component {
     e.preventDefault();
     const data = getValuesFrom(...e.target.elements);
     data.phone = parseInt(data.phone);
-    axios
-      .put(`http://127.0.0.1:8000/api/user_ids/${AuthApi.useUserId()}`, data, {
-        headers: {
-          Accept: 'application/json',
-          Authorization: 'Bearer ' + AuthApi.getToken()
-        }
-      })
+    AuthApi.getUserId()
+      .then((response) =>
+        axios.put(`http://127.0.0.1:8000/api/user_ids/${response}`, data, {
+          headers: {
+            Accept: 'application/json',
+            Authorization: 'Bearer ' + AuthApi.getToken()
+          }
+        })
+      )
       .then((res) => this.setState({ userProfile: res.data }));
   }
 
