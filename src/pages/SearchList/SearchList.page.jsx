@@ -39,6 +39,7 @@ export default class SearchList extends Component {
   }
 
   render() {
+    debugger;
     if (this.state.isPending) {
       return (
         <ResponsiveLayout>
