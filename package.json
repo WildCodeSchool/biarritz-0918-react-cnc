@@ -23,6 +23,7 @@
     "react-select2": "^4.0.3",
     "react-select2-wrapper": "^1.0.4-beta6",
     "react-themable": "^0.6.4",
+    "react-validation": "^3.0.7",
     "reactstrap": "^6.5.0",
     "select2": "^4.0.6-rc.1"
   },
