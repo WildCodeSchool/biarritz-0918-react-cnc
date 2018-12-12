@@ -1,79 +1,157 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-export function RegisterUserForm({ onSubmit }) {
-  return (
-    <Form horizontal onSubmit={onSubmit}>
-      <FormGroup controlId="formHorizontalEmail">
-        <Label for="name">Name</Label>
-        <Input id="name" name="name" type="text" placeholder="Name" />
-      </FormGroup>
+import styles from './Register.module.css';
 
-      <FormGroup>
-        <Label for="surname">Surname</Label>
-        <Input type="text" name="surname" id="surname" placeholder="Surname" />
-      </FormGroup>
+const emailRegex = RegExp(
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+);
 
-      <FormGroup>
-        <Label for="sex">Sex</Label>
-        <Input type="select" name="sex" id="sex" placeholder="sex">
-          <option>Homme</option>
-          <option>Femme</option>
-        </Input>
-      </FormGroup>
+class RegisterUserForm extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <FormGroup>
-        <Label for="email">Email</Label>
-        <Input type="email" name="username" id="username" placeholder="email" />
-      </FormGroup>
+    this.state = {
+      name: null,
+      surname: null,
+      sex: null,
+      email: null,
+      password: null,
+      phone: null,
+      formErrors: {
+        name: '',
+        surname: '',
+        sex: '',
+        email: '',
+        password: '',
+        phone: ''
+      }
+    };
+  }
 
-      <FormGroup>
-        <Label for="password">password</Label>
-        <Input type="password" name="password" id="password" placeholder="Password" />
-      </FormGroup>
+  /*   handleSubmit = (e) => {
+    e.preventDefault();
 
-      <FormGroup>
-        <Label for="phone">Phone number</Label>
-        <Input type="tel" name="phone" id="phone" placeholder="Phone" />
-      </FormGroup>
+    if (formValid(this.state.formErrors)) {
+      console.log('SUBMITTINGFirst Name: ${this.state.name}');
+    }
+  }; */
 
-      <Button type="submit">Create account</Button>
-    </Form>
-  );
+  handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let formErrors = this.state.formErrors;
+
+    switch (name) {
+      case 'name':
+        formErrors.name = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
+        break;
+      case 'surname':
+        formErrors.surname = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
+        break;
+      case 'email':
+        formErrors.email = emailRegex.test(value) && value.length > 0 ? '' : 'invalid email address';
+        break;
+      case 'phone':
+        formErrors.phone = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
+        break;
+      case 'password':
+        formErrors.password = value.length < 6 && value.length > 0 ? 'minimum 6 characters required' : '';
+        break;
+      case 'Sexe':
+        formErrors.sex = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+  };
+
+  render() {
+    return (
+      <Form onSubmit={this.props.onSubmit} noValidate>
+        <Row form>
+          <Col sm={5}>
+            <FormGroup>
+              <Label for="name">Prenom</Label>
+              <Input id="name" name="name" type="text" placeholder="Prenom" noValidate onChange={this.handleChange} />
+            </FormGroup>
+          </Col>
+          <Col sm={5}>
+            <FormGroup>
+              <Label for="surname">Nom</Label>
+              <Input
+                type="text"
+                name="surname"
+                id="surname"
+                placeholder="Nom"
+                noValidate
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col sm={2}>
+            <FormGroup>
+              <Label for="sex">Sexe</Label>
+              <Input type="select" name="sex" id="sex" onChange={this.handleChange}>
+                <option>Homme</option>
+                <option>Femme</option>
+              </Input>
+            </FormGroup>
+          </Col>
+        </Row>
+
+        <Row form>
+          <Col sm={4}>
+            <FormGroup>
+              <Label for="email">Email</Label>
+              <Input
+                type="email"
+                name="username"
+                id="username"
+                placeholder="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col sm={4}>
+            <FormGroup>
+              <Label for="password">Mot de passe</Label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Mot de passe"
+                noValidate
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col sm={4}>
+            <FormGroup>
+              <Label for="phone">Numéro de téléphone</Label>
+              <Input
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder="Numéro de téléphone"
+                noValidate
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+
+        <FormGroup>
+          <Button type="submit">Enregistrer</Button>
+          <br />
+          <small>Déjà inscrit?</small>
+        </FormGroup>
+      </Form>
+    );
+  }
 }
 
 export default RegisterUserForm;
-
-{
-  /* <Form horizontal>
-<FormGroup controlId="formHorizontalEmail">
-  <Col componentClass={ControlLabel} sm={2}>
-    Email
-  </Col>
-  <Col sm={10}>
-    <FormControl type="email" placeholder="Email" />
-  </Col>
-</FormGroup>
-
-<FormGroup controlId="formHorizontalPassword">
-  <Col componentClass={ControlLabel} sm={2}>
-    Password
-  </Col>
-  <Col sm={10}>
-    <FormControl type="password" placeholder="Password" />
-  </Col>
-</FormGroup>
-
-<FormGroup>
-  <Col smOffset={2} sm={10}>
-    <Checkbox>Remember me</Checkbox>
-  </Col>
-</FormGroup>
-
-<FormGroup>
-  <Col smOffset={2} sm={10}>
-    <Button type="submit">Sign in</Button>
-  </Col>
-</FormGroup>
-</Form> */
-}
