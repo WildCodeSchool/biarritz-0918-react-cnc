@@ -8,22 +8,30 @@ export function RegisterUserForm({ onSubmit }) {
         <Label for="name">Name</Label>
         <Input id="name" name="name" type="text" placeholder="Name" />
       </FormGroup>
+
       <FormGroup>
         <Label for="surname">Surname</Label>
         <Input type="text" name="surname" id="surname" placeholder="Surname" />
       </FormGroup>
+
       <FormGroup>
         <Label for="sex">Sex</Label>
-        <Input type="text" name="sex" id="sex" placeholder="sex" />
+        <Input type="select" name="sex" id="sex" placeholder="sex">
+          <option>Homme</option>
+          <option>Femme</option>
+        </Input>
       </FormGroup>
+
       <FormGroup>
         <Label for="email">Email</Label>
         <Input type="email" name="username" id="username" placeholder="email" />
       </FormGroup>
+
       <FormGroup>
         <Label for="password">password</Label>
         <Input type="password" name="password" id="password" placeholder="Password" />
       </FormGroup>
+
       <FormGroup>
         <Label for="phone">Phone number</Label>
         <Input type="tel" name="phone" id="phone" placeholder="Phone" />
