@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import PropTypes from "prop-types";
+import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-import Autocomplete from '../search/Autocomplete';
-import DatePicker from '../search/DatePicker';
+import Autocomplete from "../search/Autocomplete";
+import DatePicker from "../search/DatePicker";
 
 class InputSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: '',
+      userInput: "",
       city: [],
       isPending: false,
       isEror: false
@@ -23,19 +23,17 @@ class InputSearch extends React.Component {
 
   componentDidMount() {
     this.setState({ isPending: true });
-    let tabCities = [];
     axios
       .get(`http://127.0.0.1:8000/api/cities`, {
-        headers: { Accept: 'application/json' }
+        headers: { Accept: "application/json" }
       })
-      .then((response) => {
-        response.data.map((city) => {
-          tabCities.push(city.name);
+      .then(response => {
+        let cities = [];
+        response.data.map(city => {
+          console.log(city);
+          cities.push(city.name + " " + city.cp);
         });
-        this.setState({
-          city: response.data,
-          isPending: false
-        });
+        this.setState({ city: cities, isPending: false });
       })
       .catch(() => this.setState({ isError: true }));
   }
@@ -53,7 +51,11 @@ class InputSearch extends React.Component {
     const { userInput } = this.state;
     return (
       <div>
-        <Autocomplete suggestions={[]} placeholder="Ville" onClick={this.handleClickAutocomplete} />
+        <Autocomplete
+          suggestions={this.state.city}
+          placeholder="Ville"
+          onClick={this.handleClickAutocomplete}
+        />
         {userInput ? (
           <Link to={`/salons/search/${userInput}`}>
             <Button color="info" outline>
