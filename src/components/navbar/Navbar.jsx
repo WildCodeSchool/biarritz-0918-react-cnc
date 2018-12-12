@@ -32,7 +32,7 @@ class TheNavBar extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isBurgerKingOpen: false,
+      isBurgerOpen: false,
       isAuthenticated: false
     };
   }
@@ -43,7 +43,7 @@ class TheNavBar extends React.Component {
       this.setState({ isAuthenticated: true });
     }
   };
-  handleLoginSubmit = credentials => {
+  handleLoginSubmit = (credentials) => {
     AuthApi.postCredentials(credentials).then(() => {
       this.setState({
         isAuthenticated: true
@@ -60,7 +60,7 @@ class TheNavBar extends React.Component {
 
   toggle() {
     this.setState({
-      isBurgerKingOpen: !this.toggle.isBurgerKingOpen
+      isBurgerOpen: !this.toggle.isBurgerOpen
     });
   }
 
@@ -109,7 +109,7 @@ class TheNavBar extends React.Component {
         <img src={logo} alt="logo" />
         <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isBurgerKingOpen} navbar>
+        <Collapse isOpen={this.state.isBurgerOpen} navbar>
           <Nav className="ml-auto" navbar>
             {this.props.navItems.map((navItem, i) => (
               <NavItem key={i}>

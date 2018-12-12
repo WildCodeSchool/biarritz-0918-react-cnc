@@ -36,12 +36,12 @@ export function useUserId() {
 }
 
 export function getUserId() {
-  axios
+  return axios
     .get(`http://127.0.0.1:8000/api/me`, {
       headers: {
         Accept: 'application/json',
-        Authorization: 'Bearer ' + this.getToken()
+        Authorization: 'Bearer ' + getToken()
       }
     })
-    .then((response) => saveUserId(response.data));
+    .then((response) => response.data);
 }
