@@ -33,7 +33,7 @@ export default class SearchList extends Component {
         headers: { Accept: 'application/json' }
       })
       .then((response) => {
-        if (this.props.id !== null) {
+        if (typeof this.props.id !== 'undefined') {
           const salons = response.data.filter((salon) => {
             return salon.city == '/api/cities/' + this.props.id;
           });
@@ -67,17 +67,16 @@ export default class SearchList extends Component {
                       style={{
                         marginTop: 10,
                         borderRadius: 10,
-                        borderColor: "#333",
-                        backgroundImage: "linear-gradient(white, white, gray)"
+                        borderColor: '#333',
+                        backgroundImage: 'linear-gradient(white, white, gray)'
                       }}
                     >
                       <CardBody>
                         <CardTitle>{salons.name}</CardTitle>
                         <CardSubtitle>{salons.email}</CardSubtitle>
                         <CardText>
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is
-                          a little bit longer.
+                          This is a wider card with supporting text below as a natural lead-in to additional content.
+                          This content is a little bit longer.
                         </CardText>
                         <Link to={`/salons/${salons.id}_${salons.name}/view`}>
                           <Button color="primary">Prendre rdv</Button>
