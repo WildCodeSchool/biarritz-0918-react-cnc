@@ -1,11 +1,25 @@
 import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-import styles from './Register.module.css';
+function checkEmail(value) {
+  const emailRegex = RegExp(
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+  return emailRegex.test(value) ? undefined : `invalid email address`;
+}
 
-const emailRegex = RegExp(
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-);
+function checkPhone(value) {
+  const phoneRegex = RegExp(/^(0|(00|\+)33)[67][0-9]{8}$/);
+  return phoneRegex.test(value) ? undefined : `invalid phone number`;
+}
+
+function minLenOf(len) {
+  return (value) => (value.length < len ? `minimum ${len} characters required` : undefined);
+}
+
+const minLenOf3 = minLenOf(3);
+const minLenOf6 = minLenOf(6);
+const minLenOf10 = minLenOf(10);
 
 class RegisterUserForm extends React.Component {
   constructor(props) {
@@ -25,50 +39,41 @@ class RegisterUserForm extends React.Component {
         email: '',
         password: '',
         phone: ''
-      }
+      },
+      isError: false
     };
   }
-
-  /*   handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (formValid(this.state.formErrors)) {
-      console.log('SUBMITTINGFirst Name: ${this.state.name}');
-    }
-  }; */
 
   handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    let formErrors = this.state.formErrors;
-
-    switch (name) {
-      case 'name':
-        formErrors.name = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
+    let formErrors = {
+      name: '',
+      surname: '',
+      sex: '',
+      email: '',
+      password: '',
+      phone: ''
+    };
+    let isError = false;
+    formErrors.name = name === 'name' && minLenOf3(value);
+    formErrors.surname = name === 'surname' && minLenOf3(value);
+    formErrors.phone = name === 'phone' && (minLenOf3(value) || checkPhone(value));
+    formErrors.email = name === 'username' && (minLenOf6(value) || checkEmail(value));
+    formErrors.password = name === 'password' && minLenOf6(value);
+    formErrors.sex = name === 'sex' && minLenOf3(value);
+    for (let key in formErrors) {
+      if (formErrors[key]) {
+        isError = true;
         break;
-      case 'surname':
-        formErrors.surname = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
-        break;
-      case 'email':
-        formErrors.email = emailRegex.test(value) && value.length > 0 ? '' : 'invalid email address';
-        break;
-      case 'phone':
-        formErrors.phone = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
-        break;
-      case 'password':
-        formErrors.password = value.length < 6 && value.length > 0 ? 'minimum 6 characters required' : '';
-        break;
-      case 'Sexe':
-        formErrors.sex = value.length < 3 && value.length > 0 ? 'minimum 3 characters required' : '';
-        break;
-      default:
-        break;
+      }
     }
 
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    this.setState({ isError, formErrors, [name]: value }, () => console.log(this.state));
   };
 
   render() {
+    const { formErrors, isError } = this.state;
     return (
       <Form onSubmit={this.props.onSubmit} noValidate>
         <Row form>
@@ -76,6 +81,7 @@ class RegisterUserForm extends React.Component {
             <FormGroup>
               <Label for="name">Prenom</Label>
               <Input id="name" name="name" type="text" placeholder="Prenom" noValidate onChange={this.handleChange} />
+              {formErrors.name && <span className="errorMessage"> {formErrors.name}</span>}
             </FormGroup>
           </Col>
           <Col sm={5}>
@@ -89,6 +95,7 @@ class RegisterUserForm extends React.Component {
                 noValidate
                 onChange={this.handleChange}
               />
+              {formErrors.surname && <span className="errorMessage"> {formErrors.surname}</span>}
             </FormGroup>
           </Col>
           <Col sm={2}>
@@ -98,6 +105,7 @@ class RegisterUserForm extends React.Component {
                 <option>Homme</option>
                 <option>Femme</option>
               </Input>
+              {formErrors.sex && <span className="errorMessage"> {formErrors.sex}</span>}
             </FormGroup>
           </Col>
         </Row>
@@ -105,15 +113,16 @@ class RegisterUserForm extends React.Component {
         <Row form>
           <Col sm={4}>
             <FormGroup>
-              <Label for="email">Email</Label>
+              <Label for="username">Email</Label>
               <Input
                 type="email"
                 name="username"
-                id="username"
+                id="email"
                 placeholder="email"
                 noValidate
                 onChange={this.handleChange}
               />
+              {formErrors.email && <span className="errorMessage"> {formErrors.email}</span>}
             </FormGroup>
           </Col>
           <Col sm={4}>
@@ -127,6 +136,7 @@ class RegisterUserForm extends React.Component {
                 noValidate
                 onChange={this.handleChange}
               />
+              {formErrors.password && <span className="errorMessage"> {formErrors.password}</span>}
             </FormGroup>
           </Col>
           <Col sm={4}>
@@ -140,12 +150,15 @@ class RegisterUserForm extends React.Component {
                 noValidate
                 onChange={this.handleChange}
               />
+              {formErrors.phone && <span className="errorMessage"> {formErrors.phone}</span>}
             </FormGroup>
           </Col>
         </Row>
 
         <FormGroup>
-          <Button type="submit">Enregistrer</Button>
+          <Button type="submit" disabled={isError}>
+            Enregistrer
+          </Button>
           <br />
           <small>Déjà inscrit?</small>
         </FormGroup>

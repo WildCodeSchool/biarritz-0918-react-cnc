@@ -43,42 +43,6 @@ class Register extends Component {
       .then((res) => this.setState({ userProfile: res.data }));
   }
 
-  /*  handleUserInput(e) {
-    debugger;
-    const name = getValuesFrom(...e.target.elements);
-    const value = getValuesFrom(...e.target.elements);
-    // this.setState({ [name]: value }, () => {
-    //   this.validateField(name, value);
-    // });
-  }
-
-  validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors;
-    let emailValid = this.state.emailValid;
-    let passwordValid = this.state.passwordValid;
-
-    switch (fieldName) {
-      case 'email':
-        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-        break;
-      case 'password':
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? '' : ' is too short';
-        break;
-      default:
-        break;
-    }
-    this.setState(
-      { formErrors: fieldValidationErrors, emailValid: emailValid, passwordValid: passwordValid },
-      this.validateForm
-    );
-  }
-
-  validateForm() {
-    this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
-  } */
-
   render() {
     return (
       <Fragment>
