@@ -13,7 +13,12 @@ import Register from './pages/RegisterForms/Register.page.jsx';
 
 function PrivateRoute(props) {
   return (
-    <Fetch req={getUserId} renderSuccess={() => <Route {...props} />} renderError={() => <Redirect to="/login" />} />
+    <Fetch
+      req={getUserId}
+      role={props.role}
+      renderSuccess={() => <Route {...props} />}
+      renderError={() => <Redirect to="/" />}
+    />
   );
 }
 
@@ -24,15 +29,19 @@ export default function({ login }) {
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Home} />
         <Route path="/logout" exact component={Home} />
-        <PrivateRoute path="/profile" component={ProfileClient} />
+        <PrivateRoute path="/profile" component={ProfileClient} role="ROLE_USER" />
         <Route
           path="/salons/search/:id:city"
           component={({ match }) => <SearchList id={match.params.id} city={match.params.city} />}
         />
         <Route path="/salons/search" component={SearchList} />
         <Route path="/register" component={Register} />
-        <Route path="/admin" component={AdminPanel} />
-        <Route path="/salons/:id_:name/view" component={({ match }) => <SalonView id={match.params.id_} />} />
+        <PrivateRoute path="/admin" component={AdminPanel} role="ROLE_ADMIN" />
+        <PrivateRoute
+          path="/salons/:id_:name/view"
+          component={({ match }) => <SalonView id={match.params.id_} />}
+          role="ROLE_SALON"
+        />
         {/* <Route
                     exact path="/sprofile/:id"
                     component={({ match }) => (

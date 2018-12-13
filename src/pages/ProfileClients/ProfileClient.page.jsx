@@ -32,7 +32,7 @@ class ProfileClient extends Component {
   componentDidMount() {
     AuthApi.getUserId()
       .then((response) =>
-        axios.get(AuthApi.SERVER + `/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
+        axios.get(AuthApi.SERVER + `/api/user_ids/${response.id}`, { headers: { Accept: 'application/json' } })
       )
       .then((res) => {
         this.setState({ ...res.data });

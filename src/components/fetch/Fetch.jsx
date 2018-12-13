@@ -15,22 +15,32 @@ export default class Fetch extends React.Component {
       error: null
     };
   }
-
+  valide = 'false';
   componentDidMount() {
     this.setState({ isPending: true, isError: false, isSuccess: false });
     this.props
       .req()
-      .then((response) => this.setState({ isPending: false, isSuccess: true, response }))
+      .then((response) => {
+        console.log(response.role.includes(this.props.role));
+
+        if (!response.role.includes(this.props.role)) {
+          this.valide = false;
+          this.setState({ isPending: false });
+        } else {
+          this.valide = true;
+          this.setState({ isPending: false });
+        }
+      })
       .catch((error) => this.setState({ isPending: false, isSuccess: false, isError: true, error }));
   }
 
   render() {
     const { renderSuccess, renderError, renderPending } = this.props;
     const { isSuccess, isError, isPending, response, error } = this.state;
-    if (isSuccess) {
+    if (this.valide) {
       return renderSuccess({ reponse: response });
     }
-    if (isError) {
+    if (!this.valdie) {
       return renderError(error);
     }
     if (isPending) {
