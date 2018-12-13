@@ -4,7 +4,6 @@ import axios from 'axios';
 import RegisterUserForm from './RegisterUserForm.jsx';
 import styles from './Register.module.css';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
-import * as AuthApi from '../../Auth.api.js';
 
 function getValuesFrom(...inputs) {
   let res = {};
@@ -32,7 +31,6 @@ class Register extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const data = getValuesFrom(...e.target.elements);
-
     data.phone = parseInt(data.phone);
     axios
       .post(`http://127.0.0.1:8000/register`, data, {
@@ -49,8 +47,8 @@ class Register extends Component {
         <ResponsiveLayout />
         <div className={styles.head}>
           <div className="row">
-            <div className="col-lg-8 offset-lg-1">
-              <h3>Registration Form</h3>
+            <div className="offset-lg-2 offset-xs-2 col-xs-8 col-lg-8">
+              <h3>Formulaire d'enregistrement</h3>
               <RegisterUserForm onSubmit={this.handleSubmit} />
             </div>
           </div>
