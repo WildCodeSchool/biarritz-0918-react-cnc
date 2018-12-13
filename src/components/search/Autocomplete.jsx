@@ -136,6 +136,7 @@ class Autocomplete extends Component {
     return (
       <Fragment>
         <input
+          className="form-control"
           type="text"
           onChange={onChange}
           onKeyDown={onKeyDown}
