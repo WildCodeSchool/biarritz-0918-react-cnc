@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "reactstrap";
+import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -53,7 +53,7 @@ class InputSearch extends React.Component {
       <div>
         <Autocomplete
           suggestions={this.state.city}
-          placeholder="Ville"
+          placeholder="Votre ville"
           onClick={this.handleClickAutocomplete}
         />
         {userInput ? (

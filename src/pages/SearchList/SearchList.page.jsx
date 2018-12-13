@@ -59,8 +59,9 @@ export default class SearchList extends Component {
                     <Card
                       style={{
                         marginTop: 10,
+                        borderRadius: 10,
                         borderColor: "#333",
-                        backgroundColor: "#f8f9fa"
+                        backgroundImage: "linear-gradient(white, white, gray)"
                       }}
                     >
                       <CardBody>
@@ -72,13 +73,21 @@ export default class SearchList extends Component {
                           a little bit longer.
                         </CardText>
                         <Link to={`/salons/${salons.id}_${salons.name}/view`}>
-                          <Button>Prendre rdv</Button>
+                          <Button color="primary">Prendre rdv</Button>
                         </Link>
                       </CardBody>
                     </Card>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="col-lg-4 col-sm-2 hidden-xs">
+              <img
+                style={{
+                  marginTop: 10
+                }}
+                src="http://via.placeholder.com/250"
+              />
             </div>
           </div>
         </div>
