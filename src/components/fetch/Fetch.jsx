@@ -21,8 +21,6 @@ export default class Fetch extends React.Component {
     this.props
       .req()
       .then((response) => {
-        console.log(response.role.includes(this.props.role));
-
         if (!response.role.includes(this.props.role)) {
           this.valide = false;
           this.setState({ isPending: false });

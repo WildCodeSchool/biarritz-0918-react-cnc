@@ -34,6 +34,7 @@ export default class SearchList extends Component {
         headers: { Accept: 'application/json' }
       })
       .then((response) => {
+        console.log(response);
         if (typeof this.props.id !== 'undefined') {
           const salons = response.data.filter((salon) => {
             return salon.city == '/api/cities/' + this.props.id;
