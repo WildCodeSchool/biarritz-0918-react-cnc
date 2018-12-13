@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
-import style from "./Autocomplete.module.css";
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import style from './Autocomplete.module.css';
+import { strict } from 'assert';
 
 class Autocomplete extends Component {
   static propTypes = {
@@ -10,7 +11,7 @@ class Autocomplete extends Component {
 
   static defaultProps = {
     suggestions: [],
-    onClick: userInput => {}
+    onClick: (userInput) => {}
   };
 
   constructor(props) {
@@ -23,41 +24,46 @@ class Autocomplete extends Component {
       // Whether or not the suggestion list is shown
       showSuggestions: false,
       // What the user has entered
-      userInput: ""
+      userInput: '',
+      idInput: ''
     };
   }
 
-  onChange = e => {
+  onChange = (e) => {
     const { suggestions } = this.props;
     const userInput = e.currentTarget.value;
+    const idInput = e.currentTarget.id;
     // Filter our suggestions that don't contain the user's input
     const filteredSuggestions = suggestions.filter(
-      suggestion =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+      (suggestion) => suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
 
     this.setState({
       activeSuggestion: 0,
       filteredSuggestions,
       showSuggestions: true,
-      userInput: e.currentTarget.value
+      userInput: e.currentTarget.value,
+      idInput: idInput
     });
   };
 
-  onClick = e => {
+  onClick = (e) => {
     const userInput = e.currentTarget.innerText;
+    const idInput = e.currentTarget.id;
+
     this.setState(
       {
         activeSuggestion: 0,
         filteredSuggestions: [],
         showSuggestions: false,
-        userInput
+        userInput,
+        idInput
       },
-      () => this.props.onClick(userInput)
+      () => this.props.onClick(userInput, idInput)
     );
   };
 
-  onKeyDown = e => {
+  onKeyDown = (e) => {
     const { activeSuggestion, filteredSuggestions } = this.state;
     // User pressed the enter key
     if (e.keyCode === 13) {
@@ -70,10 +76,8 @@ class Autocomplete extends Component {
     // User pressed the up arrow
     else if (e.keyCode === 38) {
       if (activeSuggestion === 0) {
-        console.log("updown");
         return;
       }
-      console.log("up key");
       this.setState({ activeSuggestion: activeSuggestion - 1 });
     }
     // User pressed the down arrow
@@ -81,7 +85,6 @@ class Autocomplete extends Component {
       if (activeSuggestion - 1 === filteredSuggestions.length) {
         return;
       }
-      console.log("down key");
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
   };
@@ -91,12 +94,7 @@ class Autocomplete extends Component {
       onChange,
       onClick,
       onKeyDown,
-      state: {
-        activeSuggestion,
-        filteredSuggestions,
-        showSuggestions,
-        userInput
-      }
+      state: { activeSuggestion, filteredSuggestions, showSuggestions, userInput }
     } = this;
 
     let suggestionsListComponent;
@@ -110,17 +108,18 @@ class Autocomplete extends Component {
 
               // Flag the active suggestion with a class
               if (index === activeSuggestion) {
-                className = "suggestionactive";
+                className = 'suggestionactive';
               }
-
+              suggestion = suggestion.split(' ');
               return (
                 <li
                   className={className}
+                  id={suggestion[0]}
                   className={style.suggestionactive}
                   key={suggestion}
                   onClick={onClick}
                 >
-                  {suggestion}
+                  {suggestion[1] + '-' + suggestion[2]}
                 </li>
               );
             })}

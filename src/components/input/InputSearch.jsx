@@ -1,17 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-import Autocomplete from "../search/Autocomplete";
-import DatePicker from "../search/DatePicker";
+import Autocomplete from '../search/Autocomplete';
+import DatePicker from '../search/DatePicker';
 
 class InputSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: "",
+      userInput: '',
+      idInput: '',
       city: [],
       isPending: false,
       isEror: false
@@ -25,21 +26,20 @@ class InputSearch extends React.Component {
     this.setState({ isPending: true });
     axios
       .get(`http://127.0.0.1:8000/api/cities`, {
-        headers: { Accept: "application/json" }
+        headers: { Accept: 'application/json' }
       })
-      .then(response => {
+      .then((response) => {
         let cities = [];
-        response.data.map(city => {
-          console.log(city);
-          cities.push(city.name + " " + city.cp);
+        response.data.map((city) => {
+          cities.push(city.id + ' ' + city.name + ' ' + city.cp);
         });
         this.setState({ city: cities, isPending: false });
       })
       .catch(() => this.setState({ isError: true }));
   }
 
-  handleClickAutocomplete(userInput) {
-    this.setState({ userInput });
+  handleClickAutocomplete(userInput, idInput) {
+    this.setState({ userInput, idInput });
   }
 
   handleClickSearchButton() {
@@ -48,16 +48,13 @@ class InputSearch extends React.Component {
   }
 
   render() {
-    const { userInput } = this.state;
+    const { userInput, idInput } = this.state;
+
     return (
       <div>
-        <Autocomplete
-          suggestions={this.state.city}
-          placeholder="Ville"
-          onClick={this.handleClickAutocomplete}
-        />
+        <Autocomplete suggestions={this.state.city} placeholder="Ville" onClick={this.handleClickAutocomplete} />
         {userInput ? (
-          <Link to={`/salons/search/${userInput}`}>
+          <Link to={`/salons/search/${idInput}-${userInput}`}>
             <Button color="info" outline>
               Search
             </Button>

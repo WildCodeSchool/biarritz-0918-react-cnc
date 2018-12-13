@@ -24,6 +24,7 @@ export default class SearchList extends Component {
       isPending: false,
       isError: false
     };
+    console.log(this.props);
   }
 
   componentDidMount() {
@@ -32,7 +33,16 @@ export default class SearchList extends Component {
       .get(`http://127.0.0.1:8000/api/salons`, {
         headers: { Accept: 'application/json' }
       })
-      .then((response) => this.setState({ items: response.data, isPending: false }))
+      .then((response) => {
+        if (this.props.id !== null) {
+          const salons = response.data.filter((salon) => {
+            return salon.city == '/api/cities/' + this.props.id;
+          });
+          this.setState({ items: salons, isPending: false });
+        } else {
+          this.setState({ items: response.data, isPending: false });
+        }
+      })
       .catch(() => this.setState({ isError: true }));
   }
 
