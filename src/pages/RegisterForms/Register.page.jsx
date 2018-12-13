@@ -4,8 +4,6 @@ import axios from 'axios';
 import RegisterUserForm from './RegisterUserForm.jsx';
 import styles from './Register.module.css';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
-import * as AuthApi from '../../Auth.api.js';
-import { debug } from 'util';
 
 function getValuesFrom(...inputs) {
   let res = {};

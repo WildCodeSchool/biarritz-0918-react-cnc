@@ -5,6 +5,7 @@ import ProfileForm from './ProfileForm.jsx';
 import styles from './ProfileClient.module.css';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 import * as AuthApi from '../../Auth.api.js';
+import { endianness } from 'os';
 
 function getValuesFrom(...inputs) {
   let res = {};
@@ -16,14 +17,15 @@ class ProfileClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userProfile: {
-        id: '',
-        name: '',
-        surname: '',
-        email: '',
-        phone: '',
-        username: ''
-      }
+      id: '',
+      name: '',
+      surname: '',
+      email: '',
+      phone: '',
+      username: '',
+      password: '',
+      sexe: '',
+      city: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,18 +35,28 @@ class ProfileClient extends Component {
       .then((response) =>
         axios.get(`http://127.0.0.1:8000/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
       )
-      .then((res) => this.setState({ userProfile: res.data }));
+      .then((res) => {
+        this.setState({ ...res.data });
+        return axios.get(`http://127.0.0.1:8000${res.data.city}`, { headers: { Accept: 'application/json' } });
+        //.then((ville) => console.log(ville));
+      })
+      .then(({ data: city }) => this.setState({ city }));
   }
 
-  // componentDidUpdate() {
-  //   const { userId } = this.props;
-  //   axios
-  //     .get(`http://127.0.0.1:8000/api/user_ids/${userId}`, { headers: { Accept: 'application/json' } })
-  //     .then((res) => this.setState({ userProfile: res.data }));
-  // }
+  // componentDidMount() {
+  //   AuthApi.getUserId()
+  //     .then((response) =>
+  //       axios.get(`http://127.0.0.1:8000/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
+  //     )
+  //     .then((res) => {
+  //       this.setState({ userProfile: res.data });
+  //       axios.get(`http://127.0.0.1:8000${res.data.city}`, { headers: { Accept: 'application/json' } });
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.props.userId !== nextProps.userId;
+  //       // this.setState({ userProfile: res.data.name }));
+  //     });
   // }
 
   handleSubmit(e) {
@@ -60,7 +72,7 @@ class ProfileClient extends Component {
           }
         })
       )
-      .then((res) => this.setState({ userProfile: res.data }));
+      .then((res) => this.setState({ ...res.data }));
   }
 
   render() {
@@ -69,9 +81,9 @@ class ProfileClient extends Component {
         <ResponsiveLayout />
         <div className={styles.head}>
           <div className="row">
-            <div className="col-lg-8 offset-lg-1">
+            <div className="col-lg-6 offset-lg-4">
               <h3>Mon compte</h3>
-              <ProfileForm initialValues={this.state.userProfile} onSubmit={this.handleSubmit} />
+              <ProfileForm initialValues={this.state} onSubmit={this.handleSubmit} />
             </div>
           </div>
         </div>
