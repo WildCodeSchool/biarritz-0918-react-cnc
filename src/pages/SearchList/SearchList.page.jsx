@@ -32,7 +32,16 @@ export default class SearchList extends Component {
       .get(`http://127.0.0.1:8000/api/salons`, {
         headers: { Accept: 'application/json' }
       })
-      .then((response) => this.setState({ items: response.data, isPending: false }))
+      .then((response) => {
+        if (this.props.id !== null) {
+          const salons = response.data.filter((salon) => {
+            return salon.city == '/api/cities/' + this.props.id;
+          });
+          this.setState({ items: salons, isPending: false });
+        } else {
+          this.setState({ items: response.data, isPending: false });
+        }
+      })
       .catch(() => this.setState({ isError: true }));
   }
 
@@ -57,25 +66,35 @@ export default class SearchList extends Component {
                     <Card
                       style={{
                         marginTop: 10,
-                        borderColor: '#333',
-                        backgroundColor: '#f8f9fa'
+                        borderRadius: 10,
+                        borderColor: "#333",
+                        backgroundImage: "linear-gradient(white, white, gray)"
                       }}
                     >
                       <CardBody>
                         <CardTitle>{salons.name}</CardTitle>
                         <CardSubtitle>{salons.email}</CardSubtitle>
                         <CardText>
-                          This is a wider card with supporting text below as a natural lead-in to additional content.
-                          This content is a little bit longer.
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
                         </CardText>
                         <Link to={`/salons/${salons.id}_${salons.name}/view`}>
-                          <Button>Prendre rdv</Button>
+                          <Button color="primary">Prendre rdv</Button>
                         </Link>
                       </CardBody>
                     </Card>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="col-lg-4 col-sm-2 hidden-xs">
+              <img
+                style={{
+                  marginTop: 10
+                }}
+                src="http://via.placeholder.com/250"
+              />
             </div>
           </div>
         </div>

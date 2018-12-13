@@ -12,6 +12,7 @@ class InputSearch extends React.Component {
     super(props);
     this.state = {
       userInput: '',
+      idInput: '',
       city: [],
       isPending: false,
       isEror: false
@@ -23,25 +24,22 @@ class InputSearch extends React.Component {
 
   componentDidMount() {
     this.setState({ isPending: true });
-    let tabCities = [];
     axios
       .get(`http://127.0.0.1:8000/api/cities`, {
         headers: { Accept: 'application/json' }
       })
       .then((response) => {
+        let cities = [];
         response.data.map((city) => {
-          tabCities.push(city.name);
+          cities.push(city.id + ' ' + city.name + ' ' + city.cp);
         });
-        this.setState({
-          city: response.data,
-          isPending: false
-        });
+        this.setState({ city: cities, isPending: false });
       })
       .catch(() => this.setState({ isError: true }));
   }
 
-  handleClickAutocomplete(userInput) {
-    this.setState({ userInput });
+  handleClickAutocomplete(userInput, idInput) {
+    this.setState({ userInput, idInput });
   }
 
   handleClickSearchButton() {
@@ -50,12 +48,13 @@ class InputSearch extends React.Component {
   }
 
   render() {
-    const { userInput } = this.state;
+    const { userInput, idInput } = this.state;
+
     return (
       <div>
-        <Autocomplete suggestions={[]} placeholder="Ville" onClick={this.handleClickAutocomplete} />
+        <Autocomplete suggestions={this.state.city} placeholder="Ville" onClick={this.handleClickAutocomplete} />
         {userInput ? (
-          <Link to={`/salons/search/${userInput}`}>
+          <Link to={`/salons/search/${idInput}-${userInput}`}>
             <Button color="info" outline>
               Search
             </Button>

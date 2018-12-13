@@ -27,23 +27,23 @@ input {
 
 .suggestions li {
   padding: 0.5rem;
-  background-color: rgba(189,189,189, 0.2);
-  color: #fff;
+  background-color: rgba(189, 189, 189, 0.2);
+  color: rgb(26, 25, 25);
   cursor: pointer;
   font-weight: 500;
   font-size: 18px;
 }
 
 .suggestionactive {
-  background-color: rgba(189,189,189, 0.2);
+  background-color: rgba(189, 189, 189, 0.2);
   color: #ff4;
- 
+
   cursor: pointer;
   font-weight: 500;
   font-size: 18px;
 }
 .suggestions li:hover {
-  background-color: rgba(189,189,189, 0.2);
+  background-color: rgba(136, 136, 136, 0.2);
   color: rgba(255, 0, 0, 1);
   cursor: pointer;
   font-weight: 700;

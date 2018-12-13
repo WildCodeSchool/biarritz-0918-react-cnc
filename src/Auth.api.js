@@ -5,7 +5,6 @@ const SESSION_KEY = 'session_token';
 const USERID = 'userid';
 
 export function postCredentials(credentials) {
-  console.log(credentials);
   return axios
     .post('http://127.0.0.1:8000/login_check', credentials, {
       headers: {
