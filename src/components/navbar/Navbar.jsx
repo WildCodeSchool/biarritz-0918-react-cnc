@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -17,24 +17,25 @@ import {
   Input,
   Form,
   FormGroup
-} from "reactstrap";
+} from 'reactstrap';
 
-import * as AuthApi from "../../Auth.api";
-import LoginModal from "../modals/LoginModal";
-import LogoutModal from "../modals/LogoutModal";
-import logo from "../../clic.png";
-import styles from "./Navbar.module.css";
-import AuthContext from "../../AuthContext";
+import * as AuthApi from '../../Auth.api';
+import LoginModal from '../modals/LoginModal';
+import LogoutModal from '../modals/LogoutModal';
+import logo from '../../clic.png';
+import styles from './Navbar.module.css';
+import AuthContext from '../../AuthContext';
 
 class TheNavBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.state = {
       isBurgerOpen: false,
       isAuthenticated: false
     };
+
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount = () => {
@@ -43,6 +44,7 @@ class TheNavBar extends React.Component {
       this.setState({ isAuthenticated: true });
     }
   };
+
   handleLoginSubmit = (credentials) => {
     AuthApi.postCredentials(credentials).then(() => {
       this.setState({
@@ -60,7 +62,7 @@ class TheNavBar extends React.Component {
 
   toggle() {
     this.setState({
-      isBurgerOpen: !this.toggle.isBurgerOpen
+      isBurgerOpen: !this.state.isBurgerOpen
     });
   }
 
@@ -76,12 +78,7 @@ class TheNavBar extends React.Component {
           }}
         >
           <AuthContext.Consumer>
-            {data => (
-              <LogoutModal
-                logout={data.handleLogoutSubmit}
-                authenticated={data.isAuthenticated}
-              />
-            )}
+            {(data) => <LogoutModal logout={data.handleLogoutSubmit} authenticated={data.isAuthenticated} />}
           </AuthContext.Consumer>
         </AuthContext.Provider>
       );
@@ -94,12 +91,7 @@ class TheNavBar extends React.Component {
           }}
         >
           <AuthContext.Consumer>
-            {data => (
-              <LoginModal
-                login={data.handleLoginSubmit}
-                authenticated={data.isAuthenticated}
-              />
-            )}
+            {(data) => <LoginModal login={data.handleLoginSubmit} authenticated={data.isAuthenticated} />}
           </AuthContext.Consumer>
         </AuthContext.Provider>
       );
