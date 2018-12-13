@@ -5,7 +5,6 @@ import ProfileForm from './ProfileForm.jsx';
 import styles from './ProfileClient.module.css';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 import * as AuthApi from '../../Auth.api.js';
-import { endianness } from 'os';
 
 function getValuesFrom(...inputs) {
   let res = {};
@@ -33,31 +32,15 @@ class ProfileClient extends Component {
   componentDidMount() {
     AuthApi.getUserId()
       .then((response) =>
-        axios.get(`http://127.0.0.1:8000/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
+        axios.get(AuthApi.SERVER + `/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
       )
       .then((res) => {
         this.setState({ ...res.data });
-        return axios.get(`http://127.0.0.1:8000${res.data.city}`, { headers: { Accept: 'application/json' } });
+        return axios.get(AuthApi.SERVER + `${res.data.city}`, { headers: { Accept: 'application/json' } });
         //.then((ville) => console.log(ville));
       })
       .then(({ data: city }) => this.setState({ city }));
   }
-
-  // componentDidMount() {
-  //   AuthApi.getUserId()
-  //     .then((response) =>
-  //       axios.get(`http://127.0.0.1:8000/api/user_ids/${response}`, { headers: { Accept: 'application/json' } })
-  //     )
-  //     .then((res) => {
-  //       this.setState({ userProfile: res.data });
-  //       axios.get(`http://127.0.0.1:8000${res.data.city}`, { headers: { Accept: 'application/json' } });
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-
-  //       // this.setState({ userProfile: res.data.name }));
-  //     });
-  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +48,7 @@ class ProfileClient extends Component {
     data.phone = parseInt(data.phone);
     AuthApi.getUserId()
       .then((response) =>
-        axios.put(`http://127.0.0.1:8000/api/user_ids/${response}`, data, {
+        axios.put(AuthApi.SERVER + `/api/user_ids/${response}`, data, {
           headers: {
             Accept: 'application/json',
             Authorization: 'Bearer ' + AuthApi.getToken()

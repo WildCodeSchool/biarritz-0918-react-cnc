@@ -1,31 +1,22 @@
-import React, { Component } from "react";
-import logo from "../../../src/clic.png";
-import styles from "./ProfileSalon.module.css";
-import { Nav, NavItem, NavLink, Button } from "reactstrap";
-import Agenda from "../../components/agenda/agenda.jsx";
-import Services from "./SalonServicesTable.jsx";
-import Horaires from "./SalonHoraires.jsx";
-import Carousel from "./CarouselSalon.jsx";
-import ServiceModal from "./ServiceModal.jsx";
-import axios from "axios";
-import moment from "moment";
-import {
-  ReactAgenda,
-  ReactAgendaCtrl,
-  guid,
-  getUnique,
-  getLast,
-  getFirst,
-  Modal
-} from "react-agenda";
+import React, { Component } from 'react';
+import logo from '../../../src/clic.png';
+import styles from './ProfileSalon.module.css';
+import { Nav, NavItem, NavLink, Button } from 'reactstrap';
+import Agenda from '../../components/agenda/agenda.jsx';
+import Services from './SalonServicesTable.jsx';
+import Horaires from './SalonHoraires.jsx';
+import Carousel from './CarouselSalon.jsx';
+import ServiceModal from './ServiceModal.jsx';
+import axios from 'axios';
+import moment from 'moment';
+import { ReactAgenda, ReactAgendaCtrl, guid, getUnique, getLast, getFirst, Modal } from 'react-agenda';
 
-import ResponsiveLayout from "../../layouts/Responsive.layout.jsx";
-import Loader from "../../components/loader/Loader.jsx";
+import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
+import Loader from '../../components/loader/Loader.jsx';
+import * as AuthApi from '../../Auth.api.js';
 
-require("moment/locale/fr.js");
+require('moment/locale/fr.js');
 var now = new Date();
-// var itemsStylist = axios.get(`http://127.0.0.1:8000/api/salons`, { headers: { Accept: "application/json" } })
-//     .then(response => console.log(response))
 
 class ProfileSalon extends Component {
   constructor(props) {
@@ -46,149 +37,71 @@ class ProfileSalon extends Component {
   itemsBasile = [
     {
       _id: guid(),
-      name: "Meeting , dev staff!",
-      startDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        10,
-        0
-      ),
-      endDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        12,
-        0
-      ),
-      classes: "color-1 color-4"
+      name: 'Meeting , dev staff!',
+      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0),
+      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
+      classes: 'color-1 color-4'
     },
     {
       _id: guid(),
-      name: "Working lunch , Holly",
-      startDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 1,
-        11,
-        0
-      ),
-      endDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 1,
-        13,
-        0
-      ),
-      classes: "color-2"
+      name: 'Working lunch , Holly',
+      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 11, 0),
+      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 13, 0),
+      classes: 'color-2'
     },
     {
       _id: guid(),
-      name: "Conference , plaza",
-      startDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 1,
-        11,
-        0
-      ),
-      endDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 1,
-        14,
-        30
-      ),
-      classes: "color-4"
+      name: 'Conference , plaza',
+      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 11, 0),
+      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 14, 30),
+      classes: 'color-4'
     }
   ];
 
   itemsVianney = [
     {
-      _id: "event-4",
-      name: "Customers issues review",
-      startDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 2,
-        10,
-        0
-      ),
-      endDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 2,
-        15,
-        0
-      ),
-      classes: "color-3"
+      _id: 'event-4',
+      name: 'Customers issues review',
+      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2, 10, 0),
+      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2, 15, 0),
+      classes: 'color-3'
     },
     {
-      _id: "event-5",
-      name: "Group activity",
-      startDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 3,
-        10,
-        0
-      ),
-      endDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 3,
-        16,
-        30
-      ),
-      classes: "color-4"
+      _id: 'event-5',
+      name: 'Group activity',
+      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3, 10, 0),
+      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3, 16, 30),
+      classes: 'color-4'
     },
     {
-      _id: "event-6",
-      name: "Fun Day !",
-      startDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 7,
-        9,
-        14
-      ),
-      endDateTime: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 7,
-        17
-      ),
-      classes: "color-3"
+      _id: 'event-6',
+      name: 'Fun Day !',
+      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 9, 14),
+      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 17),
+      classes: 'color-3'
     }
   ];
 
   componentDidMount() {
-    // this.setState({ isPending: true });
-    // axios
-    //     .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, { headers: { Accept: "application/json" } })
-    //     .then(response => this.setState({ stylists: response.data, isPending: false }))
-    //     .then(console.log('toto'))
-    //     .catch(() => this.setState({ isError: true }))
-
     this.setState({ isPending: true });
 
     axios
-      .get(`http://127.0.0.1:8000/api/stylists`, {
-        headers: { Accept: "application/json" }
+      .get(AuthApi.SERVER + `/api/stylists`, {
+        headers: { Accept: 'application/json' }
       })
-      .then(response => {
-        const stylists = response.data.filter(sytlist => {
-          return sytlist.salon == "/api/salons/" + this.props.id;
+      .then((response) => {
+        const stylists = response.data.filter((sytlist) => {
+          return sytlist.salon == '/api/salons/' + this.props.id;
         });
         this.setState({ stylists: stylists });
       })
       .catch(() => this.setState({ isError: true }));
 
     axios
-      .get(`http://127.0.0.1:8000/api/salons/${this.props.id}`, {
-        headers: { Accept: "application/json" }
+      .get(AuthApi.SERVER + `/api/salons/${this.props.id}`, {
+        headers: { Accept: 'application/json' }
       })
-      .then(response => {
+      .then((response) => {
         this.setState({ salons: response.data, isPending: false });
       })
       .then(this.setState({ isPending: false }))
@@ -232,11 +145,9 @@ class ProfileSalon extends Component {
                     <li>{this.state.salons.phone}</li>
                   </ul>
                   <p>
-                    Batnae municipium in Anthemusia conditum Macedonum manu
-                    priscorum ab Euphrate flumine brevi spatio disparatur,
-                    refertum mercatoribus opulentis, ubi annua sollemnitate
-                    prope Septembris initium mensis ad nundinas magna promiscuae
-                    fortunae convenit multitudo ad commercanda
+                    Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi spatio
+                    disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope Septembris initium mensis
+                    ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
                   </p>
                 </div>
                 <div className="col-sm-6 col-lg-12">
@@ -244,7 +155,7 @@ class ProfileSalon extends Component {
                 </div>
               </div>
               <div className="col-lg-12">
-                {this.state.stylists.map(styl => (
+                {this.state.stylists.map((styl) => (
                   <Button block href="#agenda" name={styl.name}>
                     {styl.surname}
                   </Button>

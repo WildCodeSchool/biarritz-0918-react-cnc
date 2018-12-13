@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import "./App.css";
-import Router from "./Router.jsx";
-import * as AuthApi from "./Auth.api";
+import './App.css';
+import Router from './Router.jsx';
 
 class App extends Component {
   render() {

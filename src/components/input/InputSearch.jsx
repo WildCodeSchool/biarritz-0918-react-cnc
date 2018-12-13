@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import * as AuthApi from '../../Auth.api.js';
 import Autocomplete from '../search/Autocomplete';
-import DatePicker from '../search/DatePicker';
 
 class InputSearch extends React.Component {
   constructor(props) {
@@ -25,7 +24,7 @@ class InputSearch extends React.Component {
   componentDidMount() {
     this.setState({ isPending: true });
     axios
-      .get(`http://127.0.0.1:8000/api/cities`, {
+      .get(AuthApi.SERVER + `/api/cities`, {
         headers: { Accept: 'application/json' }
       })
       .then((response) => {

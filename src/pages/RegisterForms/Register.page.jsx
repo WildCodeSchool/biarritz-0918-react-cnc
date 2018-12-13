@@ -4,6 +4,7 @@ import axios from 'axios';
 import RegisterUserForm from './RegisterUserForm.jsx';
 import styles from './Register.module.css';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
+import * as AuthApi from '../../Auth.api.js';
 
 function getValuesFrom(...inputs) {
   let res = {};
@@ -33,7 +34,7 @@ class Register extends Component {
     const data = getValuesFrom(...e.target.elements);
     data.phone = parseInt(data.phone);
     axios
-      .post(`http://127.0.0.1:8000/register`, data, {
+      .post(AuthApi.SERVER + `/register`, data, {
         headers: {
           Accept: 'application/json'
         }
