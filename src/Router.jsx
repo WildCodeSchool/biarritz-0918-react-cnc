@@ -34,18 +34,13 @@ export default function({ login }) {
         <Route path="/login" exact component={Home} />
         <Route path="/logout" exact component={Home} />
         <PrivateRoute path="/profile" component={ProfileClient} />
-        <Route path="/salons/search" component={SearchList} />
+        <Route path="/salons/search/:city" component={SearchList} />
         <Route path="/register" component={Register} />
         <Route path="/admin" component={AdminPanel} />
-        <Route path="/salons/:id_:name/view" component={({ match }) => <SalonView id={match.params.id_} />} />
-        {/* <Route
-                    exact path="/sprofile/:id"
-                    component={({ match }) => (
-                        <ProfileSalon id={match.params.id} />
-                    )}
-                />
-                <Route path="/search/" component={SearchList} />
-                <Route path="/reactcpanel/" component={AdminPanel} /> */}
+        <Route
+          path="/salons/:id_:name/view"
+          component={({ match }) => <SalonView id={match.params.id_} />}
+        />
         <Route component={Error} />
       </Switch>
     </Router>
