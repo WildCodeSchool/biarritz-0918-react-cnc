@@ -109,6 +109,8 @@ class TheNavBar extends React.Component {
         <img src={logo} alt="logo" />
         <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
+        {/* BUG ZONE :
+          Collapsing the burger menu doesn't work */}
         <Collapse isOpen={this.state.isBurgerOpen} navbar>
           <Nav className="ml-auto" navbar>
             {this.props.navItems.map((navItem, i) => (
@@ -121,6 +123,7 @@ class TheNavBar extends React.Component {
             <NavItem>{Modal}</NavItem>
           </Nav>
         </Collapse>
+        {/* /BUG ZONE */}
       </Navbar>
     );
   }
