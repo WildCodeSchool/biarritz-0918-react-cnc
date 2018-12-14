@@ -6,13 +6,13 @@ export function ProfileForm({ onSubmit, initialValues }) {
   return (
     <Form onSubmit={onSubmit}>
       <Row form>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
+        <Col sm={6}>
           <FormGroup>
             <Label for="name">Prenom</Label>
             <Input id="name" name="name" type="text" defaultValue={name} />
           </FormGroup>
         </Col>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
+        <Col sm={6}>
           <FormGroup>
             <Label for="surname">Nom</Label>
             <Input
@@ -25,7 +25,7 @@ export function ProfileForm({ onSubmit, initialValues }) {
         </Col>
       </Row>
       <Row form>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
+        <Col sm={6}>
           <FormGroup>
             <Label for="username">Username</Label>
             <Input
@@ -37,7 +37,7 @@ export function ProfileForm({ onSubmit, initialValues }) {
             />
           </FormGroup>
         </Col>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
+        <Col sm={6}>
           <FormGroup>
             <Label for="password">Mot de passe</Label>
             <Input
@@ -50,48 +50,36 @@ export function ProfileForm({ onSubmit, initialValues }) {
           </FormGroup>
         </Col>
       </Row>
-      <Row form>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
-          <FormGroup>
-            <Label for="sex">Sexe</Label>
-            <Input
-              type="text"
-              name="sex"
-              id="sex"
-              defaultValue={sex}
-              readonly="readonly"
-            />
-          </FormGroup>
-        </Col>
-      </Row>
-      <Row form>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
-          <FormGroup>
-            <Label for="phone">Numéro de téléphone</Label>
-            <Input
-              type="number"
-              name="phone"
-              id="phone"
-              defaultValue={phone}
-              readonly="readonly"
-            />
-          </FormGroup>
-        </Col>
-      </Row>
-      <Row form>
-        <Col sm={6} xs={{ size: 10, offset: 1 }}>
-          <FormGroup>
-            <Label for="city">Ville</Label>
-            <Input
-              type="text"
-              name="cityName"
-              id="city"
-              defaultValue={city.name}
-              readonly="readonly"
-            />
-          </FormGroup>
-        </Col>
-      </Row>
+      <FormGroup>
+        <Label for="sex">Sexe</Label>
+        <Input
+          type="text"
+          name="sex"
+          id="sex"
+          defaultValue={sex}
+          readonly="readonly"
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="phone">Numéro de téléphone</Label>
+        <Input
+          type="number"
+          name="phone"
+          id="phone"
+          defaultValue={phone}
+          readonly="readonly"
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="city">Ville</Label>
+        <Input
+          type="text"
+          name="cityName"
+          id="city"
+          defaultValue={city.name}
+          readonly="readonly"
+        />
+      </FormGroup>
 
       <Button type="submit">Save</Button>
     </Form>
