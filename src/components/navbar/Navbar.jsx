@@ -46,7 +46,6 @@ class TheNavBar extends React.Component {
   };
 
   handleLoginSubmit = (credentials) => {
-
     AuthApi.postCredentials(credentials).then(() => {
       this.setState({
         isAuthenticated: true

@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 
 import Loader from '../../components/loader/Loader.jsx';
+import * as AuthApi from '../../Auth.api.js';
 
 export default class SearchList extends Component {
   constructor(props) {
@@ -29,10 +30,11 @@ export default class SearchList extends Component {
   componentDidMount() {
     this.setState({ isPending: true });
     axios
-      .get(`http://127.0.0.1:8000/api/salons`, {
+      .get(AuthApi.SERVER + `/api/salons`, {
         headers: { Accept: 'application/json' }
       })
       .then((response) => {
+        console.log(response);
         if (typeof this.props.id !== 'undefined') {
           const salons = response.data.filter((salon) => {
             return salon.city == '/api/cities/' + this.props.id;
