@@ -1,17 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
-const SESSION_KEY = 'session_token';
-const USERID = 'userid';
-export const SERVER = 'http://127.0.0.1:8000';
+const SESSION_KEY = "session_token";
+const USERID = "userid";
+// export const SERVER = "http://127.0.0.1:8000";
+export const SERVER = "https://c-and-c-api.herokuapp.com";
 
 export function postCredentials(credentials) {
   return axios
-    .post(SERVER + '/login_check', credentials, {
+    .post(SERVER + "/login_check", credentials, {
       headers: {
-        Accept: 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json"
       }
     })
-    .then((response) => saveToken(response.data.token));
+    .then(response => saveToken(response.data.token));
 }
 
 export function saveToken(token) {
@@ -38,9 +40,9 @@ export function getUserId() {
   return axios
     .get(SERVER + `/api/me`, {
       headers: {
-        Accept: 'application/json',
-        Authorization: 'Bearer ' + getToken()
+        Accept: "application/json",
+        Authorization: "Bearer " + getToken()
       }
     })
-    .then((response) => response.data);
+    .then(response => response.data);
 }

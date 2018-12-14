@@ -1,28 +1,42 @@
-import React, { Component } from 'react';
-import logo from '../../../src/clic.png';
-import styles from './ProfileSalon.module.css';
-import { Nav, NavItem, NavLink, Button } from 'reactstrap';
-import Agenda from '../../components/agenda/agenda.jsx';
-import Services from './SalonServicesTable.jsx';
-import Horaires from './SalonHoraires.jsx';
-import Carousel from './CarouselSalon.jsx';
-import ServiceModal from './ServiceModal.jsx';
-import axios from 'axios';
-import moment from 'moment';
-import { ReactAgenda, ReactAgendaCtrl, guid, getUnique, getLast, getFirst, Modal } from 'react-agenda';
+import React, { Component } from "react";
+import { Nav, NavItem, NavLink, Button } from "reactstrap";
+import axios from "axios";
+import moment from "moment";
+import Calendar from "skedify-calendar";
+import "skedify-calendar/lib/styles.css";
+import {
+  ReactAgenda,
+  ReactAgendaCtrl,
+  guid,
+  getUnique,
+  getLast,
+  getFirst,
+  Modal
+} from "react-agenda";
 
-import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
-import Loader from '../../components/loader/Loader.jsx';
-import * as AuthApi from '../../Auth.api.js';
+import Agenda from "../../components/agenda/agenda.jsx";
+import Horaires from "./SalonHoraires.jsx";
+import Carousel from "./CarouselSalon.jsx";
+import ServiceModal from "./ServiceModal.jsx";
+import logo from "../../../src/clic.png";
+import styles from "./ProfileSalon.module.css";
+import ResponsiveLayout from "../../layouts/Responsive.layout.jsx";
+import Loader from "../../components/loader/Loader.jsx";
+import * as AuthApi from "../../Auth.api.js";
 
-require('moment/locale/fr.js');
+require("moment/locale/fr.js");
 var now = new Date();
 
 class ProfileSalon extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      items: [
+        {
+          start: new Date(2018, 0, 5, 7, 0, 0),
+          end: new Date(2001, 0, 5, 9, 0, 0)
+        }
+      ],
       stylists: [],
       salons: [],
       isPending: false,
@@ -36,49 +50,67 @@ class ProfileSalon extends Component {
 
   itemsBasile = [
     {
-      _id: guid(),
-      name: 'Meeting , dev staff!',
-      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0),
-      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
-      classes: 'color-1 color-4'
-    },
-    {
-      _id: guid(),
-      name: 'Working lunch , Holly',
-      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 11, 0),
-      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 13, 0),
-      classes: 'color-2'
-    },
-    {
-      _id: guid(),
-      name: 'Conference , plaza',
-      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 11, 0),
-      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 14, 30),
-      classes: 'color-4'
+      start: new Date(2018, 13, 12, 7, 0, 0),
+      end: new Date(2001, 13, 12, 9, 0, 0)
     }
   ];
 
   itemsVianney = [
     {
-      _id: 'event-4',
-      name: 'Customers issues review',
-      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2, 10, 0),
-      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2, 15, 0),
-      classes: 'color-3'
+      _id: "event-4",
+      name: "Customers issues review",
+      startDateTime: new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 2,
+        10,
+        0
+      ),
+      endDateTime: new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 2,
+        15,
+        0
+      ),
+      classes: "color-3"
     },
     {
-      _id: 'event-5',
-      name: 'Group activity',
-      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3, 10, 0),
-      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3, 16, 30),
-      classes: 'color-4'
+      _id: "event-5",
+      name: "Group activity",
+      startDateTime: new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 3,
+        10,
+        0
+      ),
+      endDateTime: new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 3,
+        16,
+        30
+      ),
+      classes: "color-4"
     },
     {
-      _id: 'event-6',
-      name: 'Fun Day !',
-      startDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 9, 14),
-      endDateTime: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 17),
-      classes: 'color-3'
+      _id: "event-6",
+      name: "Fun Day !",
+      startDateTime: new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 7,
+        9,
+        14
+      ),
+      endDateTime: new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 7,
+        17
+      ),
+      classes: "color-3"
     }
   ];
 
@@ -87,11 +119,11 @@ class ProfileSalon extends Component {
 
     axios
       .get(AuthApi.SERVER + `/api/stylists`, {
-        headers: { Accept: 'application/json' }
+        headers: { Accept: "application/json" }
       })
-      .then((response) => {
-        const stylists = response.data.filter((sytlist) => {
-          return sytlist.salon == '/api/salons/' + this.props.id;
+      .then(response => {
+        const stylists = response.data.filter(sytlist => {
+          return sytlist.salon == "/api/salons/" + this.props.id;
         });
         this.setState({ stylists: stylists });
       })
@@ -99,9 +131,9 @@ class ProfileSalon extends Component {
 
     axios
       .get(AuthApi.SERVER + `/api/salons/${this.props.id}`, {
-        headers: { Accept: 'application/json' }
+        headers: { Accept: "application/json" }
       })
-      .then((response) => {
+      .then(response => {
         this.setState({ salons: response.data, isPending: false });
       })
       .then(this.setState({ isPending: false }))
@@ -145,21 +177,16 @@ class ProfileSalon extends Component {
                     <li>{this.state.salons.phone}</li>
                   </ul>
                   <p>
-                    Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi spatio
-                    disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope Septembris initium mensis
-                    ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
+                    Batnae municipium in Anthemusia conditum Macedonum manu
+                    priscorum ab Euphrate flumine brevi spatio disparatur,
+                    refertum mercatoribus opulentis, ubi annua sollemnitate
+                    prope Septembris initium mensis ad nundinas magna promiscuae
+                    fortunae convenit multitudo ad commercanda
                   </p>
                 </div>
-                <div className="col-sm-6 col-lg-12">
+                {/* <div className="col-sm-6 col-lg-12">
                   <Carousel />
-                </div>
-              </div>
-              <div className="col-lg-12">
-                {this.state.stylists.map((styl) => (
-                  <Button block href="#agenda" name={styl.name}>
-                    {styl.surname}
-                  </Button>
-                ))}
+                </div> */}
               </div>
 
               <div id="services" className="col-lg-12">
@@ -171,7 +198,22 @@ class ProfileSalon extends Component {
             <div className="col-lg-4">
               <div id="agenda">
                 <h2>Agenda</h2>
-                <Agenda items={this.state.items} />
+                {this.state.stylists.map(styl => (
+                  <Button
+                    href="#agenda"
+                    name={styl.name}
+                    style={{ marginLeft: 2, marginRight: 2, marginBottom: 5 }}
+                  >
+                    {styl.surname}
+                  </Button>
+                ))}
+                <Calendar
+                  locale="fr"
+                  step={60}
+                  minTime="07:00:00"
+                  maxTime="20:00:00"
+                  items={this.state.items}
+                />
               </div>
               <div id="horaires">
                 <h2>Horaires et</h2>

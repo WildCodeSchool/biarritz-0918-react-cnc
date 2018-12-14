@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import Error from '../../pages/Error.page';
-import Loader from '../loader/Loader';
+import Error from "../../pages/Error.page";
+import Loader from "../loader/Loader";
 
 export default class Fetch extends React.Component {
   constructor(props) {
@@ -15,12 +15,12 @@ export default class Fetch extends React.Component {
       error: null
     };
   }
-  valide = 'false';
+  valide = "false";
   componentDidMount() {
     this.setState({ isPending: true, isError: false, isSuccess: false });
     this.props
       .req()
-      .then((response) => {
+      .then(response => {
         if (!response.role.includes(this.props.role)) {
           this.valide = false;
           this.setState({ isPending: false });
@@ -29,7 +29,14 @@ export default class Fetch extends React.Component {
           this.setState({ isPending: false });
         }
       })
-      .catch((error) => this.setState({ isPending: false, isSuccess: false, isError: true, error }));
+      .catch(error =>
+        this.setState({
+          isPending: false,
+          isSuccess: false,
+          isError: true,
+          error
+        })
+      );
   }
 
   render() {
@@ -55,6 +62,6 @@ Fetch.propTypes = {
 };
 
 Fetch.defaultProps = {
-  renderError: (error) => <Error error={error} />,
+  renderError: error => <Error error={error} />,
   renderPending: () => <Loader />
 };
