@@ -13,7 +13,7 @@ npm 6.4.1
 
 ## Folder Hierarchy
 
-`/node_modules` : is the folder where all the dependencies are installed. Don't touch this
+`/node_modules` : is the folder where all the dependencies are installed. Don't touch this.
 `/public` :
 `/src` : where all the code is, this is the folder who get all our interest here.
 
