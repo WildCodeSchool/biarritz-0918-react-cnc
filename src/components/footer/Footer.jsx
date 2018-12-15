@@ -7,7 +7,7 @@ class TheFooter extends React.Component {
    render() {
       return (
          <Fragment>
-            <footer style={{ backgroundColor: "#343a40", padding: "25px" }}>
+            <footer style={{ backgroundColor: "#343a40", marginTop: "100px" }}>
                <div className="container">
                   <div className="row">
                      <div className="col-md-3" style={{ marginTop: "15px" }}>
@@ -28,7 +28,7 @@ class TheFooter extends React.Component {
                            }}
                         >
                            <li className="list-inline-item">
-                              <a href="#">
+                              <a href="#" target="_blank">
                                  <FontAwesomeIcon
                                     icon={["fab", "twitter-square"]}
                                     size="2x"
@@ -36,7 +36,10 @@ class TheFooter extends React.Component {
                               </a>
                            </li>
                            <li className="list-inline-item">
-                              <a href="https://www.facebook.com/clicetcoupe/">
+                              <a
+                                 href="https://www.facebook.com/clicetcoupe/"
+                                 target="_blank"
+                              >
                                  <FontAwesomeIcon
                                     icon={["fab", "facebook-square"]}
                                     size="2x"
@@ -44,7 +47,10 @@ class TheFooter extends React.Component {
                               </a>
                            </li>
                            <li className="list-inline-item">
-                              <a href="https://www.linkedin.com/company/clicetcoupe/">
+                              <a
+                                 href="https://www.linkedin.com/company/clicetcoupe/"
+                                 target="_blank"
+                              >
                                  <FontAwesomeIcon
                                     icon={["fab", "linkedin"]}
                                     size="2x"

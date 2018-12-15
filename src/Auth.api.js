@@ -6,43 +6,43 @@ export const SERVER = "http://127.0.0.1:8000";
 // export const SERVER = "https://c-and-c-api.herokuapp.com";
 
 export function postCredentials(credentials) {
-  return axios
-    .post(SERVER + "/login_check", credentials, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    })
-    .then(response => saveToken(response.data.token));
+   return axios
+      .post(SERVER + "/login_check", credentials, {
+         headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+         }
+      })
+      .then(response => saveToken(response.data.token));
 }
 
 export function saveToken(token) {
-  localStorage.setItem(SESSION_KEY, token);
+   localStorage.setItem(SESSION_KEY, token);
 }
 
 export function getToken() {
-  return localStorage.getItem(SESSION_KEY);
+   return localStorage.getItem(SESSION_KEY);
 }
 
 export function removeToken() {
-  localStorage.removeItem(SESSION_KEY);
+   localStorage.removeItem(SESSION_KEY);
 }
 
 export function saveUserId(id) {
-  localStorage.setItem(USERID, id);
+   localStorage.setItem(USERID, id);
 }
 
 export function useUserId() {
-  return localStorage.getItem(USERID);
+   return localStorage.getItem(USERID);
 }
 
 export function getUserId() {
-  return axios
-    .get(SERVER + `/api/me`, {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + getToken()
-      }
-    })
-    .then(response => response.data);
+   return axios
+      .get(SERVER + `/api/me`, {
+         headers: {
+            Accept: "application/json",
+            Authorization: "Bearer " + getToken()
+         }
+      })
+      .then(response => response.data);
 }

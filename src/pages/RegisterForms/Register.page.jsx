@@ -48,7 +48,9 @@ class Register extends Component {
             <div className={styles.head}>
                <div className="row">
                   <div className="offset-lg-2 offset-xs-2 col-xs-8 col-lg-8">
-                     <h3>Formulaire d'enregistrement</h3>
+                     <h3 style={{ marginBottom: "50px" }}>
+                        Formulaire d'enregistrement
+                     </h3>
                      <RegisterUserForm onSubmit={this.handleSubmit} />
                   </div>
                </div>
