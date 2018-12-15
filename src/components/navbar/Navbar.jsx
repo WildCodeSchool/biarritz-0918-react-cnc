@@ -8,15 +8,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-  Input,
-  Form,
-  FormGroup
+  NavLink
 } from 'reactstrap';
 
 import * as AuthApi from '../../Auth.api';
