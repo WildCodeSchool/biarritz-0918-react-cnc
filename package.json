@@ -25,7 +25,8 @@
     "react-themable": "^0.6.4",
     "react-validation": "^3.0.7",
     "reactstrap": "^6.5.0",
-    "select2": "^4.0.6-rc.1"
+    "select2": "^4.0.6-rc.1",
+    "skedify-calendar": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

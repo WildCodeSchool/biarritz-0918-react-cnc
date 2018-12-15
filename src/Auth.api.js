@@ -2,8 +2,8 @@ import axios from "axios";
 
 const SESSION_KEY = "session_token";
 const USERID = "userid";
-// export const SERVER = "http://127.0.0.1:8000";
-export const SERVER = "https://c-and-c-api.herokuapp.com";
+export const SERVER = "http://127.0.0.1:8000";
+// export const SERVER = "https://c-and-c-api.herokuapp.com";
 
 export function postCredentials(credentials) {
   return axios
