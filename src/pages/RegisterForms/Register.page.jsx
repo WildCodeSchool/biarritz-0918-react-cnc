@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 import RegisterUserForm from './RegisterUserForm.jsx';
@@ -44,8 +44,7 @@ class Register extends Component {
 
   render() {
     return (
-      <Fragment>
-        <ResponsiveLayout />
+      <ResponsiveLayout>
         <div className={styles.head}>
           <div className="row">
             <div className="offset-lg-2 offset-xs-2 col-xs-8 col-lg-8">
@@ -54,7 +53,7 @@ class Register extends Component {
             </div>
           </div>
         </div>
-      </Fragment>
+      </ResponsiveLayout>
     );
   }
 }
