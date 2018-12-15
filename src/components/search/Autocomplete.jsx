@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import style from './Autocomplete.module.css';
+import { strict } from 'assert';
 
 class Autocomplete extends Component {
   static propTypes = {

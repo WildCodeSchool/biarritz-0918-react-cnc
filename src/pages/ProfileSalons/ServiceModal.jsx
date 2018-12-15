@@ -5,6 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Input
 } from "reactstrap";
 import ServicesTable from "./SalonServicesTable.jsx";
 

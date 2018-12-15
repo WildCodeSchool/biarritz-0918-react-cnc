@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {
   Card,
+  CardImg,
   CardText,
   CardBody,
+  CardLink,
   CardTitle,
+  CardImgOverlay,
   CardSubtitle,
   Button
 } from 'reactstrap';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 
 import Loader from '../../components/loader/Loader.jsx';

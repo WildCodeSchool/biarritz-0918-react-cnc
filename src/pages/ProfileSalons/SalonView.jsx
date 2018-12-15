@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import logo from '../../../src/clic.png';
 import styles from './ProfileSalon.module.css';
-import { Nav, NavLink, Button } from 'reactstrap';
+import { Nav, NavItem, NavLink, Button } from 'reactstrap';
 import Agenda from '../../components/agenda/agenda.jsx';
+import Services from './SalonServicesTable.jsx';
 import Horaires from './SalonHoraires.jsx';
 import Carousel from './CarouselSalon.jsx';
 import ServiceModal from './ServiceModal.jsx';
 import axios from 'axios';
-import { guid } from 'react-agenda';
+import moment from 'moment';
+import { ReactAgenda, ReactAgendaCtrl, guid, getUnique, getLast, getFirst, Modal } from 'react-agenda';
 
 import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
 import Loader from '../../components/loader/Loader.jsx';
