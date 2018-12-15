@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -9,14 +9,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-  Input,
-  Form,
-  FormGroup
 } from 'reactstrap';
 
 import * as AuthApi from '../../Auth.api';

@@ -5,7 +5,6 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Input
 } from 'reactstrap';
 
 class ModalLogout extends React.Component {

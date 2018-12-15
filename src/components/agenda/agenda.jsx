@@ -4,10 +4,6 @@ import moment from "moment";
 import {
   ReactAgenda,
   ReactAgendaCtrl,
-  guid,
-  getUnique,
-  getLast,
-  getFirst,
   Modal
 } from "react-agenda";
 import { Button } from "reactstrap";
