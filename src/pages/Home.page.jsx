@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import InputSearch from "../components/input/InputSearch.jsx";
 import logo from "../clic.png";

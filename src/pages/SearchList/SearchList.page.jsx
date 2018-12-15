@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import {
    Card,
-   CardImg,
    CardText,
    CardBody,
-   CardLink,
    CardTitle,
-   CardImgOverlay,
    CardSubtitle,
    Button
 } from "reactstrap";
@@ -103,13 +100,13 @@ export default class SearchList extends Component {
                         style={{
                            marginTop: 10
                         }}
-                        src="http://via.placeholder.com/250"
+                        src="../../map.png"
+                        alt="map"
                      />
                   </div>
                </div>
             </div>
          </ResponsiveLayout>
-         // TODO: Check Render Props on doc
       );
    }
 }

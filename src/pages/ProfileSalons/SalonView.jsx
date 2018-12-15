@@ -1,22 +1,10 @@
 import React, { Component } from "react";
-import { Nav, NavItem, NavLink, Button } from "reactstrap";
+import { Nav, NavLink, Button } from "reactstrap";
 import axios from "axios";
-import moment from "moment";
 import Calendar from "skedify-calendar";
 import "skedify-calendar/lib/styles.css";
-import {
-   ReactAgenda,
-   ReactAgendaCtrl,
-   guid,
-   getUnique,
-   getLast,
-   getFirst,
-   Modal
-} from "react-agenda";
 
-import Agenda from "../../components/agenda/agenda.jsx";
 import Horaires from "./SalonHoraires.jsx";
-import Carousel from "./CarouselSalon.jsx";
 import ServiceModal from "./ServiceModal.jsx";
 import logo from "../../../src/clic.png";
 import styles from "./ProfileSalon.module.css";

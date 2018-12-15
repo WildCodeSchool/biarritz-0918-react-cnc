@@ -1,12 +1,5 @@
 import React from "react";
-import {
-   Button,
-   Modal,
-   ModalHeader,
-   ModalBody,
-   ModalFooter,
-   Input
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 class ModalLogout extends React.Component {
    constructor(props) {

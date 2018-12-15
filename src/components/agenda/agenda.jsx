@@ -1,15 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import moment from "moment";
-import {
-   ReactAgenda,
-   ReactAgendaCtrl,
-   guid,
-   getUnique,
-   getLast,
-   getFirst,
-   Modal
-} from "react-agenda";
+import { ReactAgenda, ReactAgendaCtrl, Modal } from "react-agenda";
 import { Button } from "reactstrap";
 
 var now = new Date();
