@@ -1,51 +1,51 @@
 @font-face {
-  font-family: champagne;
-  src: url("./assets/fonts/ChampagneBold.ttf");
+   font-family: champagne;
+   src: url("./assets/fonts/ChampagneBold.ttf");
 }
 
 body {
-  font-family: champagne !important;
-  background-color: #f8f9fa;
-  background-attachment: fixed;
+   font-family: champagne !important;
+   background-color: #f8f9fa;
+   background-attachment: fixed;
 }
 
 .App {
-  text-align: center;
+   text-align: center;
 }
 
 .App-logo {
-  margin-bottom: 50px;
-  margin-top: 50px;
-  animation: App-logo-spin infinite 10s linear;
+   margin-bottom: 50px;
+   margin-top: 50px;
+   animation: App-logo-spin infinite 10s linear;
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+   /* background-color: #282c34; */
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: calc(10px + 2vmin);
+   color: white;
 }
 
 .App-link {
-  color: #61dafb;
+   color: #61dafb;
 }
 
 .modal {
-  background-color: rgba(1, 1, 1, 0);
-  /* 
-    fixing conflict between Reactstrap & React-agenda : 
-    React-agenda add a background-color #FFF which is unwanted.
+   background-color: rgba(1, 1, 1, 0);
+   /* 
+      fixing conflict between Reactstrap & React-agenda : 
+      React-agenda add a background-color #FFF which is unwanted.
   */
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
 }
