@@ -7,10 +7,7 @@ class TheFooter extends React.Component {
    render() {
       return (
          <Fragment>
-            <footer
-               id="footer"
-               style={{ backgroundColor: "#343a40", marginTop: "100px" }}
-            >
+            <footer id="footer" style={{ backgroundColor: "#343a40" }}>
                <div className="container">
                   <div className="row">
                      <div className="col-md-3" style={{ marginTop: "15px" }}>
