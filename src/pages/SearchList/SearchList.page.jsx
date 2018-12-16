@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import ResponsiveLayout from "../../layouts/Responsive.layout.jsx";
 import Loader from "../../components/loader/Loader.jsx";
+import LoaderLogo from "../../components/loader/LoaderLogo.jsx";
 import * as AuthApi from "../../Auth.api.js";
 import Map from "../../map.png";
 
@@ -49,7 +50,7 @@ export default class SearchList extends Component {
       if (this.state.isPending) {
          return (
             <ResponsiveLayout>
-               <Loader />
+               <LoaderLogo />
             </ResponsiveLayout>
          );
       }
