@@ -1,12 +1,12 @@
 @font-face {
    font-family: champagne;
-   src: url("./assets/fonts/ChampagneBold.ttf");
+   src: url('./assets/fonts/ChampagneBold.ttf');
 }
 
 body {
    font-family: champagne !important;
    background-color: #f8f9fa;
-   background-image: url(http://forums.thesims.com/themes/sims/design/images/bg-light.jpg);
+   background-image: url(./grey-370125.png);
    background-attachment: fixed;
 }
 
