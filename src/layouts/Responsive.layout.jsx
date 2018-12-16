@@ -1,40 +1,74 @@
 import React, { Fragment } from 'react';
 
-import DesktopLayout from './Desktop.layout.jsx';
-import Mobilelayout from './Mobile.layout.jsx';
 import NavBar from '../components/navbar/Navbar.jsx';
-import SearchList from '../pages/SearchList/SearchList.page.jsx';
+import Footer from '../components/footer/Footer.jsx';
 
 const ResponsiveLayout = ({ children }) => {
-  return (
-    <Fragment>
-      <NavBar
-        navItems={[
-          {
-            label: 'Home',
-            to: '/'
-          },
-          {
-            label: 'Profile client',
-            to: '/profile'
-          },
-          {
-            label: 'Salons',
-            to: '/salons/search'
-          },
-          {
-            label: 'Admin',
-            to: '/admin'
-          },
-          {
-            label: 'Register',
-            to: '/register'
-          }
-        ]}
-      />
-      {children}
-    </Fragment>
-  );
+   let getItems = () => {
+      let roles = localStorage.getItem('ROLES');
+      if (roles === null) {
+         return [
+            {
+               label: 'Home',
+               to: '/'
+            },
+            {
+               label: 'Salons',
+               to: '/salons/search'
+            },
+            {
+               label: 'Register',
+               to: '/register'
+            }
+         ];
+      } else if (roles.includes('ROLE_ADMIN')) {
+         return [
+            {
+               label: 'Home',
+               to: '/'
+            },
+            {
+               label: 'Admin',
+               to: '/admin'
+            }
+         ];
+      } else if (roles.includes('ROLE_SALON')) {
+         return [
+            {
+               label: 'Home',
+               to: '/'
+            },
+            {
+               label: 'Profile client',
+               to: '/profile'
+            }
+         ];
+      } else {
+         return [
+            {
+               label: 'Home',
+               to: '/'
+            },
+            {
+               label: 'Profile client',
+               to: '/profile'
+            },
+            {
+               label: 'Salons',
+               to: '/salons/search'
+            }
+         ];
+      }
+   };
+   return (
+      <Fragment>
+         <NavBar navItems={getItems} />
+         <div className="container-fluid" id="wrap">
+            {children}
+         </div>
+         <Footer />
+      </Fragment>
+   );
 };
 
 export default ResponsiveLayout;

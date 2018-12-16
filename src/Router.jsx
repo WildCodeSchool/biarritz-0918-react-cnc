@@ -12,46 +12,39 @@ import { getUserId } from './Auth.api';
 import Register from './pages/RegisterForms/Register.page.jsx';
 
 function PrivateRoute(props) {
-  return (
-    <Fetch
-      req={getUserId}
-      role={props.role}
-      renderSuccess={() => <Route {...props} />}
-      renderError={() => <Redirect to="/" />}
-    />
-  );
+   return (
+      <Fetch
+         req={getUserId}
+         role={props.role}
+         renderSuccess={() => <Route {...props} />}
+         renderError={() => <Redirect to="/" />}
+      />
+   );
 }
 
 export default function({ login }) {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/login" exact component={Home} />
-        <Route path="/logout" exact component={Home} />
-        <PrivateRoute path="/profile" component={ProfileClient} role="ROLE_USER" />
-        <Route
-          path="/salons/search/:id:city"
-          component={({ match }) => <SearchList id={match.params.id} city={match.params.city} />}
-        />
-        <Route path="/salons/search" component={SearchList} />
-        <Route path="/register" component={Register} />
-        <PrivateRoute path="/admin" component={AdminPanel} role="ROLE_ADMIN" />
-        <PrivateRoute
-          path="/salons/:id_:name/view"
-          component={({ match }) => <SalonView id={match.params.id_} />}
-          role="ROLE_SALON"
-        />
-        {/* <Route
-                    exact path="/sprofile/:id"
-                    component={({ match }) => (
-                        <ProfileSalon id={match.params.id} />
-                    )}
-                />
-                <Route path="/search/" component={SearchList} />
-                <Route path="/reactcpanel/" component={AdminPanel} /> */}
-        <Route component={Error} />
-      </Switch>
-    </Router>
-  );
+   return (
+      <Router>
+         <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Home} />
+            <Route path="/logout" exact component={Home} />
+            <PrivateRoute path="/profile" component={ProfileClient} role="ROLE_USER" />
+            <Route
+               path="/salons/search/:id:city"
+               component={({ match }) => <SearchList id={match.params.id} city={match.params.city} />}
+            />
+            <Route path="/salons/search" component={SearchList} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/admin" component={AdminPanel} role="ROLE_ADMIN" />
+            <Route
+               path="/salons/:id_:name/view"
+               component={({ match }) => <SalonView id={match.params.id_} />}
+               role="ROLE_SALON"
+            />
+
+            <Route component={Error} />
+         </Switch>
+      </Router>
+   );
 }

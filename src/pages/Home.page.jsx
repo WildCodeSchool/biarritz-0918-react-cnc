@@ -1,54 +1,70 @@
-import React, { Fragment } from "react";
+import React from "react";
+
 import InputSearch from "../components/input/InputSearch.jsx";
 import logo from "../clic.png";
-// import {Container} from "reactstrap";
-// import {
-//     // Collapse,
-//     Navbar,
-//     // NavbarToggler,
-//     NavbarBrand,
-//     Nav,
-//     //     NavItem,
-//     //     NavLink,
-//     //     UncontrolledDropdown,
-//     //     DropdownToggle,
-//     //     DropdownMenu,
-//     //     DropdownItem,
-//     //     Button,
-//     //     Input,
-//     //     Form,
-//     //     FormGroup
-// } from 'reactstrap';
 import ResponsiveLayout from "../layouts/Responsive.layout.jsx";
 
-// const Home = () => {
-
-//     return (
-//         <div>
-//             {/* <p>TEST Component called Home situated in components/Pages/Home.js</p> */}
-//             <header className="App-header">
-//                 <img src={logo} className="App-logo" alt="logo" style={{width: '200px', height: 'auto'}}/>
-//             <InputSearch />
-//             </header>
-//         </div>
-//     );
-// };
-
 const Home = () => (
-  <ResponsiveLayout>
-    <div>
-      {/* <p>TEST Component called Home situated in components/Pages/Home.js</p> */}
-      <header className="App-header">
-        <img
-          src={logo}
-          className="App-logo"
-          alt="logo"
-          style={{ width: "200px", height: "auto" }}
-        />
-        <InputSearch />
-      </header>
-    </div>
-  </ResponsiveLayout>
+   <ResponsiveLayout>
+      <div className="App-header">
+         <img
+            src={logo}
+            className="App-logo"
+            alt="logo"
+            style={{ width: "200px", height: "auto" }}
+         />
+         <InputSearch />
+      </div>
+      <div className="container-fluid">
+         <div className="row" id="column-wrapper">
+            <div className="col-lg-4">
+               <div className="col-lg-12">
+                  <h3>hello</h3>
+                  <p>
+                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna
+                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                     Duis aute irure dolor in reprehenderit in voluptate velit
+                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                     occaecat cupidatat non proident, sunt in culpa qui officia
+                     deserunt mollit anim id est laborum.
+                  </p>
+               </div>
+            </div>
+            <div className="col-lg-4">
+               <div className="col-lg-12">
+                  <h3>hello</h3>
+                  <p>
+                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna
+                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                     Duis aute irure dolor in reprehenderit in voluptate velit
+                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                     occaecat cupidatat non proident, sunt in culpa qui officia
+                     deserunt mollit anim id est laborum.
+                  </p>
+               </div>
+            </div>
+            <div className="col-lg-4">
+               <div className="col-lg-12">
+                  <h3>hello</h3>
+                  <p>
+                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna
+                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                     Duis aute irure dolor in reprehenderit in voluptate velit
+                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                     occaecat cupidatat non proident, sunt in culpa qui officia
+                     deserunt mollit anim id est laborum.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </ResponsiveLayout>
 );
 
 export default Home;

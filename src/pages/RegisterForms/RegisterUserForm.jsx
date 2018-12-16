@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function checkEmail(value) {
@@ -20,7 +20,6 @@ function minLenOf(len) {
 
 const minLenOf3 = minLenOf(3);
 const minLenOf6 = minLenOf(6);
-const minLenOf10 = minLenOf(10);
 
 class RegisterUserForm extends React.Component {
   constructor(props) {
