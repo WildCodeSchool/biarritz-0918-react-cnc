@@ -1,22 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import {
-   Collapse,
-   Navbar,
-   NavbarToggler,
-   NavbarBrand,
-   Nav,
-   NavItem,
-   NavLink
-} from "reactstrap";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-import * as AuthApi from "../../Auth.api";
-import LoginModal from "../modals/LoginModal";
-import LogoutModal from "../modals/LogoutModal";
-import logo from "../../clic.png";
-import styles from "./Navbar.module.css";
-import AuthContext from "../../AuthContext";
+import * as AuthApi from '../../Auth.api';
+import LoginModal from '../modals/LoginModal';
+import LogoutModal from '../modals/LogoutModal';
+import logo from '../../clic.png';
+import styles from './Navbar.module.css';
+import AuthContext from '../../AuthContext';
 
 class TheNavBar extends React.Component {
    constructor(props) {
@@ -24,7 +16,8 @@ class TheNavBar extends React.Component {
 
       this.state = {
          isBurgerOpen: false,
-         isAuthenticated: false
+         isAuthenticated: false,
+         navItems: props.navItems()
       };
 
       this.toggle = this.toggle.bind(this);
@@ -33,22 +26,25 @@ class TheNavBar extends React.Component {
    componentDidMount = () => {
       let token = AuthApi.getToken();
       if (token != null) {
-         this.setState({ isAuthenticated: true });
+         this.setState({ isAuthenticated: true, navItems: this.props.navItems() });
       }
    };
 
-   handleLoginSubmit = credentials => {
+   handleLoginSubmit = (credentials) => {
       AuthApi.postCredentials(credentials).then(() => {
          this.setState({
-            isAuthenticated: true
+            isAuthenticated: true,
+            navItems: this.props.navItems()
          });
       });
    };
 
    handleLogoutSubmit = () => {
       AuthApi.removeToken();
+      AuthApi.removeRole();
       this.setState({
-         isAuthenticated: false
+         isAuthenticated: false,
+         navItems: this.props.navItems()
       });
    };
 
@@ -70,12 +66,7 @@ class TheNavBar extends React.Component {
                }}
             >
                <AuthContext.Consumer>
-                  {data => (
-                     <LogoutModal
-                        logout={data.handleLogoutSubmit}
-                        authenticated={data.isAuthenticated}
-                     />
-                  )}
+                  {(data) => <LogoutModal logout={data.handleLogoutSubmit} authenticated={data.isAuthenticated} />}
                </AuthContext.Consumer>
             </AuthContext.Provider>
          );
@@ -88,30 +79,19 @@ class TheNavBar extends React.Component {
                }}
             >
                <AuthContext.Consumer>
-                  {data => (
-                     <LoginModal
-                        login={data.handleLoginSubmit}
-                        authenticated={data.isAuthenticated}
-                     />
-                  )}
+                  {(data) => <LoginModal login={data.handleLoginSubmit} authenticated={data.isAuthenticated} />}
                </AuthContext.Consumer>
             </AuthContext.Provider>
          );
       }
       return (
-         <Navbar
-            style={{ marginBottom: "50px" }}
-            className={styles.brand}
-            color="dark"
-            dark
-            expand="md"
-         >
+         <Navbar style={{ marginBottom: '50px' }} className={styles.brand} color="dark" dark expand="md">
             <img src={logo} alt="logo" />
             <NavbarBrand href="/">Clic et Coupe</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isBurgerOpen} navbar>
                <Nav className="ml-auto" navbar>
-                  {this.props.navItems.map((navItem, i) => (
+                  {this.state.navItems.map((navItem, i) => (
                      <NavItem key={i}>
                         <NavLink tag={Link} to={navItem.to}>
                            {navItem.label}
@@ -131,12 +111,7 @@ class TheNavBar extends React.Component {
 // }
 
 TheNavBar.propTypes = {
-   navItems: PropTypes.arrayOf(
-      PropTypes.shape({
-         label: PropTypes.string.isRequired,
-         to: PropTypes.string.isRequired
-      })
-   ).isRequired
+   navItems: PropTypes.func
 };
 
 export default TheNavBar;
