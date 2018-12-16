@@ -6,6 +6,7 @@
 body {
    font-family: champagne !important;
    background-color: #f8f9fa;
+   background-image: url(http://forums.thesims.com/themes/sims/design/images/bg-light.jpg);
    background-attachment: fixed;
 }
 
@@ -38,6 +39,21 @@ body {
       fixing conflict between Reactstrap & React-agenda : 
       React-agenda add a background-color #FFF which is unwanted.
   */
+}
+
+#column-wrapper {
+   margin-top: 50px;
+   /* border: solid 1px #343a40; */
+}
+
+#column-wrapper div {
+   border-radius: 3px;
+   border: solid 1px #343a40;
+   background-color: #f8f9fa;
+}
+
+#column-wrapper p {
+   text-align: left;
 }
 
 @keyframes App-logo-spin {

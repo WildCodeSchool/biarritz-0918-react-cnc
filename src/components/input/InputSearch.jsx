@@ -58,9 +58,7 @@ class InputSearch extends React.Component {
             />
             {userInput ? (
                <Link to={`/salons/search/${idInput}-${userInput}`}>
-                  <Button color="info" outline>
-                     Search
-                  </Button>
+                  <Button color="success">Search</Button>
                </Link>
             ) : null}
          </div>

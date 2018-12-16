@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import { Input } from "reactstrap";
+
 import style from "./Autocomplete.module.css";
 
 class Autocomplete extends Component {
@@ -140,8 +142,7 @@ class Autocomplete extends Component {
       }
       return (
          <Fragment>
-            <input
-               className="form-control"
+            <Input
                type="text"
                onChange={onChange}
                onKeyDown={onKeyDown}
