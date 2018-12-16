@@ -45,14 +45,12 @@ class Register extends Component {
    render() {
       return (
          <ResponsiveLayout>
-            <div className={styles.head}>
-               <div className="row">
-                  <div className="offset-lg-2 offset-xs-2 col-xs-8 col-lg-8">
-                     <h3 style={{ marginBottom: "50px" }}>
-                        Formulaire d'enregistrement
-                     </h3>
-                     <RegisterUserForm onSubmit={this.handleSubmit} />
-                  </div>
+            <div className="row">
+               <div className="offset-lg-2 offset-xs-2 col-xs-8 col-lg-8">
+                  <h3 style={{ marginBottom: "50px" }}>
+                     Formulaire d'enregistrement
+                  </h3>
+                  <RegisterUserForm onSubmit={this.handleSubmit} />
                </div>
             </div>
          </ResponsiveLayout>

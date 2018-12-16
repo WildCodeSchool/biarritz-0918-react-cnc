@@ -30,7 +30,9 @@ const ResponsiveLayout = ({ children }) => {
                }
             ]}
          />
-         {children}
+         <div className="container-fluid" id="wrap">
+            {children}
+         </div>
          <Footer />
       </Fragment>
    );

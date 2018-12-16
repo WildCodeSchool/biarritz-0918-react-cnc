@@ -65,15 +65,13 @@ class ProfileClient extends Component {
    render() {
       return (
          <ResponsiveLayout>
-            <div className="container-fluid">
-               <div className="row">
-                  <div className="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
-                     <h3>Mon compte</h3>
-                     <ProfileForm
-                        initialValues={this.state}
-                        onSubmit={this.handleSubmit}
-                     />
-                  </div>
+            <div className="row">
+               <div className="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 col-xs-8 offset-xs-2">
+                  <h3>Mon compte</h3>
+                  <ProfileForm
+                     initialValues={this.state}
+                     onSubmit={this.handleSubmit}
+                  />
                </div>
             </div>
          </ResponsiveLayout>
