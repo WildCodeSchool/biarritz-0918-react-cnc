@@ -1,19 +1,29 @@
-import React, { Component } from 'react';
-import { Nav, NavLink, Button, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios';
-import Calendar from 'skedify-calendar';
-import 'skedify-calendar/lib/styles.css';
-import Horaires from './SalonHoraires.jsx';
-import ServiceModal from './ServiceModal.jsx';
-import logo from '../../../src/clic.png';
-import styles from './ProfileSalon.module.css';
-import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
-import Loader from '../../components/loader/Loader.jsx';
-import * as AuthApi from '../../Auth.api.js';
-import Agenda from '../../components/agenda/myAgenda.jsx';
-import SalonServiceTableBis from '../ProfileSalons/SalonServicesTableBis';
+import React, { Component } from "react";
+import {
+   Nav,
+   NavLink,
+   Button,
+   Col,
+   Row,
+   Form,
+   FormGroup,
+   Label,
+   Input
+} from "reactstrap";
+import axios from "axios";
+import Calendar from "skedify-calendar";
+import "skedify-calendar/lib/styles.css";
+import Horaires from "./SalonHoraires.jsx";
+import ServiceModal from "./ServiceModal.jsx";
+import logo from "../../../src/clic.png";
+import styles from "./ProfileSalon.module.css";
+import ResponsiveLayout from "../../layouts/Responsive.layout.jsx";
+import Loader from "../../components/loader/Loader.jsx";
+import * as AuthApi from "../../Auth.api.js";
+import Agenda from "../../components/agenda/myAgenda.jsx";
+import SalonServiceTableBis from "../ProfileSalons/SalonServicesTableBis";
 
-require('moment/locale/fr.js');
+require("moment/locale/fr.js");
 var now = new Date();
 
 class ProfileSalon extends Component {
@@ -25,8 +35,8 @@ class ProfileSalon extends Component {
          salons: [],
          isPending: false,
          isError: false,
-         currentStylist: '',
-         sex: '',
+         currentStylist: "",
+         sex: "",
          rdvs: []
       };
       this.update = this.update.bind(this);
@@ -39,7 +49,7 @@ class ProfileSalon extends Component {
    }
    update(e, stylId) {
       let id = null;
-      if (e === 'undefined') {
+      if (e === "undefined") {
          id = stylId;
       } else {
          let opt = e.currentTarget.options[e.currentTarget.selectedIndex];
@@ -47,12 +57,12 @@ class ProfileSalon extends Component {
       }
       axios
          .get(AuthApi.SERVER + `/api/rdvs`, {
-            headers: { Accept: 'application/json' }
+            headers: { Accept: "application/json" }
          })
-         .then((response) => {
+         .then(response => {
             console.log(response.data);
-            const rdvs = response.data.filter((rdv) => {
-               return rdv.stylist == '/api/stylists/' + id;
+            const rdvs = response.data.filter(rdv => {
+               return rdv.stylist == "/api/stylists/" + id;
             });
             console.log(rdvs);
 
@@ -65,11 +75,11 @@ class ProfileSalon extends Component {
 
       axios
          .get(AuthApi.SERVER + `/api/stylists`, {
-            headers: { Accept: 'application/json' }
+            headers: { Accept: "application/json" }
          })
-         .then((response) => {
-            const stylists = response.data.filter((sytlist) => {
-               return sytlist.salon == '/api/salons/' + this.props.id;
+         .then(response => {
+            const stylists = response.data.filter(sytlist => {
+               return sytlist.salon == "/api/salons/" + this.props.id;
             });
             this.setState({ stylists: stylists });
          })
@@ -77,9 +87,9 @@ class ProfileSalon extends Component {
 
       axios
          .get(AuthApi.SERVER + `/api/salons/${this.props.id}`, {
-            headers: { Accept: 'application/json' }
+            headers: { Accept: "application/json" }
          })
-         .then((response) => {
+         .then(response => {
             this.setState({ salons: response.data, isPending: false });
          })
          .then(this.setState({ isPending: false }))
@@ -113,16 +123,19 @@ class ProfileSalon extends Component {
             <div className="row">
                <div id="presentation" className="offset-lg-1 col-lg-6">
                   <div className="row">
-                     <div className="col-sm-6 col-lg-12">
+                     <div className={`${styles.container} col-sm-6 col-lg-12`}>
                         <h1>{this.state.salons.name}</h1>
                         <ul>
                            <li>{this.state.salons.email}</li>
                            <li>{this.state.salons.phone}</li>
                         </ul>
                         <p>
-                           TOTO municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi
-                           spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope Septembris
-                           initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda
+                           TOTO municipium in Anthemusia conditum Macedonum manu
+                           priscorum ab Euphrate flumine brevi spatio
+                           disparatur, refertum mercatoribus opulentis, ubi
+                           annua sollemnitate prope Septembris initium mensis ad
+                           nundinas magna promiscuae fortunae convenit multitudo
+                           ad commercanda
                         </p>
                      </div>
                   </div>
@@ -138,7 +151,7 @@ class ProfileSalon extends Component {
                                  type="select"
                                  name="sex"
                                  id="sex"
-                                 onChange={(e) => {
+                                 onChange={e => {
                                     this.updateSex(e);
                                  }}
                               >
@@ -157,13 +170,15 @@ class ProfileSalon extends Component {
                                  type="select"
                                  name="stylist"
                                  id="stylist"
-                                 onChange={(e) => {
+                                 onChange={e => {
                                     this.update(e);
                                  }}
                               >
                                  <option value="" disabled selected />
-                                 {this.state.stylists.map((styl) => (
-                                    <option value={styl.id}>{styl.name + ' ' + styl.surname}</option>
+                                 {this.state.stylists.map(styl => (
+                                    <option value={styl.id}>
+                                       {styl.name + " " + styl.surname}
+                                    </option>
                                  ))}
                               </Input>
                            </FormGroup>
@@ -175,7 +190,7 @@ class ProfileSalon extends Component {
                <div className="col-lg-4">
                   <div id="agenda">
                      <h2>Agenda</h2>
-                     {this.state.stylists.map((styl) => (
+                     {this.state.stylists.map(styl => (
                         <Button
                            href="#agenda"
                            name={styl.name}
@@ -188,7 +203,11 @@ class ProfileSalon extends Component {
                            {styl.surname}
                         </Button>
                      ))}
-                     <Agenda rdvs={this.state.rdvs} currentStylist={this.state.currentStylist} update={this.update} />
+                     <Agenda
+                        rdvs={this.state.rdvs}
+                        currentStylist={this.state.currentStylist}
+                        update={this.update}
+                     />
                   </div>
                </div>
             </div>

@@ -1,61 +1,45 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import NavBar from '../components/navbar/Navbar.jsx';
-import Footer from '../components/footer/Footer.jsx';
+import NavBar from "../components/navbar/Navbar.jsx";
+import Footer from "../components/footer/Footer.jsx";
 
 const ResponsiveLayout = ({ children }) => {
    let getItems = () => {
-      let roles = localStorage.getItem('ROLES');
+      let roles = localStorage.getItem("ROLES");
       if (roles === null) {
          return [
             {
-               label: 'Home',
-               to: '/'
+               label: "Salons",
+               to: "/salons/search"
             },
             {
-               label: 'Salons',
-               to: '/salons/search'
-            },
-            {
-               label: 'Register',
-               to: '/register'
+               label: "Register",
+               to: "/register"
             }
          ];
-      } else if (roles.includes('ROLE_ADMIN')) {
+      } else if (roles.includes("ROLE_ADMIN")) {
          return [
             {
-               label: 'Home',
-               to: '/'
-            },
-            {
-               label: 'Admin',
-               to: '/admin'
+               label: "Admin",
+               to: "/admin"
             }
          ];
-      } else if (roles.includes('ROLE_SALON')) {
+      } else if (roles.includes("ROLE_SALON")) {
          return [
             {
-               label: 'Home',
-               to: '/'
-            },
-            {
-               label: 'Profile client',
-               to: '/profile'
+               label: "Mon profil",
+               to: "/profile"
             }
          ];
       } else {
          return [
             {
-               label: 'Home',
-               to: '/'
+               label: "Mon profil",
+               to: "/profile"
             },
             {
-               label: 'Profile client',
-               to: '/profile'
-            },
-            {
-               label: 'Salons',
-               to: '/salons/search'
+               label: "Salons",
+               to: "/salons/search"
             }
          ];
       }
