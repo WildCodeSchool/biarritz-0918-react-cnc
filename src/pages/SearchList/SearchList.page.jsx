@@ -1,20 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
-import {
-   Card,
-   CardText,
-   CardBody,
-   CardTitle,
-   CardSubtitle,
-   Button
-} from "reactstrap";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import ResponsiveLayout from "../../layouts/Responsive.layout.jsx";
-import Loader from "../../components/loader/Loader.jsx";
-import LoaderLogo from "../../components/loader/LoaderLogo.jsx";
-import * as AuthApi from "../../Auth.api.js";
-import Map from "../../map.png";
+import ResponsiveLayout from '../../layouts/Responsive.layout.jsx';
+import Loader from '../../components/loader/Loader.jsx';
+import LoaderLogo from '../../components/loader/LoaderLogo.jsx';
+import * as AuthApi from '../../Auth.api.js';
+import Map from '../../map.png';
 
 export default class SearchList extends Component {
    constructor(props) {
@@ -33,7 +26,6 @@ export default class SearchList extends Component {
             headers: { Accept: 'application/json' }
          })
          .then((response) => {
-       
             if (typeof this.props.id !== 'undefined') {
                const salons = response.data.filter((salon) => {
                   return salon.city == '/api/cities/' + this.props.id;
@@ -65,25 +57,18 @@ export default class SearchList extends Component {
                               style={{
                                  marginTop: 10,
                                  borderRadius: 10,
-                                 borderColor: "#333",
-                                 backgroundImage:
-                                    "linear-gradient(#f8f9fa, #f8f9fa, gray)"
+                                 borderColor: '#333',
+                                 backgroundImage: 'linear-gradient(#f8f9fa, #f8f9fa, gray)'
                               }}
                            >
                               <CardBody>
                                  <CardTitle>{salons.name}</CardTitle>
                                  <CardSubtitle>{salons.email}</CardSubtitle>
                                  <CardText>
-                                    This is a wider card with supporting text
-                                    below as a natural lead-in to additional
-                                    content. This content is a little bit
-                                    longer.
+                                    This is a wider card with supporting text below as a natural lead-in to additional
+                                    content. This content is a little bit longer.
                                  </CardText>
-                                 <Link
-                                    to={`/salons/${salons.id}_${
-                                       salons.name
-                                    }/view`}
-                                 >
+                                 <Link to={`/salons/${salons.name}/${salons.id}/view`}>
                                     <Button color="primary">Prendre rdv</Button>
                                  </Link>
                               </CardBody>
