@@ -29,6 +29,10 @@ const ResponsiveLayout = ({ children }) => {
             {
                label: "Mon profil",
                to: "/profile"
+            },
+            {
+               label: "Mon salon",
+               to: "/monsalon"
             }
          ];
       } else {
