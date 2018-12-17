@@ -271,10 +271,6 @@ export default class Agenda extends React.Component {
 
       while (beginHour < endHour) {
          days.map((day) => {
-            console.log(dataRdvs);
-            console.log(day.format('DD MM YYYY') + ' ' + beginHour.format('LT'));
-            console.log(dataRdvs[6] === day.format('DD MM YYYY') + ' ' + beginHour.format('LT'));
-
             if (!dataRdvs.includes(day.format('DD MM YYYY') + ' ' + beginHour.format('LT'))) {
                totalSlots.push(
                   <td
@@ -322,7 +318,74 @@ export default class Agenda extends React.Component {
 
       return trElements;
    };
+   BodyAgendaSalon = () => {
+      let allRdvs = this.props.rdvs;
+      let dataRdvs = [];
+      if (allRdvs.length > 0) {
+         allRdvs.map((rdv) => {
+            dataRdvs.push(moment(rdv.dateStart).format('DD MM YYYY LT'));
+         });
+      }
+      let date = this.state.dateContext;
+      let beginDay = moment(date).startOf('isoWeek');
+      let endDay = moment(date).endOf('isoWeek');
+      let dayRange = moment().range(beginDay, endDay);
+      let days = [];
+      for (let day of dayRange.by('day')) {
+         days.push(day);
+      }
+      let totalSlots = [];
+      let dayContext = date.startOf('d');
+      let beginHour = dayContext.clone().add(8, 'h');
+      let endHour = dayContext.clone().add(20, 'h');
+
+      while (beginHour < endHour) {
+         days.map((day, i) => {
+            if (dataRdvs.includes(day.format('DD MM YYYY') + ' ' + beginHour.format('LT'))) {
+               totalSlots.push(
+                  <td key={i} id={day.format('YYYY-MM-DD') + 'T' + beginHour.format('LT')}>
+                     <div>
+                        <span className={styles.agendaContainerSlot + ' ' + styles.dateHover}>
+                           {beginHour.format('LT')}
+                        </span>
+                     </div>
+                  </td>
+               );
+            } else {
+               totalSlots.push(<td key={i} />);
+            }
+         });
+         beginHour = beginHour.add(30, 'm');
+      }
+      let rows = [];
+      let cells = [];
+      totalSlots.forEach((row, i) => {
+         if (i % 7 !== 0) {
+            cells.push(row);
+         } else {
+            let insertRow = cells.slice();
+            rows.push(insertRow);
+            cells = [];
+            cells.push(row);
+         }
+         if (i === totalSlots.length - 1) {
+            let insertRow = cells.slice();
+            rows.push(insertRow);
+         }
+      });
+      let trElements = rows.map((itemHour, i) => {
+         return <tr key={i * 100}>{itemHour}</tr>;
+      });
+
+      return trElements;
+   };
    render() {
+      let body = null;
+      if (this.props.salon) {
+         body = this.BodyAgendaSalon();
+      } else {
+         body = this.BodyAgenda();
+      }
       return (
          <div className={styles.agendaContainer} style={this.style}>
             <div className={styles.agendaMonth}>{this.MonthNav()}</div>
@@ -334,7 +397,7 @@ export default class Agenda extends React.Component {
               </td> */}
                   <tr>{this.HeaderAgenda()}</tr>
                </thead>
-               <tbody>{this.BodyAgenda()}</tbody>
+               <tbody>{body}</tbody>
             </table>
          </div>
       );

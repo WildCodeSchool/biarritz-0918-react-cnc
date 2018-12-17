@@ -41,6 +41,10 @@ const ResponsiveLayout = ({ children }) => {
             {
                label: 'Profile client',
                to: '/profile'
+            },
+            {
+               label: 'Mon salon',
+               to: '/monsalon'
             }
          ];
       } else {

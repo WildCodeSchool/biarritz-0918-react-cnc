@@ -11,6 +11,7 @@ import AdminPanel from './pages/AdminPanel/AdminPanel.js';
 import Fetch from './components/fetch/Fetch';
 import { getUserId } from './Auth.api';
 import Register from './pages/RegisterForms/Register.page.jsx';
+import AdminSalon from './pages/ProfileSalons/AdminSalon.jsx';
 
 function PrivateRoute(props) {
    return (
@@ -44,7 +45,7 @@ export default function({ login }) {
                component={({ match }) => <SalonViewBis id={match.params.id} />}
                role="ROLE_SALON"
             />
-
+            <Route path="/monsalon" component={AdminSalon} />
             <Route component={Error} />
          </Switch>
       </Router>
