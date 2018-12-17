@@ -5,6 +5,7 @@ import Home from './pages/Home.page.jsx';
 import Error from './pages/Error.page.jsx';
 import ProfileClient from './pages/ProfileClients/ProfileClient.page.jsx';
 import SalonView from './pages/ProfileSalons/SalonView.jsx';
+import SalonViewBis from './pages/ProfileSalons/SalonViewBis.jsx';
 import SearchList from './pages/SearchList/SearchList.page.jsx';
 import AdminPanel from './pages/AdminPanel/AdminPanel.js';
 import Fetch from './components/fetch/Fetch';
@@ -31,15 +32,16 @@ export default function({ login }) {
             <Route path="/logout" exact component={Home} />
             <PrivateRoute path="/profile" component={ProfileClient} role="ROLE_USER" />
             <Route
-               path="/salons/search/:id:city"
+               path="/salons/search/:id-:city"
                component={({ match }) => <SearchList id={match.params.id} city={match.params.city} />}
             />
             <Route path="/salons/search" component={SearchList} />
             <Route path="/register" component={Register} />
             <PrivateRoute path="/admin" component={AdminPanel} role="ROLE_ADMIN" />
             <Route
-               path="/salons/:id_:name/view"
-               component={({ match }) => <SalonView id={match.params.id_} />}
+               path="/salons/:name/:id/view"
+               // component={({ match }) => <SalonView id={match.params.id_} />}
+               component={({ match }) => <SalonViewBis id={match.params.id} />}
                role="ROLE_SALON"
             />
 
