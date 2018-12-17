@@ -7,10 +7,7 @@ class TheFooter extends React.Component {
    render() {
       return (
          <Fragment>
-            <footer
-               id="footer"
-               style={{ backgroundColor: "#343a40", marginTop: "100px" }}
-            >
+            <footer id="footer" style={{ backgroundColor: "#343a40" }}>
                <div className="container">
                   <div className="row">
                      <div className="col-md-3" style={{ marginTop: "15px" }}>
@@ -80,11 +77,7 @@ class TheFooter extends React.Component {
                   </div>
                </div>
                <div className="footer-copyright text-center py-3">
-                  © 2018 Copyright:
-                  <a href="https://mdbootstrap.com/education/bootstrap/">
-                     {" "}
-                     MDBootstrap.com
-                  </a>
+                  © 2018 Clic & Coupe
                </div>
             </footer>
          </Fragment>

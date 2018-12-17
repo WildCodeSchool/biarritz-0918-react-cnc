@@ -49,7 +49,6 @@ class ProfileClient extends Component {
    handleSubmit(e) {
       e.preventDefault();
       const data = getValuesFrom(...e.target.elements);
-      data.phone = parseInt(data.phone);
       AuthApi.getUserId()
          .then((response) =>
             axios.put(AuthApi.SERVER + `/api/user_ids/${response.id}`, data, {
