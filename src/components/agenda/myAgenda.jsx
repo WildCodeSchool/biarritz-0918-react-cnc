@@ -87,7 +87,9 @@ export default class Agenda extends React.Component {
                      Authorization: 'Bearer ' + AuthApi.getToken()
                   }
                }
-            ).then(() => this.props.update('undefined', stylistId));
+            )
+            .then(() => this.props.update('undefined', stylistId))
+            .then(() => alert("Rendez-vous pris !"));
          });
       }
    };
