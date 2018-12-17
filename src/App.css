@@ -1,32 +1,68 @@
+@font-face {
+   font-family: champagne;
+   src: url('./assets/fonts/ChampagneBold.ttf');
+}
+
+body {
+   font-family: champagne !important;
+   background-color: #f8f9fa;
+   background-image: url(./grey-370125.png);
+   background-attachment: fixed;
+}
+
 .App {
-  text-align: center;
+   text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 10s linear;
-  height: 40vmin;
+   margin-bottom: 50px;
+   margin-top: 50px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+   /* background-color: #282c34; */
+   min-height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: calc(10px + 2vmin);
+   color: white;
 }
 
 .App-link {
-  color: #61dafb;
+   color: #61dafb;
+}
+
+.modal {
+   background-color: rgba(1, 1, 1, 0);
+   /* 
+      fixing conflict between Reactstrap & React-agenda : 
+      React-agenda add a background-color #FFF which is unwanted.
+  */
+}
+
+#column-wrapper {
+   margin-top: 100px;
+   padding-top: 100px;
+   /* border: solid 1px #343a40; */
+   padding-bottom: 100px;
+}
+
+#column-wrapper div div {
+   border-radius: 3px;
+   border: solid 1px #343a40;
+   background-color: #f6f6f6;
+}
+
+#column-wrapper p {
+   text-align: left;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
 }

@@ -1,0 +1,12 @@
+footer {
+   color: rgba(255, 255, 255, 0.89);
+   text-align: left;
+}
+
+footer a {
+   color: rgba(255, 255, 255, 0.5);
+}
+
+footer a:hover {
+   color: rgba(255, 255, 255, 1);
+}
