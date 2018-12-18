@@ -1,6 +1,6 @@
 @font-face {
    font-family: champagne;
-   src: url("./assets/fonts/ChampagneBold.ttf");
+   src: url('./assets/fonts/ChampagneBold.ttf');
 }
 
 body {
