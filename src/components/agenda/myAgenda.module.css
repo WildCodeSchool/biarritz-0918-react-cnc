@@ -1,0 +1,80 @@
+.agendaContainer,
+.agenda,
+.agendaHeader,
+td,
+tr {
+  padding: 0;
+  margin: 0;
+}
+
+.agendaContainerSlot {
+  font-size: 12px;
+  font-weight: 700;
+  height: 20px;
+  line-height: 30px;
+  background-color: #ccecfa;
+  cursor: pointer;
+  margin: 10px 0;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.dateHover:hover {
+  background-color: #89d3f3;
+}
+.agendaContainer {
+  border: 2px solid #c0c0c0;
+  border-radius: 5px;
+}
+
+.agenda {
+  background-color: white;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.day,
+.emptySlot,
+.weekDay {
+  text-align: center;
+  height: 40px;
+}
+
+.weekDay {
+  font-size: 0.8em;
+}
+.agendaMonth {
+  display: inline-block;
+  width: 50%;
+  background-color: #f1f1f1;
+}
+.agendaYear {
+  display: inline-block;
+  width: 50%;
+  background-color: #f1f1f1;
+}
+.agendaWeek {
+  background-color: #f1f1f1;
+}
+
+.labelDate {
+  font-size: 1em;
+  border-top: solid 2px #c0c0c0;
+}
+
+.labelPointer {
+  display: inline-block;
+  cursor: pointer;
+  width: 10%;
+}
+.labelPointerNone {
+  display: inline-block;
+  width: 10%;
+  color: #f1f1f1;
+}
+.labelTitle {
+  display: inline-block;
+  width: 80%;
+}

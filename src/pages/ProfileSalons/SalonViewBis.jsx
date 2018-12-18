@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { Nav, NavLink, Button } from "reactstrap";
+import {
+   Nav,
+   NavLink,
+   Button,
+   Col,
+   Row,
+   Form,
+   FormGroup,
+   Label,
+   Input
+} from "reactstrap";
 import axios from "axios";
 import Calendar from "skedify-calendar";
 import "skedify-calendar/lib/styles.css";
-
 import Horaires from "./SalonHoraires.jsx";
 import ServiceModal from "./ServiceModal.jsx";
 import logo from "../../../src/clic.png";
@@ -11,6 +20,8 @@ import styles from "./ProfileSalon.module.css";
 import ResponsiveLayout from "../../layouts/Responsive.layout.jsx";
 import Loader from "../../components/loader/Loader.jsx";
 import * as AuthApi from "../../Auth.api.js";
+import Agenda from "../../components/agenda/myAgenda.jsx";
+import SalonServiceTableBis from "../ProfileSalons/SalonServicesTableBis";
 
 require("moment/locale/fr.js");
 var now = new Date();
@@ -19,21 +30,44 @@ class ProfileSalon extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         items: [
-            {
-               start: new Date(2018, 0, 5, 7, 0, 0),
-               end: new Date(2001, 0, 5, 9, 0, 0)
-            }
-         ],
+         items: [],
          stylists: [],
          salons: [],
          isPending: false,
-         isError: false
+         isError: false,
+         currentStylist: "",
+         sex: "",
+         rdvs: []
       };
+      this.update = this.update.bind(this);
    }
 
-   update(items) {
-      this.setState({ items: items });
+   updateSex(e) {
+      let opt = e.currentTarget.options[e.currentTarget.selectedIndex];
+      let sex = opt.value;
+      this.setState({ sex: sex });
+   }
+   update(e, stylId) {
+      let id = null;
+      if (e === "undefined") {
+         id = stylId;
+      } else {
+         let opt = e.currentTarget.options[e.currentTarget.selectedIndex];
+         id = opt.value;
+      }
+      axios
+         .get(AuthApi.SERVER + `/api/rdvs`, {
+            headers: { Accept: "application/json" }
+         })
+         .then(response => {
+            console.log(response.data);
+            const rdvs = response.data.filter(rdv => {
+               return rdv.stylist == "/api/stylists/" + id;
+            });
+            console.log(rdvs);
+
+            this.setState({ rdvs: rdvs, currentStylist: id });
+         });
    }
 
    componentDidMount() {
@@ -89,30 +123,68 @@ class ProfileSalon extends Component {
             <div className="row">
                <div id="presentation" className="offset-lg-1 col-lg-6">
                   <div className="row">
-                     <div className="col-sm-6 col-lg-12">
+                     <div className={`${styles.container} col-sm-6 col-lg-12`}>
                         <h1>{this.state.salons.name}</h1>
                         <ul>
                            <li>{this.state.salons.email}</li>
                            <li>{this.state.salons.phone}</li>
                         </ul>
                         <p>
-                           Batnae municipium in Anthemusia conditum Macedonum
-                           manu priscorum ab Euphrate flumine brevi spatio
+                           TOTO municipium in Anthemusia conditum Macedonum manu
+                           priscorum ab Euphrate flumine brevi spatio
                            disparatur, refertum mercatoribus opulentis, ubi
                            annua sollemnitate prope Septembris initium mensis ad
                            nundinas magna promiscuae fortunae convenit multitudo
                            ad commercanda
                         </p>
                      </div>
-                     {/* <div className="col-sm-6 col-lg-12">
-                  <Carousel />
-                </div> */}
                   </div>
 
                   <div id="services" className="col-lg-12">
-                     <h2>Rendez-vous pour :</h2>
-                     <ServiceModal name="Homme" color="primary" />
-                     <ServiceModal name="Femme" color="danger" />
+                     <Form onSubmit="">
+                        <Row form>
+                           <FormGroup>
+                              <Label for="sex">
+                                 <h2>Rendez-vous pour :</h2>
+                              </Label>
+                              <Input
+                                 type="select"
+                                 name="sex"
+                                 id="sex"
+                                 onChange={e => {
+                                    this.updateSex(e);
+                                 }}
+                              >
+                                 <option value="" selected disabled />
+                                 <option value="Homme">Homme</option>
+                                 <option value="Femme">Femme</option>
+                              </Input>
+                           </FormGroup>
+                        </Row>
+                        <Row form>
+                           <FormGroup>
+                              <Label for="stylist">
+                                 <h2>Coiffeur :</h2>
+                              </Label>
+                              <Input
+                                 type="select"
+                                 name="stylist"
+                                 id="stylist"
+                                 onChange={e => {
+                                    this.update(e);
+                                 }}
+                              >
+                                 <option value="" disabled selected />
+                                 {this.state.stylists.map(styl => (
+                                    <option value={styl.id}>
+                                       {styl.name + " " + styl.surname}
+                                    </option>
+                                 ))}
+                              </Input>
+                           </FormGroup>
+                        </Row>
+                        <SalonServiceTableBis name={this.state.sex} />
+                     </Form>
                   </div>
                </div>
                <div className="col-lg-4">
@@ -131,17 +203,11 @@ class ProfileSalon extends Component {
                            {styl.surname}
                         </Button>
                      ))}
-                     <Calendar
-                        locale="fr"
-                        step={60}
-                        minTime="07:00:00"
-                        maxTime="20:00:00"
-                        items={this.state.items}
+                     <Agenda
+                        rdvs={this.state.rdvs}
+                        currentStylist={this.state.currentStylist}
+                        update={this.update}
                      />
-                  </div>
-                  <div id="horaires">
-                     <h2>Horaires et</h2>
-                     <Horaires />
                   </div>
                </div>
             </div>
