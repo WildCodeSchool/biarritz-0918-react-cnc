@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Row, FormGroup, Label, Input } from 'reactstrap';
 
 export default class TableService extends React.Component {
    render() {
@@ -31,28 +31,21 @@ export default class TableService extends React.Component {
          ];
       }
       return (
-         <Table>
-            <thead>
-               <tr>
-                  <th className="col-lg-6 text-left">Prestation</th>
-                  <th>Durée</th>
-                  <th>Tarif</th>
-                  <th>Réservation</th>
-               </tr>
-            </thead>
-            <tbody>
-               {items.map((presta) => (
-                  <tr>
-                     <td>{presta.prestation}</td>
-                     <td>{presta.durée}</td>
-                     <td>{presta.price}</td>
-                     <td>
-                        <Button outline>Réserver</Button>
-                     </td>
-                  </tr>
-               ))}
-            </tbody>
-         </Table>
+         <Row form>
+            <FormGroup>
+               <Label for="presta">
+                  <h2>Prestation :</h2>
+               </Label>
+               <Input type="select" name="presta" id="presta">
+                  <option value="" disabled selected />
+                  {items.map((presta, i) => (
+                     <option key={i} value={presta.prestation}>
+                        {presta.prestation} {presta.price}
+                     </option>
+                  ))}
+               </Input>
+            </FormGroup>
+         </Row>
       );
    }
 }

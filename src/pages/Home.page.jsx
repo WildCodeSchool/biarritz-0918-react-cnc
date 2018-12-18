@@ -19,46 +19,30 @@ const Home = () => (
          <div className="row" id="column-wrapper">
             <div className="col-lg-4">
                <div className="col-lg-12">
-                  <h3>hello</h3>
+                  <h3>Les meilleurs salons</h3>
                   <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                     Duis aute irure dolor in reprehenderit in voluptate velit
-                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                     occaecat cupidatat non proident, sunt in culpa qui officia
-                     deserunt mollit anim id est laborum.
+                     Nos partenaires sont les meilleurs salons de coiffure. Des
+                     professionnels avec des standards de qualité élevés pour
+                     répondre à tous vos besoins.
                   </p>
                </div>
             </div>
             <div className="col-lg-4">
                <div className="col-lg-12">
-                  <h3>hello</h3>
+                  <h3>Simplicité</h3>
                   <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                     Duis aute irure dolor in reprehenderit in voluptate velit
-                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                     occaecat cupidatat non proident, sunt in culpa qui officia
-                     deserunt mollit anim id est laborum.
+                     Notre système de prise de rendez-vous est facile et
+                     intuitif pour être accessible à tous.
                   </p>
                </div>
             </div>
             <div className="col-lg-4">
                <div className="col-lg-12">
-                  <h3>hello</h3>
+                  <h3>Rapidité</h3>
                   <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                     Duis aute irure dolor in reprehenderit in voluptate velit
-                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                     occaecat cupidatat non proident, sunt in culpa qui officia
-                     deserunt mollit anim id est laborum.
+                     En trois clics, vous pouvez prendre rendez-vous avec votre
+                     coiffeur préféré ou trouver un nouveau salon de coiffure
+                     près de chez vous.
                   </p>
                </div>
             </div>
